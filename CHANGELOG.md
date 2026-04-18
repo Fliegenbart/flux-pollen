@@ -5,6 +5,20 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Phase 4c — Modell-Artefakte und öffentliche Forecast-API.** Die trainierten Modelle sind jetzt als Filesystem-Artefakte persistiert und werden vom FastAPI-Backend als REST-Endpunkte ausgespielt. Milestone-1-DoD-Punkte 6 und 7 erfüllt.
+  - `app/services/ml/model_registry.py` — joblib-basierte Speicherung unter `backend/app/ml_models/<pollen>/<region>/h<horizon>/` plus Metadaten-JSON (Feature-Spalten-Order, Trainings-Fenster, Modell-Version, Trainingszeitpunkt, Feature-Config). Die API liest die Metadaten und verweigert die Auslieferung, wenn die aktuellen Feature-Spalten vom Trainings-Snapshot abweichen — Feature-Drift wird laut, nicht leise, erkannt.
+  - `scripts/run_train.py` — CLI, trainiert ForecastService auf voller Historie und speichert Artefakt.
+  - Neuer Router `app/api/pollen.py` mit drei Endpunkten:
+    - `GET /api/v1/pollen/current?region=…&pollen_type=…` — liefert den jüngsten Ist-Wert. ePIN-Konzentration bevorzugt, DWD-Index als Fallback.
+    - `GET /api/v1/pollen/forecast?region=…&pollen_type=…&horizon_days=7|14` — lädt das passende Modell-Artefakt, baut den Feature-Vektor aus den letzten 2 Jahren und gibt Punktprognose + 80 %-Band zurück.
+    - `GET /api/v1/pollen/forecast/regional?pollen_type=…&horizon_days=7|14` — rankt alle Regionen mit einem trainierten Modell nach erwarteter Konzentration.
+  - Schema in `app/schemas/pollen.py`, Router eingehängt in `main.py`.
+  - 6 neue API-Tests via `fastapi.testclient.TestClient`: /current-Response-Shape, 503 ohne Modell, Bounds-Monotonie nach Training, Regional-Ranking-Order, 400 auf unbekannten Horizon, 404 auf unbekannte Region. Gesamt-Testsuite: **47 grün in 20,4 s**.
+  - Smoke-Test gegen echtes Backend auf Port 8001 mit allen 6 Bayern-Modellen (Birke/Gräser/Erle × h7/h14):
+    - `/api/v1/pollen/current?region=BY&pollen_type=birke` → **1462 Pollen/m³** am 2026-04-16 (München, Mitte-April-Birkenpeak — plausibel).
+    - `/api/v1/pollen/forecast?region=BY&pollen_type=birke&horizon_days=7` → 483.6 [8.8, 686.3], `confidence_label=low`.
+    - `/api/v1/pollen/forecast/regional?pollen_type=birke&horizon_days=7` → Ranking mit 1 Eintrag (BY) — wird mit weiteren Region-Modellen automatisch wachsen.
+  - `.gitignore` erweitert um `backend/app/ml_models/**/metadata.json`, damit Modell-Artefakte lokal reproduzierbar sind, aber nicht im Repo landen.
 - **Phase 4-real — erster Echtdaten-Backtest auf 5 Jahren ePIN Bayern.** Lokale SQLite-DB (Override via `DATABASE_URL`) mit 867 170 Pollen-Observations, 30 928 Wetter-Zeilen (BrightSky, 16 Hauptstädte), 496 Ferien-Einträgen 2022–2026. Fenster 2021-01-01 bis 2026-04-17, Horizonte 7 und 14, Walk-Forward mit `min_train_days=365` und `step_days=7`, ~220 Folds pro Run.
 
   | Pollen | Horizon | Folds | MAE | WIS80 | Cov80 | ΔWIS vs Persistence | ΔWIS vs Seasonal-Naive |

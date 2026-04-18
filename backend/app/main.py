@@ -11,7 +11,7 @@ from fastapi.responses import JSONResponse
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
-from app.api import auth, health
+from app.api import auth, health, pollen
 from app.core.config import get_settings
 from app.core.logging_config import correlation_id, log_event, setup_logging
 from app.core.metrics import app_info
@@ -93,6 +93,7 @@ def create_app() -> FastAPI:
 
     app.include_router(health.router, tags=["health"])
     app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+    app.include_router(pollen.router, prefix="/api/v1/pollen", tags=["pollen"])
 
     return app
 

@@ -10,9 +10,10 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
-# ML artifacts
+# ML artifacts (metadata + joblib). Re-create via scripts/run_train.py.
 backend/app/ml_models/**/*.joblib
 backend/app/ml_models/**/*.pkl
+backend/app/ml_models/**/metadata.json
 
 # OS
 .DS_Store

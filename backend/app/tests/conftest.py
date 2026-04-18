@@ -26,18 +26,30 @@ os.environ.setdefault("SECRET_KEY", "test-secret-key-minimum-32-characters-long"
 os.environ.setdefault("ADMIN_EMAIL", "admin@example.com")
 os.environ.setdefault("ADMIN_PASSWORD", "test-password-12345")
 os.environ.setdefault("ENVIRONMENT", "test")
+# Keep the module-level engine in app.db.session on a dialect that never
+# needs a driver we may not have installed in CI. The per-test fixture
+# below creates its own engine and dependency-overrides it for API calls.
+os.environ.setdefault("DATABASE_URL", "sqlite:///:memory:")
 
 
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import StaticPool
 
 from app.models.database import Base
 
 
 @pytest.fixture
 def db_session():
-    engine = create_engine("sqlite:///:memory:", future=True)
+    # StaticPool + check_same_thread=False lets the FastAPI TestClient's
+    # worker thread reuse the same in-memory DB that the test thread created.
+    engine = create_engine(
+        "sqlite:///:memory:",
+        future=True,
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
     Base.metadata.create_all(engine)
     TestingSession = sessionmaker(bind=engine, autoflush=False, autocommit=False)
     session = TestingSession()
