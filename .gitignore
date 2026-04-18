@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.env
+.env.local
+.pytest_cache/
+.coverage
+.mypy_cache/
+.ruff_cache/
+
+# ML artifacts
+backend/app/ml_models/**/*.joblib
+backend/app/ml_models/**/*.pkl
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Data (local only)
+backend/data/raw/
+backend/data/cache/
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log

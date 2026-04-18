@@ -1,0 +1,62 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: pollencast_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-pollencast}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: ${POSTGRES_DB:-pollencast_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "15432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-pollencast}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - pollencast_net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pollencast_backend
+    environment:
+      - POSTGRES_HOST=pollencast_db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER:-pollencast}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+      - POSTGRES_DB=${POSTGRES_DB:-pollencast_db}
+      - SECRET_KEY=${SECRET_KEY}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - M2M_SECRET_KEY=${M2M_SECRET_KEY:-}
+      - ENVIRONMENT=${ENVIRONMENT:-development}
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY:-}
+      - DWD_POLLEN_URL=${DWD_POLLEN_URL:-https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json}
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost:3000}
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/live', timeout=5)"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    networks:
+      - pollencast_net
+
+volumes:
+  postgres_data:
+
+networks:
+  pollencast_net:
+    driver: bridge
