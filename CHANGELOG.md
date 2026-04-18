@@ -5,6 +5,20 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Phase 5a — Hexal-Pilot-Pipeline: Kunden-Outcome-Upload + Pollen-×-Outcome-Korrelation.** Erste Produkt-Schicht über dem Forecast-Kern: die "Pollen → Umsatz"-Übersetzung, die den tatsächlichen MOAT trägt. Aufgebaut mit dem Hexal-Lorano-Pilot im Visier (kein Pilot-Vertrag — baut trotzdem die Pipeline jetzt, damit der erste Pitch nicht an fehlender Infrastruktur scheitert).
+  - **Neue Tabelle `outcome_observations`** (bewusst in Phase 2 weggelassen, in Phase 5a zurückgeholt): brand × product × region_code × week × metric_name × source_label → Wert, Einheit, optional Kanal/Kampagne. Alembic-Migration `0003_outcome_observations` mit passendem Unique-Constraint.
+  - **`app/services/outcome/schemas.py`** — zentralisierte Metric-Definition (`sell_out_units`, `sell_out_revenue_eur`, `tv_grp`, `search_brand_clicks`, `search_brand_impressions`) mit Labels, Einheiten und Gruppen. CSV-Vertrag: Long-Format, 6 Pflicht- + 3 optionale Spalten. Keine Wide-Format-Auto-Erkennung, kein Raten — Schema-Klarheit ist die Basis für Kundenvertrauen.
+  - **`OutcomeUploadService`** (`app/services/outcome/upload_service.py`): strikte Zeilen-Validierung (unbekannte Region, unerlaubte Metrik, negative Werte, malformed Dates werden mit Zeilennummer und Code rejected), idempotentes Upsert, `week_start`-Snap auf ISO-Wochen-Montag, Persistierung in `outcome_observations` + Revisionslog in `upload_history`. Multi-Brand-Uploads werden als Warnung, nicht als Fehler geflaggt.
+  - **`OutcomeCorrelationService`** (`app/services/outcome/correlation_service.py`): lädt ein Outcome-Zeitreihe und die passende ePIN-Pollen-Zeitreihe, rechnet Pearson über ein Lag-Grid (−21 … +21 Tage), liefert `best_lag_days`, `best_pearson` und den **High-vs-Low-Lift** (Top-Quartil-Wochen vs. Bottom-Quartil-Wochen, in Prozent). Die Lag-Kurve ist vollständig exponiert — eine visuelle Form von "so sieht unsere Kopplung aus, wenn wir's ehrlich machen".
+  - **Drei neue API-Endpunkte unter `/api/v1/outcome/`:**
+    - `POST /upload` — Multipart-CSV (max. 5 MB), Response ist der strukturierte Validierungsbericht mit jedem einzelnen Issue. So debugt ein Hexal-Analyst ohne Nachfragen.
+    - `GET /catalog` — liste alle (brand, product, region, metric) mit Wochen-Spanne und Source-Labels.
+    - `GET /correlation?brand=…&product=…&region=…&pollen_type=…&metric=…` — der MOAT-Beweis-Endpunkt.
+  - **CLI `scripts/ingest_outcome.py`** mit `--file`, `--source-label`, `--batch-id` für lokale Backfills.
+  - **Synthetischer Hexal-Demo-Datensatz** (`data/demo/hexal_lorano_sellout_demo.csv`, 2250 Zeilen, 4,5 Jahre × 5 Bundesländer × 2 Metriken), explizit an die echte ePIN-Bayern-Pollenhistorie gekoppelt. Klar als `source_label=demo_synthetic` getaggt.
+  - **Smoke-Test gegen lokale API** (Hexal/Lorano/BY/Birke/Sell-Out, 225 Wochen): Pearson 0.55 @ Lag +1 Tag, High-vs-Low-Lift +78.6 %. Die Mechanik reproduziert die synthetisch eingebaute Kopplung korrekt. Regionen ohne ePIN-Historie (z. B. NW) erhalten sauber einen 404 mit klarer Fehlermeldung — das ist das natürliche Verkaufs-Argument für die regionale Historie-Erweiterung.
+  - **11 neue Tests** in `test_outcome_upload.py`, `test_outcome_correlation.py`, `test_outcome_api.py`: CSV-Parsing, Validierung (missing columns, unknown region, unsupported metric, negative values, ISO-week snap), Idempotenz, Lag-Recovery (synthetisch 7-Tage-Lag, Service findet es in ±3 Tagen), Lift-Signal-Erkennung, HTTP-Layer inkl. Empty-Upload-Rejection. Gesamt-Testsuite: **71 grün in 23 s** (vorher 56).
+
 - **Static-Demo-Frontend auf Vercel.** Leichtgewichtiges Dashboard unter `frontend/public/` — Tailwind + Chart.js per CDN, keine Build-Chain. Zeigt:
   - Zeitreihe der letzten 120 Tage + Forecast-Median + 80 %-Unsicherheitsband für Birke/Gräser/Erle × Horizonte 7/14 in Bayern.
   - Backtest-Evidenz-Tabelle (15 persistierte Runs: MAE, WIS80, Coverage80, ΔWIS vs. Persistence/Seasonal-Naive, Modell-Version). Coverage-Zellen grün wenn im Zielkorridor 0.77–0.85.

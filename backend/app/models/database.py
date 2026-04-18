@@ -283,6 +283,51 @@ class AuditLog(Base):
     ip_address = Column(String(64), nullable=True)
 
 
+class OutcomeObservation(Base):
+    """Customer-provided commercial outcome observations.
+
+    One row per (brand, product, region_code, metric_name, window_start,
+    window_end, source_label). "Window" is typically a calendar week.
+    Added in Phase 5a for the Hexal/Lorano pilot; designed to generalize
+    to any OTC brand × metric without schema changes.
+    """
+    __tablename__ = "outcome_observations"
+
+    id = Column(Integer, primary_key=True, index=True)
+    brand = Column(String(64), nullable=False, index=True, default="hexal")
+    product = Column(String(64), nullable=False, index=True)
+    region_code = Column(String(2), nullable=False, index=True)
+    window_start = Column(DateTime, nullable=False, index=True)
+    window_end = Column(DateTime, nullable=False, index=True)
+    metric_name = Column(String(64), nullable=False, index=True)
+    metric_value = Column(Float, nullable=False)
+    metric_unit = Column(String(32), nullable=True)
+    source_label = Column(String(64), nullable=False, default="customer_upload", index=True)
+    channel = Column(String(64), nullable=True, index=True)
+    campaign_id = Column(String(64), nullable=True, index=True)
+    holdout_group = Column(String(32), nullable=True)
+    confidence_hint = Column(Float, nullable=True)
+    metadata_json = Column("metadata", JSON, nullable=True)
+    created_at = Column(DateTime, default=_utc_now, nullable=False, index=True)
+    updated_at = Column(DateTime, default=_utc_now, onupdate=_utc_now, nullable=False)
+
+    __table_args__ = (
+        UniqueConstraint(
+            "window_start",
+            "window_end",
+            "brand",
+            "product",
+            "region_code",
+            "metric_name",
+            "source_label",
+            name="uq_outcome_observation",
+        ),
+        Index("idx_outcome_brand_window", "brand", "window_start"),
+        Index("idx_outcome_metric_window", "metric_name", "window_start"),
+        Index("idx_outcome_region_product", "region_code", "product"),
+    )
+
+
 class UploadHistory(Base):
     """Protokoll für Kunden-CSV-Uploads (z. B. Sell-Through-Ground-Truth)."""
     __tablename__ = "upload_history"
