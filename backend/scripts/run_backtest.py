@@ -31,6 +31,8 @@ from app.services.ml.backtester import (
     persist_backtest_run,
 )
 from app.services.ml.feature_engineering import FeatureBuildConfig, build_daily_panel
+from app.services.ml.conformal_calibrator import ConformalCalibratedForecaster
+from app.services.ml.forecast_service import ForecastService
 from app.services.ml.stacked_forecast_service import StackedForecastService
 
 
@@ -53,6 +55,11 @@ def main() -> int:
         action="store_true",
         help="Use the Ridge+HW→XGBoost stacked forecaster instead of the single-stage service.",
     )
+    parser.add_argument(
+        "--calibrate",
+        action="store_true",
+        help="Wrap the chosen forecaster in a Split-Conformal calibrator targeting 0.80 coverage.",
+    )
     args = parser.parse_args()
 
     setup_logging(service_name="pollencast-backtest", environment="cli")
@@ -72,15 +79,30 @@ def main() -> int:
         min_train_days=args.min_train_days,
         step_days=args.step_days,
     )
-    if args.stacked:
-        def _stacked_factory(cfg: BacktestConfig) -> StackedForecastService:
+    def _build_base(cfg: BacktestConfig):
+        if args.stacked:
             return StackedForecastService(
                 horizon_days=cfg.horizon_days,
                 lower_quantile=cfg.lower_quantile,
                 upper_quantile=cfg.upper_quantile,
             )
-        backtest_config.forecaster_factory = _stacked_factory
-        backtest_config.model_version = "pollencast-stacked-hw-ridge-xgb-v0"
+        return ForecastService(
+            lower_quantile=cfg.lower_quantile,
+            upper_quantile=cfg.upper_quantile,
+        )
+
+    if args.stacked or args.calibrate:
+        def _factory(cfg: BacktestConfig):
+            base = _build_base(cfg)
+            if args.calibrate:
+                return ConformalCalibratedForecaster(base=base, target_coverage=0.80)
+            return base
+
+        backtest_config.forecaster_factory = _factory
+        tag_parts = ["stacked-hw-ridge-xgb"] if args.stacked else ["ridge-gbm"]
+        if args.calibrate:
+            tag_parts.append("cp80")
+        backtest_config.model_version = "pollencast-" + "-".join(tag_parts) + "-v0"
 
     db = SessionLocal()
     try:

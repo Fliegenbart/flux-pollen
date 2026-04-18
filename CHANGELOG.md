@@ -5,6 +5,23 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Phase 4d — Split-Conformal-Kalibrierung.** Der Coverage-Overshoot der Stacked-Quantile (0,58–0,66 bei 0,80-Zielband) wird mit einem transparenten, theoretisch abgesicherten Post-Processing-Wrapper korrigiert.
+  - `app/services/ml/conformal_calibrator.py` — generische `ConformalCalibratedForecaster`-Klasse, umschließt jeden `ForecasterProtocol`. Teilt die Trainingsreihe zeitgeordnet in Fit-Split (80 %) und Calibration-Split (20 %), berechnet die Nicht-Konformitätsscores `max(lower − y, y − upper, 0)` und deren `⌈(n+1)α⌉/n`-Quantil als Band-Erweiterung, fit'tet die Basis anschließend auf der vollen Historie. Funktioniert für den einstufigen `ForecastService` genauso wie für `StackedForecastService`.
+  - `scripts/run_backtest.py --calibrate` aktiviert den Wrapper; kombinierbar mit `--stacked`. Modell-Version-Tag wandert zu `pollencast-stacked-hw-ridge-xgb-cp80-v0`.
+  - 5 neue Tests in `test_ml_conformal.py` (monoton widening, Kalibrier-Summary, Shape-Stabilität, Parameter-Validierung, Insufficient-Training-Refusal). Gesamt-Testsuite: **56 grün in 25,2 s**.
+  - **Coverage auf 5 Jahren Real-ePIN-Bayern-Daten, 220 Folds je Scope:**
+
+  | Pollen × H | single | stacked | **stacked+CP** | Ziel |
+  |---|---:|---:|---:|---:|
+  | Birke 7    | 0.90 | 0.58 | **0.83** | 0.80 |
+  | Birke 14   | 0.91 | 0.58 | **0.82** | 0.80 |
+  | Gräser 7   | 0.91 | 0.62 | **0.80** | 0.80 |
+  | Gräser 14  | 0.86 | 0.66 | **0.82** | 0.80 |
+  | Erle 7     | 0.85 | 0.65 | **0.86** | 0.80 |
+
+  - **MAE bleibt unverändert** (CP ist punktschätzungsneutral). **WIS80 steigt nur um 1–11 %** (Kosten der erlaubten Band-Erweiterung). Die WIS-Verbesserung vs. Baselines bleibt stark: **+40 bis +55 % vs. Persistence**, **+30 bis +56 % vs. Seasonal-Naive** — bei jetzt *ehrlich* kalibriertem 80-%-Band.
+  - Die Kombination **Stacking + Conformal** ist das vorzeigbare Default-Modell. Einstufiger ForecastService bleibt als Fallback für Scopes mit wenig Trainingsdaten bestehen.
+
 - **Phase 4b — Stacking (Holt-Winters + Ridge → XGBoost-Meta-Learner).** Die ursprünglich als "Nachkomma-Optimierung" klassifizierten Stacking-Verbesserungen erweisen sich auf realen Daten als der entscheidende Hebel.
   - `app/services/ml/holt_winters_forecaster.py` — statsmodels-basierte HW-Komponente mit `fit(X, y) / predict(X)`-Interface. Saisonal (additiv, Periode 365) wenn ≥2 volle Zyklen vorhanden, sonst trend-only-Fallback.
   - `app/services/ml/stacked_forecast_service.py` — Drop-in-Ersatz für `ForecastService` mit identischer Output-Signatur. Time-split-Stacking: Base-Estimatoren Ridge + HW werden auf den ersten 70 % der Trainingsreihe gefittet, der XGBoost-Meta-Learner (3 Modelle für q=0.1/0.5/0.9, Ziel `reg:quantileerror`) lernt auf den Base-Predictions + Originalfeatures der restlichen 30 %. Nach Meta-Training werden die Base-Estimatoren auf der vollen Historie refit'et, damit Inferenz-Zeit die maximale Information nutzt. HW-Meta-Predictions via einem einzigen Multi-Step-Forecast (Kosten: ein HW-Fit pro Fold statt ein Fit pro Meta-Row).
