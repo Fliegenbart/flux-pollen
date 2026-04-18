@@ -5,6 +5,13 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Phase 3b — ePIN Bayern als primäre Historie-Quelle.** Nach einer Recherche über alle naheliegenden Pollen-Archivoptionen (DWD-OpenData, DWD CDC, DWD-Pollenflugstatistik-Tool, Wayback Machine, PID Stiftung) war das Ergebnis eindeutig: DWD OpenData hat nur aktuelle Tagesdaten, das DWD-Statistik-Tool liefert nur PNG-Bitmaps, Wayback hatte in 24 Monaten nur ~7 Snapshots, PID kostet über 100 € pro Pollenart × Woche × Station. **ePIN (Bayern)** ist die einzige offene, strukturierte, historisch zurückreichende Quelle und wird zur primären Datenbasis für den ersten belastbaren Backtest.
+  - Neue Tabelle `pollen_observations` (station-level, 3-Stunden-Auflösung, Konzentration in Pollen/m³) parallel zu `pollen_data` (DWD-Regional-Index 0–3). Unique-Constraint auf `(station_id, pollen_type, from_time)`.
+  - Alembic-Migration `0002_pollen_observations`.
+  - Neuer Service `epin_service.py` mit tenacity-Retry, dialect-aware Upsert, `run_full_import()` für fenstergebundene Tageslieferungen und `backfill_range()` für chunked Mehrjahres-Bootstraps. `import_from_file()` für Fixtures und archivierte Snapshots.
+  - `region_mapping.py` erweitert um alle 12 ePIN-Stationen (8 Automaten + 4 Hirst-Fallen) und ein Mapping der ePIN-Pollen-Wissenschaftsnamen (Corylus, Alnus, Fraxinus, Betula, Poaceae, Secale, Artemisia, Ambrosia) auf unsere kanonischen Token.
+  - CLI `scripts/run_epin_ingest.py` mit `--backfill`-Modus für historische Ingestion.
+  - 6 neue Tests in `test_epin_ingest.py` gegen einen realen 48h-Ausschnitt um den Beginn der 2024er-Birkenblüte (DEMUNC, DEHOF × Betula, Poaceae, Alnus). Testsuite-Total: **25 Tests grün in 1,3s**.
 - Phase 3 — Datenquellen-Ingestion auf Produktniveau:
   - `region_mapping.py` mit zentraler DWD-Region → Bundesland-Abbildung (inkl. 1:n-Splits für "Niedersachsen und Bremen" etc.), Hauptstadt → Bundesland-Lookup und symmetrischer Nachbarschafts-Topologie für regionale Lead/Lag-Features.
   - `pollen_service.py` gehärtet: tenacity-Retry mit Exponential-Backoff, dialect-aware Upsert (PostgreSQL `ON CONFLICT` / SQLite-Fallback), Point-in-Time-`available_time` bei jedem Ingest, robuster Parser für DWD-Index-Tokens (`0`, `1-2`, `keine`, …), optionaler `import_from_file()` für Fixtures und archivierte Snapshots.
@@ -16,4 +23,5 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 - Core-Infrastruktur aus ViralFlux übernommen und bereinigt: Config, Security/JWT, Logging, Rate Limiting, Metrics, Audit, Auth, M2M-Auth.
 
 ### Known Limitations
-- Der DWD-Alert-Endpunkt `s31fg.json` liefert nur die **aktuellen** Indexwerte (heute + morgen + übermorgen); er ist keine Historie-API. Eine mehrjährige Backtest-Historie entsteht entweder (a) durch tägliche Ingestion über mehrere Saisons, oder (b) durch einen separaten Ingest archivierter Snapshots via `PollenService.import_from_file(...)`. Eine Archiv-Bootstrap-Quelle ist für Phase 4 offen — vor dem ersten belastbaren Backtest muss das geklärt sein.
+- Der DWD-Alert-Endpunkt `s31fg.json` liefert nur die **aktuellen** Indexwerte (heute + morgen + übermorgen); er ist keine Historie-API. Für die 11 nicht-bayerischen DWD-Regionen baut sich Historie über tägliche Ingestion auf. Für den Backtest (Phase 4/5) liegt der Fokus deshalb vorerst auf Bayern via ePIN.
+- Die Pollendaten aus `pollen_data` (DWD-Index, 0–3, regional) und `pollen_observations` (ePIN-Konzentration, count/m³, station-level) sind bewusst in getrennten Tabellen, weil Einheit und Granularität unterschiedlich sind. Der Feature-Builder entscheidet je nach Bundesland, welche Quelle er konsumiert; eine verlustbehaftete Umrechnung Index↔Konzentration wurde absichtlich nicht eingebaut.

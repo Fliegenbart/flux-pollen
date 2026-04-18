@@ -1,0 +1,618 @@
+{
+  "from": 1711384892,
+  "to": 1713195692,
+  "measurements": [
+    {
+      "polle": "Alnus",
+      "location": "DEHOF",
+      "data": [
+        {
+          "from": 1711386000,
+          "to": 1711396800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711396800,
+          "to": 1711407600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711407600,
+          "to": 1711418400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711418400,
+          "to": 1711429200,
+          "value": 17.1097,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711429200,
+          "to": 1711440000,
+          "value": 17.1097,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711440000,
+          "to": 1711450800,
+          "value": 20.8376,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711450800,
+          "to": 1711461600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711461600,
+          "to": 1711472400,
+          "value": 20.5647,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711472400,
+          "to": 1711483200,
+          "value": 20.5316,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711483200,
+          "to": 1711494000,
+          "value": 13.6548,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711494000,
+          "to": 1711504800,
+          "value": 3.4247,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711504800,
+          "to": 1711515600,
+          "value": 10.2741,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711515600,
+          "to": 1711526400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711526400,
+          "to": 1711537200,
+          "value": 13.6988,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711537200,
+          "to": 1711548000,
+          "value": 13.8917,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711548000,
+          "to": 1711558800,
+          "value": 13.7098,
+          "algorithm": "PomoAIv1.34.0"
+        }
+      ]
+    },
+    {
+      "polle": "Alnus",
+      "location": "DEMUNC",
+      "data": [
+        {
+          "from": 1711386000,
+          "to": 1711396800,
+          "value": 3.4358,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711396800,
+          "to": 1711407600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711407600,
+          "to": 1711418400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711418400,
+          "to": 1711429200,
+          "value": 3.4219,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711429200,
+          "to": 1711440000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711440000,
+          "to": 1711450800,
+          "value": 17.1511,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711450800,
+          "to": 1711461600,
+          "value": 13.7209,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711461600,
+          "to": 1711472400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711472400,
+          "to": 1711483200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711483200,
+          "to": 1711494000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711494000,
+          "to": 1711504800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711504800,
+          "to": 1711515600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711515600,
+          "to": 1711526400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711526400,
+          "to": 1711537200,
+          "value": 58.2667,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711537200,
+          "to": 1711548000,
+          "value": 44.4852,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711548000,
+          "to": 1711558800,
+          "value": 78.8315,
+          "algorithm": "PomoAIv1.34.0"
+        }
+      ]
+    },
+    {
+      "polle": "Betula",
+      "location": "DEHOF",
+      "data": [
+        {
+          "from": 1711386000,
+          "to": 1711396800,
+          "value": 3.4403,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711396800,
+          "to": 1711407600,
+          "value": 3.4164,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711407600,
+          "to": 1711418400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711418400,
+          "to": 1711429200,
+          "value": 3.4219,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711429200,
+          "to": 1711440000,
+          "value": 3.4219,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711440000,
+          "to": 1711450800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711450800,
+          "to": 1711461600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711461600,
+          "to": 1711472400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711472400,
+          "to": 1711483200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711483200,
+          "to": 1711494000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711494000,
+          "to": 1711504800,
+          "value": 13.6988,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711504800,
+          "to": 1711515600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711515600,
+          "to": 1711526400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711526400,
+          "to": 1711537200,
+          "value": 13.6988,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711537200,
+          "to": 1711548000,
+          "value": 10.4188,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711548000,
+          "to": 1711558800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        }
+      ]
+    },
+    {
+      "polle": "Betula",
+      "location": "DEMUNC",
+      "data": [
+        {
+          "from": 1711386000,
+          "to": 1711396800,
+          "value": 13.743,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711396800,
+          "to": 1711407600,
+          "value": 10.2824,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711407600,
+          "to": 1711418400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711418400,
+          "to": 1711429200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711429200,
+          "to": 1711440000,
+          "value": 37.6717,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711440000,
+          "to": 1711450800,
+          "value": 24.0115,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711450800,
+          "to": 1711461600,
+          "value": 34.3022,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711461600,
+          "to": 1711472400,
+          "value": 24.0115,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711472400,
+          "to": 1711483200,
+          "value": 48.0231,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711483200,
+          "to": 1711494000,
+          "value": 30.8223,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711494000,
+          "to": 1711504800,
+          "value": 30.8223,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711504800,
+          "to": 1711515600,
+          "value": 34.3022,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711515600,
+          "to": 1711526400,
+          "value": 130.2433,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711526400,
+          "to": 1711537200,
+          "value": 421.577,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711537200,
+          "to": 1711548000,
+          "value": 201.8945,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711548000,
+          "to": 1711558800,
+          "value": 318.7534,
+          "algorithm": "PomoAIv1.34.0"
+        }
+      ]
+    },
+    {
+      "polle": "Poaceae",
+      "location": "DEHOF",
+      "data": [
+        {
+          "from": 1711386000,
+          "to": 1711396800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711396800,
+          "to": 1711407600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711407600,
+          "to": 1711418400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711418400,
+          "to": 1711429200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711429200,
+          "to": 1711440000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711440000,
+          "to": 1711450800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711450800,
+          "to": 1711461600,
+          "value": 3.4247,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711461600,
+          "to": 1711472400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711472400,
+          "to": 1711483200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711483200,
+          "to": 1711494000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711494000,
+          "to": 1711504800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711504800,
+          "to": 1711515600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711515600,
+          "to": 1711526400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711526400,
+          "to": 1711537200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711537200,
+          "to": 1711548000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711548000,
+          "to": 1711558800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        }
+      ]
+    },
+    {
+      "polle": "Poaceae",
+      "location": "DEMUNC",
+      "data": [
+        {
+          "from": 1711386000,
+          "to": 1711396800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711396800,
+          "to": 1711407600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711407600,
+          "to": 1711418400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711418400,
+          "to": 1711429200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711429200,
+          "to": 1711440000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711440000,
+          "to": 1711450800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711450800,
+          "to": 1711461600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711461600,
+          "to": 1711472400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711472400,
+          "to": 1711483200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711483200,
+          "to": 1711494000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711494000,
+          "to": 1711504800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711504800,
+          "to": 1711515600,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711515600,
+          "to": 1711526400,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711526400,
+          "to": 1711537200,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711537200,
+          "to": 1711548000,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        },
+        {
+          "from": 1711548000,
+          "to": 1711558800,
+          "value": 0,
+          "algorithm": "PomoAIv1.34.0"
+        }
+      ]
+    }
+  ]
+}

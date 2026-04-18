@@ -53,6 +53,41 @@ DWD_POLLEN_REGION_TO_CODES: Final[dict[str, tuple[str, ...]]] = {
     "hessen": ("HE",),
 }
 
+# ePIN Bayern stations. All live in Bayern, so region_code is constant —
+# but we keep the per-station list explicit so downstream feature builders
+# can weight city stations (München) vs. rural stations (Garmisch).
+EPIN_STATIONS: Final[dict[str, str]] = {
+    "DEALTO": "Altötting",
+    "DEBAMB": "Bamberg",
+    "DEFEUC": "Feucht",
+    "DEGARM": "Garmisch-Partenkirchen",
+    "DEHOF": "Hof",
+    "DEMARK": "Marktheidenfeld",
+    "DEMIND": "Mindelheim",
+    "DEMUNC": "München",
+    "DEMUST": "Münnerstadt",
+    "DEOBER": "Oberjoch",
+    "DESCHN": "Schneefernerhaus",
+    "DEVIEC": "Viechtach",
+}
+
+EPIN_STATION_REGION: Final[dict[str, str]] = {station_id: "BY" for station_id in EPIN_STATIONS}
+
+# Mapping ePIN pollen scientific names → our canonical pollen_type tokens.
+# Only clinically relevant species listed; everything else is ignored at
+# ingest time to keep the table focused on what the forecast consumes.
+EPIN_POLLEN_SCIENTIFIC_TO_CANONICAL: Final[dict[str, str]] = {
+    "Corylus": "hasel",
+    "Alnus": "erle",
+    "Fraxinus": "esche",
+    "Betula": "birke",
+    "Poaceae": "graeser",
+    "Secale": "roggen",
+    "Artemisia": "beifuss",
+    "Ambrosia": "ambrosia",
+}
+
+
 # Capital city → Bundesland. Used by the weather ingester to stamp
 # region_code on each observation and by feature builders to fetch the
 # "capital weather" per state as a proxy for regional conditions.

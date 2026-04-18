@@ -54,6 +54,42 @@ class PollenData(Base):
     )
 
 
+class PollenObservation(Base):
+    """Station-level Pollenkonzentrationsmessungen (count/m³, zeitlich granular).
+
+    Zielquellen: ePIN Bayern (`PomoAI`/`V09_21`-Algorithmen, 3-Stunden-Buckets,
+    Automaten + Hirst-Fallen) und perspektivisch weitere Monitoring-Netzwerke.
+    Parallel zu ``pollen_data`` (DWD-Index 0–3, regional/tagesweise) — hier ist
+    die Feingranularität das Asset.
+    """
+    __tablename__ = "pollen_observations"
+
+    id = Column(Integer, primary_key=True, index=True)
+    station_id = Column(String(16), nullable=False, index=True)
+    station_name = Column(String(64), nullable=True)
+    region_code = Column(String(2), nullable=False, index=True)
+    pollen_type = Column(String(32), nullable=False, index=True)
+    # Messfenster im natürlichen Quelltakt (typisch 3 Stunden bei ePIN).
+    from_time = Column(DateTime, nullable=False, index=True)
+    to_time = Column(DateTime, nullable=False)
+    concentration = Column(Float, nullable=False)
+    algorithm = Column(String(32), nullable=True)
+    source_network = Column(String(16), nullable=False, default="ePIN")
+    available_time = Column(DateTime, nullable=False)
+    created_at = Column(DateTime, default=_utc_now, nullable=False, index=True)
+
+    __table_args__ = (
+        Index("idx_pollen_obs_station_type_from", "station_id", "pollen_type", "from_time"),
+        Index("idx_pollen_obs_region_type_from", "region_code", "pollen_type", "from_time"),
+        UniqueConstraint(
+            "station_id",
+            "pollen_type",
+            "from_time",
+            name="uq_pollen_obs_station_type_window",
+        ),
+    )
+
+
 class PollenForecast(Base):
     """Probabilistischer Pollen-Forecast (Punkt + Quantile) pro Bundesland × Pollenart × Horizon."""
     __tablename__ = "pollen_forecast"
