@@ -30,3 +30,4 @@ docker-compose.override.yml
 
 # Logs
 *.log
+.venv/

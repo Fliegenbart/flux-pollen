@@ -1,0 +1,185 @@
+{
+  "sender": "DWD - Zentrum für Medizin-Meteorologische Forschung",
+  "name": "Pollenflug-Gefahrenindex für Deutschland ausgegeben vom Deutschen Wetterdienst",
+  "last_update": "2026-04-18 11:00 Uhr",
+  "next_update": "2026-04-19 11:00 Uhr",
+  "legend": {
+    "id1": "0", "id1_desc": "keine Belastung",
+    "id2": "0-1", "id2_desc": "keine bis geringe Belastung",
+    "id3": "1", "id3_desc": "geringe Belastung",
+    "id4": "1-2", "id4_desc": "geringe bis mittlere Belastung",
+    "id5": "2", "id5_desc": "mittlere Belastung",
+    "id6": "2-3", "id6_desc": "mittlere bis hohe Belastung",
+    "id7": "3", "id7_desc": "hohe Belastung"
+  },
+  "content": [
+    {
+      "region_id": 11,
+      "region_name": "Schleswig-Holstein und Hamburg",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0-1", "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Birke":    {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Graeser":  {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Roggen":   {"today": "0",   "tomorrow": "0-1", "dayafter_to": "1"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 20,
+      "region_name": "Niedersachsen und Bremen",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Birke":    {"today": "2-3", "tomorrow": "3",   "dayafter_to": "3"},
+        "Graeser":  {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2-3"},
+        "Roggen":   {"today": "0-1", "tomorrow": "1",   "dayafter_to": "1-2"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 30,
+      "region_name": "Nordrhein-Westfalen",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Birke":    {"today": "3",   "tomorrow": "3",   "dayafter_to": "3"},
+        "Graeser":  {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Roggen":   {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 40,
+      "region_name": "Rheinland-Pfalz und Saarland",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Birke":    {"today": "3",   "tomorrow": "3",   "dayafter_to": "3"},
+        "Graeser":  {"today": "2",   "tomorrow": "2",   "dayafter_to": "2-3"},
+        "Roggen":   {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 50,
+      "region_name": "Hessen",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Birke":    {"today": "2-3", "tomorrow": "3",   "dayafter_to": "3"},
+        "Graeser":  {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Roggen":   {"today": "1",   "tomorrow": "1",   "dayafter_to": "1-2"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 60,
+      "region_name": "Thüringen",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Birke":    {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Graeser":  {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Roggen":   {"today": "0-1", "tomorrow": "1",   "dayafter_to": "1"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 70,
+      "region_name": "Sachsen-Anhalt",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "2",   "tomorrow": "2",   "dayafter_to": "2-3"},
+        "Birke":    {"today": "2-3", "tomorrow": "3",   "dayafter_to": "3"},
+        "Graeser":  {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Roggen":   {"today": "0-1", "tomorrow": "1",   "dayafter_to": "1-2"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 80,
+      "region_name": "Sachsen",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Birke":    {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Graeser":  {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Roggen":   {"today": "0-1", "tomorrow": "1",   "dayafter_to": "1"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 90,
+      "region_name": "Brandenburg und Berlin",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Birke":    {"today": "2-3", "tomorrow": "3",   "dayafter_to": "3"},
+        "Graeser":  {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Roggen":   {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 100,
+      "region_name": "Mecklenburg-Vorpommern",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Birke":    {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Graeser":  {"today": "1",   "tomorrow": "1",   "dayafter_to": "1-2"},
+        "Roggen":   {"today": "0",   "tomorrow": "0-1", "dayafter_to": "1"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 110,
+      "region_name": "Baden-Württemberg",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Birke":    {"today": "3",   "tomorrow": "3",   "dayafter_to": "3"},
+        "Graeser":  {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Roggen":   {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    },
+    {
+      "region_id": 120,
+      "region_name": "Bayern",
+      "Pollen": {
+        "Hasel":    {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Erle":     {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Esche":    {"today": "2",   "tomorrow": "2-3", "dayafter_to": "3"},
+        "Birke":    {"today": "2-3", "tomorrow": "3",   "dayafter_to": "3"},
+        "Graeser":  {"today": "1-2", "tomorrow": "2",   "dayafter_to": "2-3"},
+        "Roggen":   {"today": "1",   "tomorrow": "1-2", "dayafter_to": "2"},
+        "Beifuss":  {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"},
+        "Ambrosia": {"today": "0",   "tomorrow": "0",   "dayafter_to": "0"}
+      }
+    }
+  ]
+}
