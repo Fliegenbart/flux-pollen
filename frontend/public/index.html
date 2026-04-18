@@ -3,641 +3,1314 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PollenCast — von der Pollenbelastung zur Media-Aktivierung</title>
-  <meta name="description" content="PollenCast übersetzt regionale Pollen-Forecasts in kommerzielle Signale für OTC-Allergie-Marken — Sell-Out-Kopplung, Lead-Time-Beleg, 80%-kalibrierte Bänder." />
+  <title>PollenCast № 01 · Ausgabe April 2026</title>
+  <meta name="description" content="PollenCast übersetzt regionale Pollen-Forecasts in kommerzielle Signale für OTC-Allergie-Marken. Ein editorial aufbereitetes Evidenz-Bulletin für den Hexal/Lorano-Pilot." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
-    body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    .hero-num { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+    :root {
+      --paper: #f5efe1;
+      --paper-deeper: #ece5d4;
+      --ink: #0f0e0b;
+      --ink-soft: #3a362d;
+      --rule: #1b1a15;
+      --amber: #d29f2e;
+      --amber-soft: #e7c887;
+      --peak: #b8381d;
+      --forest: #2b4a3a;
+      --hairline: rgba(15, 14, 11, 0.18);
+
+      --serif: "Fraunces", "Times New Roman", serif;
+      --grotesk: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    html { background: var(--paper); }
+    body {
+      font-family: var(--grotesk);
+      color: var(--ink);
+      background: var(--paper);
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(210,159,46,0.06), transparent 45%),
+        radial-gradient(circle at 95% 30%, rgba(43,74,58,0.06), transparent 55%),
+        radial-gradient(circle, rgba(15,14,11,0.065) 0.6px, transparent 1px);
+      background-size: auto, auto, 26px 26px;
+      background-position: top left, top right, 0 0;
+      font-feature-settings: "ss01", "ss02", "cv11";
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .font-serif { font-family: var(--serif); font-optical-sizing: auto; }
+    .font-grotesk { font-family: var(--grotesk); }
+    .font-mono { font-family: var(--mono); }
+
+    .tnum { font-variant-numeric: tabular-nums lining-nums; }
+    .small-caps {
+      font-variant-caps: all-small-caps;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+    }
+
+    /* Editorial rule elements */
+    .rule-double {
+      border-top: 1px solid var(--rule);
+      padding-top: 4px;
+      position: relative;
+    }
+    .rule-double::before {
+      content: "";
+      display: block;
+      height: 1px;
+      background: var(--rule);
+      margin-bottom: 12px;
+    }
+    .rule-single { border-top: 1px solid var(--rule); }
+    .rule-hair { border-top: 1px solid var(--hairline); }
+
+    /* Section roman numeral — outline serif, giant, as background element */
+    .numeral-outline {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "SOFT" 20;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--rule);
+      line-height: 0.8;
+      letter-spacing: -0.05em;
+      user-select: none;
+    }
+
+    .numeral-solid {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-variation-settings: "opsz" 144;
+      color: var(--ink);
+      line-height: 0.8;
+      letter-spacing: -0.04em;
+    }
+
+    .display-headline {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-variation-settings: "opsz" 144, "SOFT" 0;
+      letter-spacing: -0.03em;
+      line-height: 0.92;
+    }
+
+    .display-headline em {
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+      color: var(--peak);
+    }
+
+    .hero-kpi {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 0;
+      line-height: 0.88;
+      letter-spacing: -0.035em;
+    }
+    .hero-kpi .sign {
+      font-family: var(--serif);
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      color: var(--amber);
+      font-weight: 400;
+    }
+
+    .drop-cap::first-letter {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 5.2em;
+      line-height: 0.85;
+      float: left;
+      padding: 0.1em 0.12em 0 0;
+      color: var(--peak);
+      font-variation-settings: "opsz" 144;
+    }
+
+    .stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--rule);
+      padding: 0.3rem 0.55rem;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      line-height: 1;
+      background: var(--paper);
+    }
+
+    .marginalia {
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+    }
+    .marginalia strong {
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .chart-wrap {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      position: relative;
+    }
+    .chart-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px solid var(--hairline);
+      pointer-events: none;
+    }
+    .chart-wrap > .chart-canvas {
+      position: relative;
+      z-index: 1;
+    }
+    .chart-caption {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* Logomark — birch pollen grain */
+    .pollen-mark {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: middle;
+    }
+
+    /* Tables */
+    table.editorial { width: 100%; border-collapse: separate; border-spacing: 0; }
+    table.editorial thead th {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--rule);
+      text-align: left;
+      background: var(--paper);
+    }
+    table.editorial tbody td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--hairline);
+      vertical-align: baseline;
+    }
+    table.editorial tbody tr:last-child td { border-bottom: 1px solid var(--rule); }
+    table.editorial .t-date {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-variation-settings: "opsz" 36;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    /* Ghost button */
+    .btn-ink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--paper);
+      border: 1px solid var(--ink);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .btn-ink:hover { background: var(--peak); border-color: var(--peak); transform: translate(-1px, -1px); box-shadow: 2px 2px 0 var(--ink); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+      transition: transform 120ms ease, background 120ms ease;
+    }
+    .btn-ghost:hover { background: var(--ink); color: var(--paper); transform: translate(-1px, -1px); box-shadow: 2px 2px 0 var(--amber); }
+
+    /* Selects styled as inline editorial notation */
+    .editorial-select {
+      appearance: none;
+      background-color: transparent;
+      background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(-45deg, transparent 50%, var(--ink) 50%);
+      background-position: calc(100% - 14px) 55%, calc(100% - 8px) 55%;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      padding: 6px 24px 6px 0;
+      font-family: var(--serif);
+      font-variation-settings: "opsz" 36;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .editorial-select:focus { outline: none; border-bottom-color: var(--peak); }
+
+    /* Code blocks */
+    pre.editorial-code {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.55;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 22px 22px 22px 56px;
+      position: relative;
+      border: 1px solid var(--ink);
+      border-radius: 0;
+      overflow-x: auto;
+      counter-reset: line;
+    }
+    pre.editorial-code code { display: block; white-space: pre; }
+
+    .pull-quote {
+      font-family: var(--serif);
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      line-height: 1.22;
+      color: var(--ink);
+    }
+    .pull-quote::before { content: "„"; color: var(--peak); }
+    .pull-quote::after { content: "“"; color: var(--peak); }
+
+    /* Peak table mini-bar for lead-time visual */
+    .leadbar {
+      display: inline-block;
+      height: 4px;
+      background: currentColor;
+      vertical-align: middle;
+      border-radius: 0;
+    }
+
+    /* Chart axis text override — applied to canvases via JS options */
+    .fade-in {
+      animation: fadeUp 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+    .fade-in-1 { animation-delay: 80ms; }
+    .fade-in-2 { animation-delay: 160ms; }
+    .fade-in-3 { animation-delay: 240ms; }
+    .fade-in-4 { animation-delay: 320ms; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grain noise overlay (subtle) */
+    .grain::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.18;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.06 0 0 0 0 0.04 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      background-size: 240px 240px;
+      z-index: 1;
+    }
+
+    /* Print-style headers */
+    .masthead-link { text-decoration: none; color: inherit; }
+    .masthead-link:hover { color: var(--peak); }
+
+    /* Dot leader for data rows */
+    .dot-leader {
+      overflow: hidden;
+    }
+    .dot-leader::after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px dotted var(--hairline);
+      vertical-align: bottom;
+      margin-left: 6px;
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-  <header class="border-b border-slate-200 bg-white">
-    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-      <div>
-        <div class="text-xs uppercase tracking-wider text-slate-500">Hexal &middot; Lorano &middot; Bayern-Pilot</div>
-        <h1 class="text-xl font-semibold tracking-tight">PollenCast</h1>
+<body class="grain">
+
+<!-- ─────────────────────────  MASTHEAD  ───────────────────────── -->
+<header class="relative">
+  <div class="max-w-[1240px] mx-auto px-6 md:px-10 pt-8 pb-4">
+    <div class="flex items-start justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <!-- pollen mark -->
+        <svg class="pollen-mark" style="width: 38px; height: 38px;" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <circle cx="24" cy="24" r="20" stroke="var(--ink)" stroke-width="1.2" fill="var(--paper)"/>
+          <circle cx="24" cy="24" r="14" stroke="var(--ink)" stroke-width="0.8" stroke-dasharray="2 3" fill="none" opacity="0.4"/>
+          <circle cx="24" cy="6" r="2.6" fill="var(--amber)"/>
+          <circle cx="40" cy="30" r="2.6" fill="var(--amber)"/>
+          <circle cx="8" cy="30" r="2.6" fill="var(--amber)"/>
+        </svg>
+        <div>
+          <a class="masthead-link" href="#top">
+            <div class="font-serif" style="font-size: 34px; font-weight: 600; font-variation-settings: 'opsz' 144; letter-spacing: -0.02em; line-height: 1;">
+              Pollen<em style="font-style: italic; color: var(--peak); font-variation-settings: 'opsz' 144, 'SOFT' 40;">Cast</em>
+            </div>
+            <div class="eyebrow mt-1" style="font-size: 10.5px;">Ein Evidenz-Bulletin für regionale OTC-Aktivierung</div>
+          </a>
+        </div>
       </div>
-      <div class="text-right text-xs text-slate-500 mono">
-        <div id="snapshot-time"></div>
-        <div id="region-label"></div>
+      <div class="hidden md:flex flex-col items-end gap-1 font-mono" style="font-size: 10.5px;">
+        <div class="flex items-center gap-2">
+          <span class="stamp" id="stamp-issue">№ 01 · 2026</span>
+          <span class="stamp" id="stamp-date">Ausgabe —</span>
+        </div>
+        <div class="small-caps text-right" style="color: var(--ink-soft); font-size: 11px;">
+          Herausgeber · Fliegenbart · München → Deutschland
+        </div>
       </div>
     </div>
-  </header>
+  </div>
+  <div class="max-w-[1240px] mx-auto px-6 md:px-10 rule-double"></div>
+</header>
 
-  <main class="max-w-6xl mx-auto px-6 py-8 space-y-12">
+<main class="max-w-[1240px] mx-auto px-6 md:px-10 pb-24 relative" id="top">
 
-    <section class="space-y-4">
-      <div class="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-amber-700 bg-amber-50 rounded px-2 py-1 border border-amber-200">
-        MOAT: Pollen-Signal → Sell-Out-Hebel
-      </div>
-      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight max-w-3xl">
-        Regionale Pollenflug-Prognosen mit direkt gekoppelter Sell-Out-Elastizität für OTC-Allergiemarken.
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-3 mt-4">
-        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-          <div class="text-xs uppercase tracking-wide text-slate-500">Sell-Out-Lift in Peak-Wochen</div>
-          <div class="text-3xl font-semibold hero-num text-emerald-700" id="hero-lift">–</div>
-          <div class="text-xs text-slate-500 mt-1" id="hero-lift-caption">Top-Quartil vs. Bottom-Quartil</div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-          <div class="text-xs uppercase tracking-wide text-slate-500">Ø Lead-Time vs. Persistence</div>
-          <div class="text-3xl font-semibold hero-num text-slate-900" id="hero-leadtime">–</div>
-          <div class="text-xs text-slate-500 mt-1" id="hero-leadtime-caption">Birke-Peaks, 4 Saisons</div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-          <div class="text-xs uppercase tracking-wide text-slate-500">WIS<sub>80</sub>-Reduktion vs. Baselines</div>
-          <div class="text-3xl font-semibold hero-num text-slate-900" id="hero-wis">–</div>
-          <div class="text-xs text-slate-500 mt-1" id="hero-wis-caption">stacked+CP-Modell, 5 Jahre Walk-Forward</div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-          <div class="text-xs uppercase tracking-wide text-slate-500">Kalibriertes 80%-Band</div>
-          <div class="text-3xl font-semibold hero-num text-slate-900" id="hero-coverage">–</div>
-          <div class="text-xs text-slate-500 mt-1">Empirische Coverage über alle Stacked+CP-Läufe</div>
-        </div>
-      </div>
-      <p class="text-sm text-slate-600 max-w-3xl pt-2">
-        DWD publiziert einen Pollen-Index. Wir übersetzen ihn in das, was eine Marketing-Organisation
-        tatsächlich steuert: regionale Aktivierungs-Fenster, probabilistische Abverkaufs-Prognosen,
-        vorauslaufende Suchvolumen-Schätzer. Der Evidenz-Layer unten zeigt den Mechanismus auf
-        echten ePIN-Bayern-Daten.
-      </p>
-    </section>
+  <!-- ═══════════════════════════════════════════════════════════
+       I · HERO
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="relative pt-8 md:pt-14 pb-16 fade-in">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
 
-    <section class="space-y-3">
-      <div class="flex items-baseline justify-between flex-wrap gap-2">
-        <h2 class="text-xl font-semibold">1 &middot; Pollen → Sell-Out: die Kopplung</h2>
-        <span class="text-xs text-slate-500" id="correlation-caption">lädt…</span>
+      <aside class="col-span-12 md:col-span-3 order-2 md:order-1">
+        <div class="numeral-outline" style="font-size: clamp(96px, 16vw, 220px);">I</div>
+        <div class="mt-4 marginalia">
+          <strong>Titelgeschichte</strong><br>
+          Für Hexal · Lorano · Bundesland Bayern. Ausgabewoche: aktuelle Birken-Saison. Datengrundlage: ePIN-Bayern (12 Stationen, 3-Stunden-Bucket), BrightSky/DWD, Walk-Forward 2021–2026.
+        </div>
+        <div class="mt-8 rule-single pt-3 marginalia">
+          <strong>Methodik</strong><br>
+          Stacking · Holt-Winters ⊕ Ridge → XGBoost-Quantil-Meta.<br>
+          Kalibrierung · Split Conformal Prediction (α = 0.80).<br>
+          Evaluierung · WIS₈₀ nach Bracher u. a. 2021.
+        </div>
+      </aside>
+
+      <div class="col-span-12 md:col-span-9 order-1 md:order-2">
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <span class="stamp" style="background: var(--amber); border-color: var(--amber); color: var(--ink);">Moat</span>
+          <span class="stamp">Pollen-Signal ⟶ Sell-Out-Hebel</span>
+          <span class="stamp">Hexal · Lorano · Bayern-Pilot</span>
+        </div>
+
+        <h1 class="display-headline" style="font-size: clamp(42px, 6.8vw, 96px);">
+          Die Birke zieht.<br>
+          Der Umsatz folgt —<br>
+          <em>nur nicht zur gleichen Zeit</em>.
+        </h1>
+
+        <p class="mt-8 max-w-[62ch] text-[17px] leading-[1.65] drop-cap" style="color: var(--ink-soft);">
+          Der Deutsche Wetterdienst publiziert einen Pollen-Gefahrenindex. Gut für Allergiker, schlecht für
+          Marken-Entscheider. Eine Belastungs-Ampel sagt einem Marketing-Manager nicht, wann er in Hessen das
+          Lorano-Creative wechseln, und was passiert, wenn er in Bayern zwei Wochen zu früh aktiviert. PollenCast
+          schließt die Lücke zwischen <em>Pollen in der Luft</em> und <em>Einheiten über den Apothekentresen</em> —
+          regional, probabilistisch, mit Quellenangabe.
+        </p>
+
+        <!-- KPI grid -->
+        <div class="mt-12 grid grid-cols-12 gap-6">
+          <article class="col-span-12 md:col-span-6 lg:col-span-3 rule-single pt-4">
+            <div class="flex items-center justify-between eyebrow" style="font-size: 10px;"><span>Fall 01</span><span style="color: var(--ink-soft);">Kopplung</span></div>
+            <div class="hero-kpi mt-3" style="font-size: clamp(54px, 7vw, 88px);">
+              <span class="sign" id="kpi-lift-sign">+</span><span id="kpi-lift">–</span><span class="font-serif" style="font-size: 0.45em; vertical-align: 0.5em; color: var(--ink-soft); margin-left: 0.05em;">%</span>
+            </div>
+            <div class="small-caps mt-4" style="color: var(--ink-soft); font-size: 11px;">Sell-Out-Lift, Top-Quartil</div>
+            <div class="marginalia mt-1" id="kpi-lift-caption">—</div>
+          </article>
+
+          <article class="col-span-12 md:col-span-6 lg:col-span-3 rule-single pt-4">
+            <div class="flex items-center justify-between eyebrow" style="font-size: 10px;"><span>Fall 02</span><span style="color: var(--ink-soft);">Lead-Time</span></div>
+            <div class="hero-kpi mt-3" style="font-size: clamp(54px, 7vw, 88px);">
+              <span class="sign" id="kpi-lead-sign">+</span><span id="kpi-lead">–</span><span class="font-serif" style="font-size: 0.45em; vertical-align: 0.5em; color: var(--ink-soft); margin-left: 0.05em;">d</span>
+            </div>
+            <div class="small-caps mt-4" style="color: var(--ink-soft); font-size: 11px;">Vorsprung vs. Persistence</div>
+            <div class="marginalia mt-1" id="kpi-lead-caption">—</div>
+          </article>
+
+          <article class="col-span-12 md:col-span-6 lg:col-span-3 rule-single pt-4">
+            <div class="flex items-center justify-between eyebrow" style="font-size: 10px;"><span>Fall 03</span><span style="color: var(--ink-soft);">WIS₈₀</span></div>
+            <div class="hero-kpi mt-3" style="font-size: clamp(54px, 7vw, 88px);">
+              <span class="sign" style="color: var(--peak);">−</span><span id="kpi-wis">–</span><span class="font-serif" style="font-size: 0.45em; vertical-align: 0.5em; color: var(--ink-soft); margin-left: 0.05em;">%</span>
+            </div>
+            <div class="small-caps mt-4" style="color: var(--ink-soft); font-size: 11px;">vs. Persistence-Baseline</div>
+            <div class="marginalia mt-1" id="kpi-wis-caption">—</div>
+          </article>
+
+          <article class="col-span-12 md:col-span-6 lg:col-span-3 rule-single pt-4">
+            <div class="flex items-center justify-between eyebrow" style="font-size: 10px;"><span>Fall 04</span><span style="color: var(--ink-soft);">Kalibrierung</span></div>
+            <div class="hero-kpi mt-3" style="font-size: clamp(54px, 7vw, 88px);">
+              <span id="kpi-coverage">–</span>
+            </div>
+            <div class="small-caps mt-4" style="color: var(--ink-soft); font-size: 11px;">Coverage vs. Nominal 0,80</div>
+            <div class="marginalia mt-1">Empirische Abdeckung des 80-%-Bands über alle Stacked+CP-Läufe.</div>
+          </article>
+        </div>
+
       </div>
-      <p class="text-sm text-slate-600 max-w-3xl">
-        Gekoppelte Zeitreihe: wöchentliches ePIN-Birke-Signal für Bayern (blau) gegen wöchentliche
-        Lorano-Sell-Out-Einheiten (orange). Die Lag-Kurve rechts zeigt, wie weit das Pollen-Signal
-        dem Umsatz voraus- oder hinterherläuft.
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm md:col-span-2">
-          <div class="relative" style="height: 300px;">
-            <canvas id="correlation-chart"></canvas>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       II · KOPPLUNG
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="relative pt-16 pb-16 rule-double">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+
+      <aside class="col-span-12 md:col-span-3">
+        <div class="numeral-outline" style="font-size: clamp(96px, 14vw, 180px);">II</div>
+        <div class="eyebrow mt-2">Die Kopplung</div>
+        <h3 class="display-headline mt-3" style="font-size: clamp(26px, 3.2vw, 36px);">Pollen in der Luft,<br>Kasse am Tresen.</h3>
+        <div class="marginalia mt-5">
+          <strong>Lesart</strong><br>
+          Wochenmittel des Birken-Pollen-Index der 12 ePIN-Stationen (Tinte) gegen Lorano-Sell-Out-Einheiten (Amber) aus dem Demo-Datensatz. Lag positiv ⇒ Pollen führt Umsatz voraus.
+        </div>
+        <div class="marginalia mt-5 rule-hair pt-3">
+          <strong>Hinweis</strong><br>
+          Der MOAT entsteht, sobald echte Hexal-Sell-Out-Historie die Stelle des Demo-Datensatzes einnimmt. Die Mechanik ist gebaut; das Signal wird dann kundenspezifisch.
+        </div>
+      </aside>
+
+      <div class="col-span-12 md:col-span-9 grid grid-cols-12 gap-6">
+
+        <div class="col-span-12 lg:col-span-8">
+          <div class="flex items-end justify-between flex-wrap gap-2 mb-3">
+            <div>
+              <div class="eyebrow">Abb. 01</div>
+              <div class="small-caps" id="correlation-caption" style="color: var(--ink-soft); font-size: 12px;">—</div>
+            </div>
+            <div class="flex items-center gap-4 font-mono" style="font-size: 10.5px; color: var(--ink-soft); letter-spacing: 0.14em; text-transform: uppercase;">
+              <span class="flex items-center gap-2"><span style="display:inline-block; width:14px; height:2px; background: var(--ink);"></span>Pollen</span>
+              <span class="flex items-center gap-2"><span style="display:inline-block; width:14px; height:2px; background: var(--amber);"></span>Sell-Out</span>
+            </div>
           </div>
-        </div>
-        <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-          <div class="text-xs uppercase tracking-wide text-slate-500 mb-1">Lag-Analyse</div>
-          <div class="relative" style="height: 220px;">
-            <canvas id="lag-chart"></canvas>
+          <div class="chart-wrap">
+            <div class="chart-canvas" style="height: 320px;">
+              <canvas id="correlation-chart"></canvas>
+            </div>
           </div>
-          <dl class="mt-3 grid grid-cols-2 gap-2 text-xs text-slate-600">
-            <dt>Bester Lag</dt><dd id="lag-best" class="mono text-slate-900 text-right">–</dd>
-            <dt>Pearson r</dt><dd id="lag-pearson" class="mono text-slate-900 text-right">–</dd>
-            <dt>Wochen im Fenster</dt><dd id="lag-weeks" class="mono text-slate-900 text-right">–</dd>
+          <div class="mt-2 chart-caption" id="correlation-source-note"></div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-4">
+          <div class="eyebrow">Abb. 02 · Lag-Analyse</div>
+          <div class="small-caps mt-1" style="color: var(--ink-soft); font-size: 12px;">Pearson r über Lag (Tage)</div>
+          <div class="chart-wrap mt-3">
+            <div class="chart-canvas" style="height: 220px;">
+              <canvas id="lag-chart"></canvas>
+            </div>
+          </div>
+          <dl class="mt-5 text-sm">
+            <div class="flex items-baseline mb-2"><dt class="small-caps" style="color: var(--ink-soft);">Bester Lag</dt><span class="dot-leader flex-1 mx-2"></span><dd class="font-serif tnum" id="lag-best" style="font-size: 22px; font-weight: 500;">–</dd></div>
+            <div class="flex items-baseline mb-2"><dt class="small-caps" style="color: var(--ink-soft);">Pearson r</dt><span class="dot-leader flex-1 mx-2"></span><dd class="font-serif tnum" id="lag-pearson" style="font-size: 22px; font-weight: 500;">–</dd></div>
+            <div class="flex items-baseline"><dt class="small-caps" style="color: var(--ink-soft);">Wochen</dt><span class="dot-leader flex-1 mx-2"></span><dd class="font-serif tnum" id="lag-weeks" style="font-size: 22px; font-weight: 500;">–</dd></div>
           </dl>
         </div>
-      </div>
-      <div class="text-xs text-slate-500 max-w-3xl" id="correlation-source-note"></div>
-    </section>
 
-    <section class="space-y-3">
-      <h2 class="text-xl font-semibold">2 &middot; Lead-Time vs. Baseline</h2>
-      <p class="text-sm text-slate-600 max-w-3xl">
-        Für jeden historischen Birke-Peak in Bayern: wie viele Tage vor dem Peak hat unser
-        Stacked+CP-Modell bereits Signal gegeben, verglichen mit Persistence und Seasonal-Naive?
-        Ein Fold zählt als Signal, wenn der Median-Forecast ≥ 50 % des tatsächlichen Peak-Wertes ist.
-      </p>
-      <div class="overflow-x-auto bg-white border border-slate-200 rounded-lg shadow-sm">
-        <table class="min-w-full text-sm">
-          <thead class="bg-slate-100 text-slate-600 text-xs uppercase">
-            <tr>
-              <th class="px-4 py-2 text-left">Peak</th>
-              <th class="px-2 py-2 text-right">Beobachtung</th>
-              <th class="px-2 py-2 text-right">Schwelle</th>
-              <th class="px-2 py-2 text-right">Modell-Lead</th>
-              <th class="px-2 py-2 text-right">Persistence-Lead</th>
-              <th class="px-2 py-2 text-right">Seasonal-Lead</th>
-            </tr>
-          </thead>
-          <tbody id="leadtime-table" class="divide-y divide-slate-200 text-slate-700 mono"></tbody>
-        </table>
-      </div>
-      <p class="text-xs text-slate-500 max-w-3xl">
-        Der Stacked+CP-Fold mit Horizont 14 Tage fängt die gemäßigten Peaks etwa eine Woche vor
-        Persistence. Die extremsten Peaks (Birke 2024 mit &gt;2000 Pollen/m³) werden von allen
-        drei Forecastern verfehlt — das bleibt ein offener Ausbauschritt, nicht ein verschwiegener Befund.
-      </p>
-    </section>
-
-    <section class="space-y-3">
-      <div class="flex flex-wrap items-end gap-4">
-        <div>
-          <h2 class="text-xl font-semibold">3 &middot; Aktueller Forecast</h2>
-          <p class="text-sm text-slate-600 max-w-3xl">
-            Tagesmittel ePIN-Bayern + Stacked+CP-Forecast mit 80%-Unsicherheitsband.
-          </p>
+        <div class="col-span-12 mt-4">
+          <p class="pull-quote max-w-[38ch]" id="pull-quote"></p>
         </div>
-        <label class="ml-auto block">
-          <span class="text-xs font-medium text-slate-600 uppercase tracking-wide">Pollenart</span>
-          <select id="pollen-select" class="mt-1 block w-44 border border-slate-300 rounded px-3 py-2 bg-white"></select>
-        </label>
-        <label class="block">
-          <span class="text-xs font-medium text-slate-600 uppercase tracking-wide">Horizont</span>
-          <select id="horizon-select" class="mt-1 block w-32 border border-slate-300 rounded px-3 py-2 bg-white">
-            <option value="7">7 Tage</option>
-            <option value="14">14 Tage</option>
-          </select>
-        </label>
+
       </div>
-      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-        <div class="flex justify-between items-start mb-2">
-          <div class="text-xs text-slate-500">Quelle: ePIN Bayern · Modell: Stacked+CP</div>
-          <div class="text-right">
-            <div class="text-xs text-slate-500">Prognose für</div>
-            <div class="text-sm font-semibold mono" id="target-date">–</div>
-            <div class="text-xs text-slate-500" id="predicted-value">–</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       III · LEAD-TIME
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="relative pt-16 pb-16 rule-double">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+
+      <aside class="col-span-12 md:col-span-3">
+        <div class="numeral-outline" style="font-size: clamp(96px, 14vw, 180px);">III</div>
+        <div class="eyebrow mt-2">Peak-Chronik</div>
+        <h3 class="display-headline mt-3" style="font-size: clamp(26px, 3.2vw, 36px);">Wer sieht den Gipfel zuerst?</h3>
+        <div class="marginalia mt-5">
+          <strong>Regel</strong><br>
+          Ein Fold signalisiert, wenn der Median-Forecast ≥ 50 % des später beobachteten Peak-Wertes erreicht. Modell bezieht h = 7 und h = 14 ein, Persistence nur h = 7 (&bdquo;heute = gestern&ldquo;), Seasonal = gleicher Tag letztes Jahr.
+        </div>
+        <div class="marginalia mt-5 rule-hair pt-3" id="leadtime-summary">—</div>
+      </aside>
+
+      <div class="col-span-12 md:col-span-9">
+        <div class="chart-wrap p-0">
+          <table class="editorial">
+            <thead>
+              <tr>
+                <th style="width: 22%;">Peak</th>
+                <th style="width: 14%; text-align: right;">Beobachtung</th>
+                <th style="width: 14%; text-align: right;">Schwelle</th>
+                <th style="width: 16%; text-align: right;">Modell</th>
+                <th style="width: 16%; text-align: right;">Persistence</th>
+                <th style="width: 16%; text-align: right;">Seasonal</th>
+              </tr>
+            </thead>
+            <tbody id="leadtime-table"></tbody>
+          </table>
+        </div>
+        <p class="marginalia mt-4 max-w-[68ch]">
+          Der 2024er Jahrhundert-Peak (&gt; 2 000 Pollen/m³) wird von allen drei Forecastern verfehlt.
+          Wir benennen es statt zu verschweigen. Ausbauschritt: saisonale Extremwert-Modellierung im Stack
+          nachziehen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       IV · FORECAST LIVE
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="relative pt-16 pb-16 rule-double">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+
+      <aside class="col-span-12 md:col-span-3">
+        <div class="numeral-outline" style="font-size: clamp(96px, 14vw, 180px);">IV</div>
+        <div class="eyebrow mt-2">Aktueller Forecast</div>
+        <h3 class="display-headline mt-3" style="font-size: clamp(26px, 3.2vw, 36px);">Modell-Artefakt lädt.</h3>
+        <div class="marginalia mt-5">
+          <strong>Modellstand</strong><br>
+          Stacked+CP · pollencast-stacked-hw-ridge-xgb-cp80-v0.<br>
+          Trainingsfenster 2021-01-01 … 2026-04-17 · Ø 1 911 Samples.
+        </div>
+        <div class="marginalia mt-5 rule-hair pt-3">
+          <strong>Quelle</strong><br>
+          ePIN Bayern · Tagesmittel der 12 Stationen.
+        </div>
+      </aside>
+
+      <div class="col-span-12 md:col-span-9">
+        <div class="flex flex-wrap items-end gap-x-8 gap-y-4 mb-5">
+          <label class="block">
+            <span class="eyebrow block mb-1">Pollenart</span>
+            <select id="pollen-select" class="editorial-select min-w-[160px]"></select>
+          </label>
+          <label class="block">
+            <span class="eyebrow block mb-1">Horizont</span>
+            <select id="horizon-select" class="editorial-select min-w-[160px]">
+              <option value="7">7 Tage</option>
+              <option value="14">14 Tage</option>
+            </select>
+          </label>
+          <div class="ml-auto text-right">
+            <div class="eyebrow">Prognose für</div>
+            <div class="font-serif tnum" id="target-date" style="font-size: 22px; font-weight: 500;">–</div>
+            <div class="chart-caption" id="predicted-value">–</div>
           </div>
         </div>
-        <div class="relative" style="height: 340px;">
-          <canvas id="forecast-chart"></canvas>
+        <div class="chart-wrap">
+          <div class="chart-canvas" style="height: 360px;">
+            <canvas id="forecast-chart"></canvas>
+          </div>
+        </div>
+        <div class="mt-3 flex items-center gap-4 chart-caption">
+          <span class="flex items-center gap-2"><span style="display:inline-block;width:14px;height:2px;background:var(--ink);"></span>Beobachtung (Tagesmittel)</span>
+          <span class="flex items-center gap-2"><span style="display:inline-block;width:14px;height:2px;border-top:2px dashed var(--peak);"></span>Prognose (Median)</span>
+          <span class="flex items-center gap-2"><span style="display:inline-block;width:14px;height:10px;background:repeating-linear-gradient(135deg, var(--amber-soft) 0 3px, transparent 3px 6px);border:1px solid var(--amber);"></span>80 %-Band (q₁₀–q₉₀)</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="space-y-3">
-      <h2 class="text-xl font-semibold">4 &middot; Walk-Forward-Evidenz (5 Jahre, 220 Folds je Scope)</h2>
-      <p class="text-sm text-slate-600 max-w-3xl">
-        Jede Zeile ist ein persistierter Backtest-Run gegen Persistence und Seasonal-Naive.
-        WIS<sub>80</sub> ist das Weighted Interval Score nach Bracher et al. 2021 — der Metrik-Standard
-        der RKI/CDC-Forecast-Hubs. Coverage<sub>80</sub>-Zellen sind grün, wenn sie im
-        Ziel-Korridor 0.77–0.85 liegen.
-      </p>
-      <div class="overflow-x-auto bg-white border border-slate-200 rounded-lg shadow-sm">
-        <table class="min-w-full text-sm">
-          <thead class="bg-slate-100 text-slate-600 text-xs uppercase">
-            <tr>
-              <th class="px-4 py-2 text-left">Pollen</th>
-              <th class="px-2 py-2 text-right">H</th>
-              <th class="px-2 py-2 text-right">Folds</th>
-              <th class="px-2 py-2 text-right">MAE</th>
-              <th class="px-2 py-2 text-right">WIS<sub>80</sub></th>
-              <th class="px-2 py-2 text-right">Cov<sub>80</sub></th>
-              <th class="px-2 py-2 text-right">ΔPers</th>
-              <th class="px-2 py-2 text-right">ΔSeas</th>
-              <th class="px-2 py-2 text-left">Modell</th>
-            </tr>
-          </thead>
-          <tbody id="backtest-table" class="divide-y divide-slate-200 text-slate-700 mono"></tbody>
-        </table>
+  <!-- ═══════════════════════════════════════════════════════════
+       V · EVIDENZ-REGISTER
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="relative pt-16 pb-16 rule-double">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+
+      <aside class="col-span-12 md:col-span-3">
+        <div class="numeral-outline" style="font-size: clamp(96px, 14vw, 180px);">V</div>
+        <div class="eyebrow mt-2">Evidenz-Register</div>
+        <h3 class="display-headline mt-3" style="font-size: clamp(26px, 3.2vw, 36px);">Fünf Jahre,<br>zweihundert Folds.</h3>
+        <div class="marginalia mt-5">
+          <strong>Lesehilfe</strong><br>
+          Jede Zeile ist ein persistierter Walk-Forward-Backtest. WIS₈₀ folgt Bracher u. a. 2021 — die Metrik der RKI/CDC-Forecast-Hubs. Coverage-Zellen sind amber-hinterlegt, wenn sie im Zielkorridor 0,77–0,85 liegen.
+        </div>
+      </aside>
+
+      <div class="col-span-12 md:col-span-9">
+        <div class="chart-wrap p-0">
+          <table class="editorial">
+            <thead>
+              <tr>
+                <th style="width: 16%;">Pollen</th>
+                <th style="width: 7%; text-align: right;">H</th>
+                <th style="width: 8%; text-align: right;">Folds</th>
+                <th style="width: 10%; text-align: right;">MAE</th>
+                <th style="width: 10%; text-align: right;">WIS₈₀</th>
+                <th style="width: 10%; text-align: right;">Cov₈₀</th>
+                <th style="width: 12%; text-align: right;">Δ Persist.</th>
+                <th style="width: 12%; text-align: right;">Δ Season.</th>
+                <th style="width: 15%;">Modell</th>
+              </tr>
+            </thead>
+            <tbody id="backtest-table"></tbody>
+          </table>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="space-y-3">
-      <h2 class="text-xl font-semibold">5 &middot; Pilot-Aufsatz: eigener Sell-Out → eigene Elastizität</h2>
-      <p class="text-sm text-slate-600 max-w-3xl">
-        Die Sell-Out-Kopplung oben rechnet auf einem synthetischen Datensatz. Der produktive MOAT
-        entsteht, sobald eine echte Hexal-Sell-Out-Historie hochgeladen wird — dann liefert PollenCast
-        eine kundenspezifische Elastizität pro Bundesland × Pollenart × SKU.
-      </p>
-      <div class="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <div class="text-xs uppercase tracking-wide text-slate-500">Upload-Format (Long-CSV)</div>
-            <pre class="mt-2 text-xs bg-slate-900 text-slate-100 rounded p-3 overflow-x-auto"><code>brand,product,region_code,week_start,metric,value
+  <!-- ═══════════════════════════════════════════════════════════
+       VI · PILOT-AUFSATZ
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="relative pt-16 pb-16 rule-double">
+    <div class="grid grid-cols-12 gap-6 md:gap-10">
+
+      <aside class="col-span-12 md:col-span-3">
+        <div class="numeral-outline" style="font-size: clamp(96px, 14vw, 180px);">VI</div>
+        <div class="eyebrow mt-2">Pilot-Aufsatz</div>
+        <h3 class="display-headline mt-3" style="font-size: clamp(26px, 3.2vw, 36px);">Ihre Sell-Out-Historie,<br>Ihre Elastizität.</h3>
+        <div class="marginalia mt-5">
+          <strong>Prinzip</strong><br>
+          Sobald eine echte Hexal-Sell-Out-Datei hochgeladen wird, lernt PollenCast die kundenspezifische Pollen → Umsatz-Elastizität pro Bundesland × Pollenart × SKU. Der hier abgebildete Effekt-Wert rechnet noch auf einem synthetischen Demo-Datensatz.
+        </div>
+      </aside>
+
+      <div class="col-span-12 md:col-span-9 grid grid-cols-12 gap-6">
+
+        <div class="col-span-12 md:col-span-7">
+          <div class="eyebrow">Upload-Format</div>
+          <h4 class="font-serif mt-1 mb-4" style="font-size: 22px; font-weight: 500; font-variation-settings: 'opsz' 36;">Long-CSV · 6 Pflicht-Spalten · max. 5 MB</h4>
+          <pre class="editorial-code"><code>brand,product,region_code,week_start,metric,value
 hexal,lorano_5mg_20stk,BY,2024-04-01,sell_out_units,4321
 hexal,lorano_5mg_20stk,BY,2024-04-01,sell_out_revenue_eur,38447
 hexal,lorano_5mg_20stk,NW,2024-04-01,sell_out_units,7100
 hexal,lorano_5mg_20stk,BY,2024-04-01,tv_grp,128
 hexal,lorano_5mg_20stk,BY,2024-04-01,search_brand_clicks,14302</code></pre>
-            <div class="text-xs text-slate-500 mt-2">
-              Akzeptierte Metriken: sell_out_units, sell_out_revenue_eur, tv_grp,
-              search_brand_clicks, search_brand_impressions.
-              Bundesland-Wochen-Granularität, Long-Format, max. 5 MB.
-            </div>
-          </div>
-          <div>
-            <div class="text-xs uppercase tracking-wide text-slate-500">API (Live auf separatem Host)</div>
-            <ul class="mt-2 text-sm text-slate-800 space-y-1">
-              <li><span class="mono text-xs bg-slate-100 rounded px-1 py-0.5">POST</span> /api/v1/outcome/upload</li>
-              <li><span class="mono text-xs bg-slate-100 rounded px-1 py-0.5">GET</span> /api/v1/outcome/catalog</li>
-              <li><span class="mono text-xs bg-slate-100 rounded px-1 py-0.5">GET</span> /api/v1/outcome/correlation</li>
-              <li><span class="mono text-xs bg-slate-100 rounded px-1 py-0.5">GET</span> /api/v1/pollen/forecast</li>
-              <li><span class="mono text-xs bg-slate-100 rounded px-1 py-0.5">GET</span> /api/v1/pollen/forecast/regional</li>
-            </ul>
-            <div class="text-xs text-slate-500 mt-3">
-              Validierungsfehler werden pro Zeile mit Code und Nachricht zurückgegeben —
-              Analystenseitig debug-fähig ohne Rücksprache mit uns.
-            </div>
-          </div>
+          <p class="marginalia mt-3">
+            Akzeptierte Metriken · <span class="font-mono" style="color: var(--ink);">sell_out_units</span>,
+            <span class="font-mono" style="color: var(--ink);">sell_out_revenue_eur</span>,
+            <span class="font-mono" style="color: var(--ink);">tv_grp</span>,
+            <span class="font-mono" style="color: var(--ink);">search_brand_clicks</span>,
+            <span class="font-mono" style="color: var(--ink);">search_brand_impressions</span>.
+            Bundesland-Wochen-Granularität. Validierung zeilenweise mit Code &amp; Nachricht.
+          </p>
         </div>
-        <div class="mt-6 flex flex-wrap items-center gap-3">
-          <a href="mailto:mail@davidwegener.de?subject=PollenCast%20Hexal-Pilot"
-             class="inline-flex items-center px-4 py-2 rounded bg-slate-900 text-white text-sm font-medium hover:bg-slate-800">
+
+        <div class="col-span-12 md:col-span-5">
+          <div class="eyebrow">API · getrennter Host</div>
+          <h4 class="font-serif mt-1 mb-4" style="font-size: 22px; font-weight: 500; font-variation-settings: 'opsz' 36;">Einreich-Adressen</h4>
+          <ul class="font-mono space-y-2" style="font-size: 12.5px;">
+            <li class="flex items-baseline"><span style="background: var(--ink); color: var(--paper); padding: 2px 7px; letter-spacing: 0.12em;">POST</span><span class="dot-leader flex-1 mx-2"></span><span>/api/v1/outcome/upload</span></li>
+            <li class="flex items-baseline"><span style="background: var(--forest); color: var(--paper); padding: 2px 7px; letter-spacing: 0.12em;">GET</span><span class="dot-leader flex-1 mx-2"></span><span>/api/v1/outcome/catalog</span></li>
+            <li class="flex items-baseline"><span style="background: var(--forest); color: var(--paper); padding: 2px 7px; letter-spacing: 0.12em;">GET</span><span class="dot-leader flex-1 mx-2"></span><span>/api/v1/outcome/correlation</span></li>
+            <li class="flex items-baseline"><span style="background: var(--forest); color: var(--paper); padding: 2px 7px; letter-spacing: 0.12em;">GET</span><span class="dot-leader flex-1 mx-2"></span><span>/api/v1/pollen/forecast</span></li>
+            <li class="flex items-baseline"><span style="background: var(--forest); color: var(--paper); padding: 2px 7px; letter-spacing: 0.12em;">GET</span><span class="dot-leader flex-1 mx-2"></span><span>/api/v1/pollen/forecast/regional</span></li>
+          </ul>
+          <p class="marginalia mt-4">
+            Validierungsfehler werden pro Zeile mit <span class="font-mono" style="color: var(--ink);">{row, code, message}</span> zurückgegeben — analystenseitig debug-fähig ohne Rücksprache mit uns.
+          </p>
+        </div>
+
+        <div class="col-span-12 mt-6 flex flex-wrap gap-3 items-center">
+          <a href="mailto:mail@davidwegener.de?subject=PollenCast%20Hexal-Pilot" class="btn-ink">
             Pilot-Aufsatz anfragen
+            <span style="font-family: var(--serif); font-style: italic;">→</span>
           </a>
-          <a href="https://github.com/Fliegenbart/flux-pollen"
-             class="inline-flex items-center px-4 py-2 rounded border border-slate-300 text-sm font-medium text-slate-700 hover:bg-slate-100">
-            Quellcode
+          <a href="https://github.com/Fliegenbart/flux-pollen" class="btn-ghost">
+            Quellcode · GitHub
           </a>
-          <span class="text-xs text-slate-500">Kein Public-Upload in dieser Demo — bewusst.</span>
+          <span class="marginalia">Kein Public-Upload in dieser Demo — bewusst.</span>
         </div>
-      </div>
-    </section>
 
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-        <div class="text-xs uppercase tracking-wide text-slate-500">Methodik</div>
-        <ul class="mt-2 text-sm space-y-1 text-slate-700">
-          <li>Stacking: Holt-Winters + Ridge</li>
-          <li>Meta: XGBoost Quantil-Regression</li>
-          <li>Kalibrierung: Split Conformal Prediction</li>
-        </ul>
       </div>
-      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-        <div class="text-xs uppercase tracking-wide text-slate-500">Datenquellen</div>
-        <ul class="mt-2 text-sm space-y-1 text-slate-700">
-          <li>ePIN Bayern (12 Stationen, 3h-Bucket)</li>
-          <li>BrightSky / DWD Wetter</li>
-          <li>schulferien-api.de v2</li>
-        </ul>
-      </div>
-      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
-        <div class="text-xs uppercase tracking-wide text-slate-500">Scope</div>
-        <ul class="mt-2 text-sm space-y-1 text-slate-700">
-          <li>Bundesland Bayern live</li>
-          <li>Pollen: Birke, Gräser, Erle</li>
-          <li>Horizonte: 7 und 14 Tage</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="text-xs text-slate-500 max-w-3xl" id="disclaimer"></section>
-
-  </main>
-
-  <footer class="border-t border-slate-200 mt-16">
-    <div class="max-w-6xl mx-auto px-6 py-4 text-xs text-slate-500">
-      <a href="https://github.com/Fliegenbart/flux-pollen" class="hover:text-slate-900">github.com/Fliegenbart/flux-pollen</a>
-      &middot; XGBoost-Stacking + Conformal Prediction · Walk-Forward auf ePIN Bayern 2021–2026
     </div>
-  </footer>
+  </section>
 
-  <script>
-    const POLLEN_LABELS = {
-      birke: "Birke", graeser: "Gräser", erle: "Erle",
-      hasel: "Hasel", esche: "Esche", roggen: "Roggen",
-      beifuss: "Beifuß", ambrosia: "Ambrosia",
+  <!-- COLOPHON / FOOTER -->
+  <section class="relative pt-12 pb-4 rule-double">
+    <div class="grid grid-cols-12 gap-6 md:gap-10 text-sm">
+      <div class="col-span-12 md:col-span-4">
+        <div class="eyebrow mb-3">Methodik</div>
+        <ul class="space-y-1 font-mono" style="font-size: 12px;">
+          <li>Base · Holt-Winters (saisonal, additiv, 365 d)</li>
+          <li>Base · Ridge (standardisiert, direkt-h)</li>
+          <li>Meta · XGBoost reg:quantileerror, q ∈ {0,1; 0,5; 0,9}</li>
+          <li>Kalibrierung · Split Conformal, Ziel α = 0,80</li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <div class="eyebrow mb-3">Datenquellen</div>
+        <ul class="space-y-1 font-mono" style="font-size: 12px;">
+          <li>ePIN Bayern · 12 Stationen · 3-h-Bucket</li>
+          <li>BrightSky / DWD · 16 Hauptstädte · stündlich</li>
+          <li>schulferien-api.de v2 · 2022–2026</li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <div class="eyebrow mb-3">Scope</div>
+        <ul class="space-y-1 font-mono" style="font-size: 12px;">
+          <li>Bundesland · Bayern (live)</li>
+          <li>Pollen · Birke, Gräser, Erle</li>
+          <li>Horizonte · 7 und 14 Tage</li>
+          <li>Tests · 71 grün (23 s)</li>
+        </ul>
+      </div>
+      <div class="col-span-12 mt-8" id="disclaimer-wrap">
+        <div class="eyebrow mb-2">Hinweis zur Demo</div>
+        <p class="max-w-[85ch]" style="font-size: 14px; line-height: 1.55; color: var(--ink-soft);" id="disclaimer">—</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="relative">
+  <div class="max-w-[1240px] mx-auto px-6 md:px-10 rule-double"></div>
+  <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-6 flex flex-wrap items-center justify-between gap-3 font-mono" style="font-size: 10.5px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-soft);">
+    <div>
+      <a href="https://github.com/Fliegenbart/flux-pollen" style="color: var(--ink);">github.com/Fliegenbart/flux-pollen</a>
+      &nbsp;·&nbsp; gesetzt in Fraunces, Bricolage Grotesque &amp; JetBrains Mono
+    </div>
+    <div>№ 01 · 2026 · Bayern</div>
+  </div>
+</footer>
+
+<script>
+  // ─── Design tokens (mirrored from CSS for Chart.js defaults) ─────────
+  const TOKENS = {
+    paper: "#f5efe1",
+    ink: "#0f0e0b",
+    inkSoft: "#3a362d",
+    amber: "#d29f2e",
+    amberSoft: "#e7c887",
+    peak: "#b8381d",
+    forest: "#2b4a3a",
+    hairline: "rgba(15,14,11,0.18)",
+    rule: "#1b1a15",
+  };
+
+  // ─── Chart.js editorial defaults ─────────────────────────────────────
+  Chart.defaults.font.family = "'JetBrains Mono', ui-monospace, monospace";
+  Chart.defaults.font.size = 10.5;
+  Chart.defaults.color = TOKENS.ink;
+  Chart.defaults.borderColor = TOKENS.hairline;
+  Chart.defaults.scale.grid.color = TOKENS.hairline;
+  Chart.defaults.scale.grid.drawTicks = false;
+  Chart.defaults.scale.ticks.color = TOKENS.inkSoft;
+  Chart.defaults.plugins.legend.display = false;
+  Chart.defaults.plugins.tooltip.backgroundColor = TOKENS.ink;
+  Chart.defaults.plugins.tooltip.titleColor = TOKENS.paper;
+  Chart.defaults.plugins.tooltip.bodyColor = TOKENS.paper;
+  Chart.defaults.plugins.tooltip.padding = 10;
+  Chart.defaults.plugins.tooltip.cornerRadius = 0;
+  Chart.defaults.plugins.tooltip.titleFont = { family: "'JetBrains Mono', monospace", size: 10, weight: "500" };
+  Chart.defaults.plugins.tooltip.bodyFont = { family: "'JetBrains Mono', monospace", size: 11 };
+  Chart.defaults.plugins.tooltip.boxPadding = 4;
+
+  const POLLEN_LABELS = {
+    birke: "Birke", graeser: "Gräser", erle: "Erle",
+    hasel: "Hasel", esche: "Esche", roggen: "Roggen",
+    beifuss: "Beifuß", ambrosia: "Ambrosia",
+  };
+
+  // ─── Utils ───────────────────────────────────────────────────────────
+  async function loadSnapshot() {
+    const response = await fetch("./snapshot.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`snapshot fetch ${response.status}`);
+    return response.json();
+  }
+
+  const fmtDate = (iso) => {
+    if (!iso) return "–";
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("de-DE", { day: "2-digit", month: "long", year: "numeric" });
+  };
+  const fmtDateShort = (iso) => {
+    if (!iso) return "–";
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return iso;
+    return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" });
+  };
+  const fmtNum = (v) => {
+    if (v === null || v === undefined || Number.isNaN(Number(v))) return "–";
+    const n = Number(v);
+    if (Math.abs(n) >= 1000) return n.toLocaleString("de-DE", { maximumFractionDigits: 0 });
+    return n.toFixed(1).replace(".", ",");
+  };
+  const fmtPct = (ratio) => {
+    if (ratio === null || ratio === undefined) return "–";
+    const v = Number(ratio) * 100;
+    const sign = v > 0 ? "+" : "";
+    return `${sign}${v.toFixed(1).replace(".", ",")} %`;
+  };
+
+  // ─── HERO ────────────────────────────────────────────────────────────
+  function renderHero(snapshot) {
+    const hero = snapshot.hero || {};
+    const corr = snapshot.correlation;
+    const lt = snapshot.lead_time || {};
+    const ltSummary = lt.summary || {};
+
+    const lift = hero.correlation_lift_high_vs_low_pct;
+    if (lift !== null && lift !== undefined) {
+      document.getElementById("kpi-lift").textContent = Number(lift).toFixed(1).replace(".", ",");
+      document.getElementById("kpi-lift-sign").textContent = lift >= 0 ? "+" : "−";
+    }
+    if (corr) {
+      document.getElementById("kpi-lift-caption").textContent =
+        `Pearson r = ${corr.best_pearson.toFixed(3).replace(".", ",")} @ Lag ${corr.best_lag_days >= 0 ? "+" : ""}${corr.best_lag_days} d · ${corr.n_weeks} Wochen`;
+    }
+
+    const leadModel = hero.lead_time_model_days_mean;
+    const leadPers = hero.lead_time_persistence_days_median;
+    if (leadModel != null && leadPers != null) {
+      const diff = Number(leadModel) - Number(leadPers);
+      document.getElementById("kpi-lead-sign").textContent = diff >= 0 ? "+" : "−";
+      document.getElementById("kpi-lead").textContent = Math.abs(diff).toFixed(1).replace(".", ",");
+      document.getElementById("kpi-lead-caption").textContent =
+        `Modell Ø ${Number(leadModel).toFixed(1).replace(".", ",")} d · Persistence Med. ${Number(leadPers).toFixed(1).replace(".", ",")} d · ${ltSummary.n_peaks || 0} Peaks`;
+    }
+
+    const wisPers = hero.wis_improvement_vs_persistence_pct;
+    const wisSeas = hero.wis_improvement_vs_seasonal_pct;
+    if (wisPers != null) {
+      document.getElementById("kpi-wis").textContent = Number(wisPers).toFixed(1).replace(".", ",");
+      document.getElementById("kpi-wis-caption").textContent =
+        wisSeas != null ? `vs. Pers. · −${Number(wisSeas).toFixed(1).replace(".", ",")} % vs. Seasonal-Naive` : "vs. Persistence";
+    }
+
+    const cov = hero.coverage80_avg;
+    if (cov != null) {
+      document.getElementById("kpi-coverage").textContent = Number(cov).toFixed(2).replace(".", ",");
+    }
+
+    document.getElementById("stamp-date").textContent = `Ausgabe ${fmtDate(snapshot.generated_at)}`;
+
+    // Pull-quote composed from hero numbers — becomes the section-II headline
+    if (corr) {
+      const lead = leadModel != null && leadPers != null
+        ? ((Number(leadModel) - Number(leadPers)).toFixed(1).replace(".", ",")) + " Tage"
+        : "—";
+      document.getElementById("pull-quote").textContent =
+        `Pollen führt den Umsatz um ${corr.best_lag_days} Tag${corr.best_lag_days === 1 ? "" : "e"} voraus — und unser Stack sieht den Peak ${lead} vor Persistence.`;
+    }
+  }
+
+  // ─── CORRELATION CHARTS ──────────────────────────────────────────────
+  let correlationChart, lagChart;
+  function renderCorrelation(snapshot) {
+    const c = snapshot.correlation;
+    const captionEl = document.getElementById("correlation-caption");
+    const noteEl = document.getElementById("correlation-source-note");
+    if (!c) {
+      captionEl.textContent = "Keine Outcome-Daten geladen.";
+      return;
+    }
+    captionEl.textContent = `${POLLEN_LABELS[c.pollen_type] || c.pollen_type} · ${c.region_code} · ${c.brand}/${c.product} · wöchentlich`;
+    noteEl.textContent = `N = ${c.n_weeks} Wochen · High/Low-Quartil aus ${c.high_weeks} ⊕ ${c.low_weeks} Wochen · Outcome: synthetischer Hexal-Demo-Datensatz`;
+
+    document.getElementById("lag-best").textContent = `${c.best_lag_days >= 0 ? "+" : ""}${c.best_lag_days} d`;
+    document.getElementById("lag-pearson").textContent = c.best_pearson.toFixed(3).replace(".", ",");
+    document.getElementById("lag-weeks").textContent = c.n_weeks;
+
+    const outcomeMap = new Map(c.outcome_series.map((p) => [p.week_start.slice(0, 10), p.value]));
+    const pollenMap = new Map(c.pollen_series.map((p) => [p.week_start.slice(0, 10), p.concentration]));
+    const weeks = Array.from(new Set([...outcomeMap.keys(), ...pollenMap.keys()])).sort();
+    const labels = weeks.map((w) => fmtDateShort(w));
+    const outcomeData = weeks.map((w) => (outcomeMap.has(w) ? outcomeMap.get(w) : null));
+    const pollenData = weeks.map((w) => (pollenMap.has(w) ? pollenMap.get(w) : null));
+
+    if (correlationChart) correlationChart.destroy();
+    correlationChart = new Chart(document.getElementById("correlation-chart"), {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Pollen (Wochenmittel)",
+            data: pollenData,
+            borderColor: TOKENS.ink,
+            backgroundColor: "transparent",
+            yAxisID: "y",
+            borderWidth: 1.4,
+            tension: 0.28,
+            pointRadius: 0,
+          },
+          {
+            label: "Sell-Out (Einheiten)",
+            data: outcomeData,
+            borderColor: TOKENS.amber,
+            backgroundColor: "transparent",
+            yAxisID: "y1",
+            borderWidth: 1.8,
+            tension: 0.28,
+            pointRadius: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        layout: { padding: { top: 14, right: 14, left: 6, bottom: 6 } },
+        scales: {
+          y: {
+            position: "left",
+            title: { display: true, text: "POLLEN / M³", color: TOKENS.ink, font: { family: "'JetBrains Mono', monospace", size: 9.5, weight: "500" } },
+            beginAtZero: true,
+            ticks: { maxTicksLimit: 6 },
+            grid: { color: TOKENS.hairline, lineWidth: 0.5 },
+            border: { color: TOKENS.rule, width: 1 },
+          },
+          y1: {
+            position: "right",
+            title: { display: true, text: "SELL-OUT (EINHEITEN)", color: TOKENS.amber, font: { family: "'JetBrains Mono', monospace", size: 9.5, weight: "500" } },
+            beginAtZero: false,
+            ticks: { maxTicksLimit: 6, color: TOKENS.amber },
+            grid: { drawOnChartArea: false },
+            border: { color: TOKENS.amber, width: 1 },
+          },
+          x: { ticks: { maxTicksLimit: 8 }, grid: { display: false }, border: { color: TOKENS.rule, width: 1 } },
+        },
+      },
+    });
+
+    const lagLabels = c.lag_curve.map((p) => p.lag_days);
+    const lagData = c.lag_curve.map((p) => p.pearson);
+    const bestIdx = lagLabels.indexOf(c.best_lag_days);
+    const backgroundColors = lagData.map((_, i) => (i === bestIdx ? TOKENS.peak : TOKENS.ink));
+    const borderColors = lagData.map((_, i) => (i === bestIdx ? TOKENS.peak : TOKENS.ink));
+
+    if (lagChart) lagChart.destroy();
+    lagChart = new Chart(document.getElementById("lag-chart"), {
+      type: "bar",
+      data: {
+        labels: lagLabels,
+        datasets: [{
+          label: "Pearson r",
+          data: lagData,
+          backgroundColor: backgroundColors,
+          borderColor: borderColors,
+          borderWidth: 0,
+          barPercentage: 0.4,
+          categoryPercentage: 1.0,
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { top: 12, right: 10, bottom: 6, left: 6 } },
+        scales: {
+          y: {
+            suggestedMin: -0.4, suggestedMax: 1.0,
+            ticks: { maxTicksLimit: 5 },
+            grid: { color: TOKENS.hairline },
+            border: { color: TOKENS.rule, width: 1 },
+          },
+          x: {
+            title: { display: true, text: "LAG (TAGE) — POLLEN LEADS UMSATZ ⟶", color: TOKENS.inkSoft, font: { family: "'JetBrains Mono', monospace", size: 9.5 } },
+            ticks: { maxTicksLimit: 7, callback: function(val) { return this.getLabelForValue(val); } },
+            grid: { display: false },
+            border: { color: TOKENS.rule, width: 1 },
+          },
+        },
+      },
+    });
+  }
+
+  // ─── LEAD-TIME TABLE ─────────────────────────────────────────────────
+  function renderLeadTime(snapshot) {
+    const tbody = document.getElementById("leadtime-table");
+    const summaryEl = document.getElementById("leadtime-summary");
+    tbody.innerHTML = "";
+    const lt = snapshot.lead_time;
+    if (!lt || !lt.peaks) return;
+
+    const s = lt.summary || {};
+    summaryEl.innerHTML = `<strong>Bilanz</strong><br>
+      Modell fängt ${s.n_peaks || 0} Peak-Tage · Median-Lead ${s.model_lead_days_median ?? "–"} d · Persistence ${s.persistence_lead_days_median ?? "–"} d · Seasonal ${s.seasonal_lead_days_median ?? "–"} d · Vorteil Modell ${s.model_advantage_vs_persistence_days ?? "–"} d.`;
+
+    const maxLead = 14;
+    const bar = (v, color) => {
+      if (v === null || v === undefined) return `<span style="color: rgba(15,14,11,0.25); font-family: var(--mono); font-size: 11px;">—</span>`;
+      const widthPct = Math.min(100, (Number(v) / maxLead) * 100);
+      return `<span class="font-serif tnum" style="font-size: 20px; font-weight: 500; color: ${color};">${v}</span>
+              <span class="font-mono" style="font-size: 9.5px; color: rgba(15,14,11,0.55); margin-left: 6px;">d</span>
+              <div style="margin-top: 4px; height: 2px; background: rgba(15,14,11,0.1); position: relative;">
+                <span class="leadbar" style="display:block; height:2px; width: ${widthPct}%; background: ${color};"></span>
+              </div>`;
     };
 
-    async function loadSnapshot() {
-      const response = await fetch("./snapshot.json", { cache: "no-store" });
-      if (!response.ok) throw new Error(`snapshot fetch ${response.status}`);
-      return response.json();
+    const colorFor = (v) => {
+      if (v === null || v === undefined) return TOKENS.hairline;
+      if (v >= 14) return TOKENS.forest;
+      if (v >= 7) return TOKENS.ink;
+      return TOKENS.peak;
+    };
+
+    lt.peaks.forEach((peak) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="t-date">${fmtDate(peak.target_date)}</td>
+        <td style="text-align: right;"><span class="font-serif tnum" style="font-size: 20px; font-weight: 500;">${fmtNum(peak.observed_value)}</span><br><span class="chart-caption">Pollen/m³</span></td>
+        <td style="text-align: right;"><span class="font-mono tnum" style="font-size: 12px; color: var(--ink-soft);">${fmtNum(peak.event_threshold)}</span></td>
+        <td style="text-align: right;">${bar(peak.model_lead_days, colorFor(peak.model_lead_days))}</td>
+        <td style="text-align: right;">${bar(peak.persistence_lead_days, colorFor(peak.persistence_lead_days))}</td>
+        <td style="text-align: right;">${bar(peak.seasonal_lead_days, colorFor(peak.seasonal_lead_days))}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // ─── FORECAST ────────────────────────────────────────────────────────
+  function populatePollenSelect(snapshot) {
+    const select = document.getElementById("pollen-select");
+    select.innerHTML = "";
+    Object.keys(snapshot.pollens).forEach((key) => {
+      const opt = document.createElement("option");
+      opt.value = key;
+      opt.textContent = POLLEN_LABELS[key] ?? key;
+      select.appendChild(opt);
+    });
+  }
+
+  // Create a hatched pattern for the forecast band (pure canvas)
+  function hatchPattern() {
+    const canvas = document.createElement("canvas");
+    canvas.width = 8; canvas.height = 8;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgba(231, 200, 135, 0.45)";
+    ctx.fillRect(0, 0, 8, 8);
+    ctx.strokeStyle = TOKENS.amber;
+    ctx.lineWidth = 0.6;
+    ctx.beginPath();
+    ctx.moveTo(-1, 9); ctx.lineTo(9, -1);
+    ctx.moveTo(-1, 5); ctx.lineTo(5, -1);
+    ctx.moveTo(3, 9); ctx.lineTo(9, 3);
+    ctx.stroke();
+    return ctx.createPattern(canvas, "repeat");
+  }
+
+  let forecastChart;
+  function renderForecast(snapshot) {
+    const pollen = document.getElementById("pollen-select").value;
+    const horizon = Number(document.getElementById("horizon-select").value);
+    const entry = snapshot.pollens[pollen];
+    if (!entry) return;
+    const history = entry.history || [];
+    const forecast = (entry.forecasts || []).find((f) => f.horizon_days === horizon);
+
+    const historyLabels = history.map((h) => h.date);
+    const historyValues = history.map((h) => h.concentration);
+    const labels = [...historyLabels];
+    const observed = [...historyValues];
+    const predicted = new Array(historyLabels.length).fill(null);
+    const lowerBand = new Array(historyLabels.length).fill(null);
+    const upperBand = new Array(historyLabels.length).fill(null);
+
+    if (forecast) {
+      const lastObserved = historyValues.length ? historyValues[historyValues.length - 1] : forecast.predicted;
+      const targetIso = forecast.target_date.slice(0, 10);
+      labels.push(targetIso);
+      observed.push(null);
+      predicted[predicted.length - 1] = lastObserved;
+      lowerBand[lowerBand.length - 1] = lastObserved;
+      upperBand[upperBand.length - 1] = lastObserved;
+      predicted.push(forecast.predicted);
+      lowerBand.push(forecast.lower);
+      upperBand.push(forecast.upper);
     }
 
-    function fmtDate(iso) {
-      if (!iso) return "–";
-      const d = new Date(iso);
-      if (Number.isNaN(d.getTime())) return iso;
-      return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
-    }
+    if (forecastChart) forecastChart.destroy();
+    const canvas = document.getElementById("forecast-chart");
+    const pattern = hatchPattern.call(canvas.getContext("2d"));
 
-    function fmt(value) {
-      if (value === null || value === undefined) return "–";
-      const n = Number(value);
-      if (Number.isNaN(n)) return "–";
-      if (Math.abs(n) >= 1000) return n.toLocaleString("de-DE", { maximumFractionDigits: 0 });
-      return n.toFixed(1);
-    }
-
-    function pct(ratio) {
-      if (ratio === null || ratio === undefined) return "–";
-      const v = Number(ratio) * 100;
-      const sign = v > 0 ? "+" : "";
-      return `${sign}${v.toFixed(1)} %`;
-    }
-
-    function pctNum(num) {
-      if (num === null || num === undefined) return "–";
-      const sign = num > 0 ? "+" : "";
-      return `${sign}${Number(num).toFixed(1)} %`;
-    }
-
-    function renderHero(snapshot) {
-      const hero = snapshot.hero || {};
-      document.getElementById("hero-lift").textContent =
-        hero.correlation_lift_high_vs_low_pct !== null && hero.correlation_lift_high_vs_low_pct !== undefined
-          ? pctNum(hero.correlation_lift_high_vs_low_pct)
-          : "–";
-      const corr = snapshot.correlation;
-      if (corr) {
-        document.getElementById("hero-lift-caption").textContent =
-          `Pearson r=${corr.best_pearson} @ Lag ${corr.best_lag_days}d · ${corr.n_weeks} Wochen`;
-      }
-
-      const leadModel = hero.lead_time_model_days_mean;
-      const leadPers = hero.lead_time_persistence_days_median;
-      if (leadModel !== null && leadModel !== undefined && leadPers !== null && leadPers !== undefined) {
-        const diff = Number(leadModel) - Number(leadPers);
-        const sign = diff > 0 ? "+" : "";
-        document.getElementById("hero-leadtime").textContent = `${sign}${diff.toFixed(1)} d`;
-        document.getElementById("hero-leadtime-caption").textContent =
-          `Modell Ø ${Number(leadModel).toFixed(1)} d · Persistence Median ${Number(leadPers).toFixed(1)} d`;
-      }
-
-      const wisPers = hero.wis_improvement_vs_persistence_pct;
-      const wisSeas = hero.wis_improvement_vs_seasonal_pct;
-      if (wisPers !== null && wisPers !== undefined) {
-        document.getElementById("hero-wis").textContent = `−${Number(wisPers).toFixed(1)} %`;
-        document.getElementById("hero-wis-caption").textContent =
-          `vs. Persistence${wisSeas ? " · −" + Number(wisSeas).toFixed(1) + " % vs. Seasonal-Naive" : ""}`;
-      }
-
-      const cov = hero.coverage80_avg;
-      if (cov !== null && cov !== undefined) {
-        document.getElementById("hero-coverage").textContent = Number(cov).toFixed(2);
-      }
-    }
-
-    let correlationChart;
-    let lagChart;
-    function renderCorrelation(snapshot) {
-      const c = snapshot.correlation;
-      const captionEl = document.getElementById("correlation-caption");
-      const noteEl = document.getElementById("correlation-source-note");
-      if (!c) {
-        captionEl.textContent = "Keine Outcome-Daten geladen.";
-        return;
-      }
-      captionEl.textContent = `${POLLEN_LABELS[c.pollen_type] || c.pollen_type} · ${c.region_code} · ${c.brand}/${c.product}`;
-      noteEl.textContent =
-        `${c.n_weeks} Wochen · High/Low-Quartil aus ${c.high_weeks} vs. ${c.low_weeks} Wochen · ` +
-        `Outcome-Quelle: synthetischer Hexal-Demo-Datensatz, gekoppelt an echte ePIN-Pollen-Reihe.`;
-      document.getElementById("lag-best").textContent = `${c.best_lag_days >= 0 ? "+" : ""}${c.best_lag_days} d`;
-      document.getElementById("lag-pearson").textContent = c.best_pearson.toFixed(3);
-      document.getElementById("lag-weeks").textContent = c.n_weeks;
-
-      const outcomeMap = new Map(c.outcome_series.map((p) => [p.week_start.slice(0, 10), p.value]));
-      const pollenMap = new Map(c.pollen_series.map((p) => [p.week_start.slice(0, 10), p.concentration]));
-      const weeks = Array.from(new Set([...outcomeMap.keys(), ...pollenMap.keys()])).sort();
-      const labels = weeks.map((w) => fmtDate(w));
-      const outcomeData = weeks.map((w) => (outcomeMap.has(w) ? outcomeMap.get(w) : null));
-      const pollenData = weeks.map((w) => (pollenMap.has(w) ? pollenMap.get(w) : null));
-
-      if (correlationChart) correlationChart.destroy();
-      correlationChart = new Chart(document.getElementById("correlation-chart"), {
-        type: "line",
-        data: {
-          labels,
-          datasets: [
-            {
-              label: "Pollenkonzentration (Wochenmittel)",
-              data: pollenData,
-              borderColor: "#2563eb",
-              backgroundColor: "rgba(37,99,235,0.1)",
-              yAxisID: "y",
-              borderWidth: 2,
-              tension: 0.25,
-              pointRadius: 0,
-            },
-            {
-              label: "Lorano Sell-Out (Einheiten)",
-              data: outcomeData,
-              borderColor: "#d97706",
-              backgroundColor: "rgba(217,119,6,0.1)",
-              yAxisID: "y1",
-              borderWidth: 2,
-              tension: 0.25,
-              pointRadius: 0,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          interaction: { mode: "index", intersect: false },
-          scales: {
-            y: { position: "left", title: { display: true, text: "Pollen / m³" }, beginAtZero: true },
-            y1: {
-              position: "right",
-              title: { display: true, text: "Sell-Out (Einheiten)" },
-              beginAtZero: false,
-              grid: { drawOnChartArea: false },
-            },
-            x: { ticks: { maxTicksLimit: 8 } },
+    forecastChart = new Chart(canvas, {
+      type: "line",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Beobachtung",
+            data: observed,
+            borderColor: TOKENS.ink,
+            backgroundColor: "transparent",
+            borderWidth: 1.5,
+            tension: 0.2,
+            pointRadius: 0,
           },
-          plugins: { legend: { position: "bottom" } },
-        },
-      });
-
-      const lagLabels = c.lag_curve.map((p) => p.lag_days);
-      const lagData = c.lag_curve.map((p) => p.pearson);
-      const bestIdx = lagLabels.indexOf(c.best_lag_days);
-      const backgroundColors = lagData.map((_, i) => (i === bestIdx ? "#d97706" : "#94a3b8"));
-
-      if (lagChart) lagChart.destroy();
-      lagChart = new Chart(document.getElementById("lag-chart"), {
-        type: "bar",
-        data: {
-          labels: lagLabels,
-          datasets: [
-            {
-              label: "Pearson r",
-              data: lagData,
-              backgroundColor: backgroundColors,
-              borderWidth: 0,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: { suggestedMin: -0.6, suggestedMax: 1.0, title: { display: true, text: "r" } },
-            x: { title: { display: true, text: "Lag (Tage) — positiv = Pollen leads Sell-Out" } },
+          {
+            label: "Obere Grenze",
+            data: upperBand,
+            borderColor: "transparent",
+            backgroundColor: pattern,
+            fill: "+1",
+            pointRadius: 0,
+            tension: 0.2,
           },
-          plugins: { legend: { display: false } },
+          {
+            label: "Untere Grenze",
+            data: lowerBand,
+            borderColor: "transparent",
+            backgroundColor: "transparent",
+            fill: false,
+            pointRadius: 0,
+            tension: 0.2,
+          },
+          {
+            label: "Prognose",
+            data: predicted,
+            borderColor: TOKENS.peak,
+            borderWidth: 2,
+            borderDash: [5, 4],
+            pointRadius: 0,
+            tension: 0.2,
+          },
+          {
+            // Target-point marker
+            label: "Target",
+            data: predicted.map((v, i) => (i === predicted.length - 1 ? v : null)),
+            borderColor: TOKENS.peak,
+            backgroundColor: TOKENS.peak,
+            borderWidth: 0,
+            pointRadius: 4,
+            pointStyle: "rect",
+            showLine: false,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        layout: { padding: { top: 14, right: 14, left: 6, bottom: 6 } },
+        scales: {
+          y: {
+            title: { display: true, text: "POLLEN / M³", color: TOKENS.ink, font: { family: "'JetBrains Mono', monospace", size: 9.5, weight: "500" } },
+            beginAtZero: true,
+            ticks: { maxTicksLimit: 6 },
+            grid: { color: TOKENS.hairline, lineWidth: 0.5 },
+            border: { color: TOKENS.rule, width: 1 },
+          },
+          x: {
+            ticks: {
+              maxTicksLimit: 10,
+              callback: function (val) {
+                const raw = this.getLabelForValue(val);
+                const d = new Date(raw);
+                if (Number.isNaN(d.getTime())) return raw;
+                return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" });
+              },
+            },
+            grid: { display: false },
+            border: { color: TOKENS.rule, width: 1 },
+          },
         },
-      });
-    }
+      },
+    });
 
-    function renderLeadTime(snapshot) {
-      const tbody = document.getElementById("leadtime-table");
-      tbody.innerHTML = "";
-      const lt = snapshot.lead_time;
-      if (!lt || !lt.peaks) return;
-      lt.peaks.forEach((peak) => {
+    const targetEl = document.getElementById("target-date");
+    const predictedEl = document.getElementById("predicted-value");
+    if (forecast) {
+      targetEl.textContent = fmtDate(forecast.target_date);
+      predictedEl.textContent =
+        `${fmtNum(forecast.predicted)} Pollen/m³ · Band ${fmtNum(forecast.lower)}–${fmtNum(forecast.upper)}`;
+    } else {
+      targetEl.textContent = "–";
+      predictedEl.textContent = "Kein Modell-Artefakt für diesen Horizont.";
+    }
+  }
+
+  // ─── BACKTESTS ───────────────────────────────────────────────────────
+  function renderBacktestTable(rows) {
+    const tbody = document.getElementById("backtest-table");
+    tbody.innerHTML = "";
+    rows
+      .slice()
+      .sort((a, b) =>
+        a.pollen_type.localeCompare(b.pollen_type) ||
+        a.horizon_days - b.horizon_days ||
+        (a.model_version || "").localeCompare(b.model_version || "")
+      )
+      .forEach((run) => {
+        const cov = run.coverage80 ?? 0;
+        const covInBand = cov >= 0.77 && cov <= 0.85;
+        const covStyle = covInBand
+          ? "background: rgba(210,159,46,0.18); color: var(--ink); font-weight: 600;"
+          : "color: var(--ink-soft);";
+
+        const modelKind = (run.model_version || "").includes("cp80")
+          ? "stacked+CP"
+          : (run.model_version || "").includes("stacked")
+          ? "stacked"
+          : "single";
+        const modelColor = modelKind === "stacked+CP" ? TOKENS.forest : modelKind === "stacked" ? TOKENS.amber : TOKENS.inkSoft;
+
         const tr = document.createElement("tr");
-        const cell = (v) => (v === null || v === undefined ? "<span class='text-slate-400'>–</span>" : `${v} d`);
-        const colorClass = (v) => {
-          if (v === null || v === undefined) return "text-slate-400";
-          if (v >= 14) return "text-emerald-700";
-          if (v >= 7) return "text-emerald-600";
-          return "text-amber-700";
-        };
         tr.innerHTML = `
-          <td class="px-4 py-2 text-slate-900 font-medium">${fmtDate(peak.target_date)}</td>
-          <td class="px-2 py-2 text-right">${fmt(peak.observed_value)}</td>
-          <td class="px-2 py-2 text-right text-slate-500">${fmt(peak.event_threshold)}</td>
-          <td class="px-2 py-2 text-right ${colorClass(peak.model_lead_days)}">${cell(peak.model_lead_days)}</td>
-          <td class="px-2 py-2 text-right ${colorClass(peak.persistence_lead_days)}">${cell(peak.persistence_lead_days)}</td>
-          <td class="px-2 py-2 text-right ${colorClass(peak.seasonal_lead_days)}">${cell(peak.seasonal_lead_days)}</td>
+          <td><span class="font-serif" style="font-size: 17px; font-weight: 500; font-variation-settings: 'opsz' 36;">${POLLEN_LABELS[run.pollen_type] ?? run.pollen_type}</span></td>
+          <td class="font-mono tnum" style="text-align: right;">${run.horizon_days}</td>
+          <td class="font-mono tnum" style="text-align: right; color: var(--ink-soft);">${run.folds}</td>
+          <td class="font-mono tnum" style="text-align: right;">${fmtNum(run.mae)}</td>
+          <td class="font-mono tnum" style="text-align: right;"><strong>${fmtNum(run.wis80)}</strong></td>
+          <td class="font-mono tnum" style="text-align: right;"><span style="padding: 3px 8px; ${covStyle}">${cov.toFixed(2).replace(".", ",")}</span></td>
+          <td class="font-mono tnum" style="text-align: right; color: var(--forest);">${fmtPct(run.improvement_vs_persistence)}</td>
+          <td class="font-mono tnum" style="text-align: right; color: var(--forest);">${fmtPct(run.improvement_vs_seasonal_naive)}</td>
+          <td><span style="display: inline-block; padding: 2px 8px; border: 1px solid ${modelColor}; color: ${modelColor}; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;">${modelKind}</span></td>
         `;
         tbody.appendChild(tr);
       });
+  }
+
+  // ─── BOOTSTRAP ───────────────────────────────────────────────────────
+  (async () => {
+    try {
+      const snapshot = await loadSnapshot();
+      renderHero(snapshot);
+      renderCorrelation(snapshot);
+      renderLeadTime(snapshot);
+      populatePollenSelect(snapshot);
+      renderForecast(snapshot);
+      renderBacktestTable(snapshot.backtests || []);
+      document.getElementById("disclaimer").textContent = snapshot.disclaimer || "";
+
+      document.getElementById("pollen-select").addEventListener("change", () => renderForecast(snapshot));
+      document.getElementById("horizon-select").addEventListener("change", () => renderForecast(snapshot));
+    } catch (err) {
+      console.error(err);
+      document.body.innerHTML =
+        `<div class="max-w-2xl mx-auto mt-16 p-6 font-mono text-sm" style="background: var(--paper); border: 1px solid var(--peak); color: var(--peak);">
+           Snapshot konnte nicht geladen werden: ${err.message}
+         </div>`;
     }
+  })();
+</script>
 
-    function populatePollenSelect(snapshot) {
-      const select = document.getElementById("pollen-select");
-      select.innerHTML = "";
-      Object.keys(snapshot.pollens).forEach((key) => {
-        const opt = document.createElement("option");
-        opt.value = key;
-        opt.textContent = POLLEN_LABELS[key] ?? key;
-        select.appendChild(opt);
-      });
-    }
-
-    let forecastChart;
-    function renderForecast(snapshot) {
-      const pollen = document.getElementById("pollen-select").value;
-      const horizon = Number(document.getElementById("horizon-select").value);
-      const entry = snapshot.pollens[pollen];
-      if (!entry) return;
-      const history = entry.history || [];
-      const forecast = (entry.forecasts || []).find((f) => f.horizon_days === horizon);
-
-      const historyLabels = history.map((h) => h.date);
-      const historyValues = history.map((h) => h.concentration);
-      const labels = [...historyLabels];
-      const observed = [...historyValues];
-      const predicted = new Array(historyLabels.length).fill(null);
-      const lowerBand = new Array(historyLabels.length).fill(null);
-      const upperBand = new Array(historyLabels.length).fill(null);
-
-      if (forecast) {
-        const lastObserved = historyValues.length ? historyValues[historyValues.length - 1] : forecast.predicted;
-        const targetIso = forecast.target_date.slice(0, 10);
-        labels.push(targetIso);
-        observed.push(null);
-        predicted[predicted.length - 1] = lastObserved;
-        lowerBand[lowerBand.length - 1] = lastObserved;
-        upperBand[upperBand.length - 1] = lastObserved;
-        predicted.push(forecast.predicted);
-        lowerBand.push(forecast.lower);
-        upperBand.push(forecast.upper);
-      }
-
-      if (forecastChart) forecastChart.destroy();
-      forecastChart = new Chart(document.getElementById("forecast-chart"), {
-        type: "line",
-        data: {
-          labels,
-          datasets: [
-            {
-              label: "Beobachtung (Tagesmittel)",
-              data: observed,
-              borderColor: "#0f172a",
-              backgroundColor: "rgba(15,23,42,0.05)",
-              borderWidth: 2,
-              tension: 0.2,
-              pointRadius: 0,
-            },
-            {
-              label: "Obere Grenze (q90)",
-              data: upperBand,
-              borderColor: "rgba(217,119,6,0.0)",
-              backgroundColor: "rgba(217,119,6,0.2)",
-              fill: "+1",
-              pointRadius: 0,
-              tension: 0.2,
-            },
-            {
-              label: "Untere Grenze (q10)",
-              data: lowerBand,
-              borderColor: "rgba(217,119,6,0.0)",
-              backgroundColor: "rgba(217,119,6,0.2)",
-              fill: false,
-              pointRadius: 0,
-              tension: 0.2,
-            },
-            {
-              label: "Prognose (Median)",
-              data: predicted,
-              borderColor: "#d97706",
-              borderWidth: 2,
-              borderDash: [6, 3],
-              pointRadius: 3,
-              tension: 0.2,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          interaction: { mode: "index", intersect: false },
-          scales: {
-            y: { title: { display: true, text: "Pollen / m³" }, beginAtZero: true },
-            x: { ticks: { maxTicksLimit: 10 } },
-          },
-          plugins: { legend: { position: "bottom" } },
-        },
-      });
-
-      const targetEl = document.getElementById("target-date");
-      const predictedEl = document.getElementById("predicted-value");
-      if (forecast) {
-        targetEl.textContent = fmtDate(forecast.target_date);
-        predictedEl.textContent = `${fmt(forecast.predicted)} Pollen/m³ · Band ${fmt(forecast.lower)}–${fmt(forecast.upper)}`;
-      } else {
-        targetEl.textContent = "–";
-        predictedEl.textContent = "Kein Modell-Artefakt für diesen Horizont.";
-      }
-    }
-
-    function renderBacktestTable(rows) {
-      const tbody = document.getElementById("backtest-table");
-      tbody.innerHTML = "";
-      rows
-        .slice()
-        .sort((a, b) => a.pollen_type.localeCompare(b.pollen_type) || a.horizon_days - b.horizon_days || (a.model_version || "").localeCompare(b.model_version || ""))
-        .forEach((run) => {
-          const tr = document.createElement("tr");
-          const cov = run.coverage80 ?? 0;
-          const covColor = cov >= 0.77 && cov <= 0.85 ? "text-emerald-700" : "text-amber-700";
-          tr.innerHTML = `
-            <td class="px-4 py-2 text-slate-900 font-medium">${POLLEN_LABELS[run.pollen_type] ?? run.pollen_type}</td>
-            <td class="px-2 py-2 text-right">${run.horizon_days}</td>
-            <td class="px-2 py-2 text-right">${run.folds}</td>
-            <td class="px-2 py-2 text-right">${fmt(run.mae)}</td>
-            <td class="px-2 py-2 text-right">${fmt(run.wis80)}</td>
-            <td class="px-2 py-2 text-right ${covColor}">${cov.toFixed(2)}</td>
-            <td class="px-2 py-2 text-right text-emerald-700">${pct(run.improvement_vs_persistence)}</td>
-            <td class="px-2 py-2 text-right text-emerald-700">${pct(run.improvement_vs_seasonal_naive)}</td>
-            <td class="px-2 py-2 text-xs text-slate-500 truncate max-w-[240px]">${run.model_version || ""}</td>
-          `;
-          tbody.appendChild(tr);
-        });
-    }
-
-    (async () => {
-      try {
-        const snapshot = await loadSnapshot();
-        document.getElementById("snapshot-time").textContent = `Snapshot: ${fmtDate(snapshot.generated_at)}`;
-        document.getElementById("region-label").textContent = `${snapshot.region_name} (${snapshot.region_code})`;
-
-        renderHero(snapshot);
-        renderCorrelation(snapshot);
-        renderLeadTime(snapshot);
-        populatePollenSelect(snapshot);
-        renderForecast(snapshot);
-        renderBacktestTable(snapshot.backtests || []);
-        document.getElementById("disclaimer").textContent = snapshot.disclaimer || "";
-
-        document.getElementById("pollen-select").addEventListener("change", () => renderForecast(snapshot));
-        document.getElementById("horizon-select").addEventListener("change", () => renderForecast(snapshot));
-      } catch (err) {
-        console.error(err);
-        document.body.innerHTML = `<div class="max-w-2xl mx-auto mt-16 p-4 bg-red-50 border border-red-200 rounded text-red-800 mono text-sm">Snapshot konnte nicht geladen werden: ${err.message}</div>`;
-      }
-    })();
-  </script>
 </body>
 </html>
