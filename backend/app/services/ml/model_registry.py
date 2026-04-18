@@ -63,7 +63,10 @@ class ArtifactMetadata:
 
 @dataclass(frozen=True)
 class ModelArtifact:
-    service: ForecastService
+    # ``service`` can be any fit/predict object satisfying ForecasterProtocol:
+    # the plain ForecastService, the StackedForecastService, or either wrapped
+    # in a ConformalCalibratedForecaster. joblib preserves the concrete type.
+    service: object
     metadata: ArtifactMetadata
 
 
@@ -121,7 +124,7 @@ def load_artifact(
             f"No trained artefact at {path}. Run scripts/run_train.py first."
         )
 
-    service: ForecastService = joblib.load(model_file)
+    service = joblib.load(model_file)
     payload = json.loads(metadata_file.read_text(encoding="utf-8"))
     metadata = ArtifactMetadata(
         pollen_type=payload["pollen_type"],
@@ -167,7 +170,7 @@ def list_artifacts(root: Path | str | None = None) -> list[ArtifactMetadata]:
 
 def build_metadata(
     *,
-    service: ForecastService,
+    service: object,
     feature_config: FeatureBuildConfig,
     horizon_days: int,
     feature_columns: Iterable[str],

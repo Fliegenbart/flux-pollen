@@ -29,6 +29,7 @@ if str(BACKEND_ROOT) not in sys.path:
 from app.core.logging_config import setup_logging
 from app.core.time import utc_now
 from app.db.session import SessionLocal
+from app.services.ml.conformal_calibrator import ConformalCalibratedForecaster
 from app.services.ml.feature_engineering import (
     FeatureBuildConfig,
     assemble_training_frame,
@@ -40,8 +41,12 @@ from app.services.ml.model_registry import (
     build_metadata,
     save_artifact,
 )
+from app.services.ml.stacked_forecast_service import StackedForecastService
 
-MODEL_VERSION = "pollencast-ridge-gbm-v0"
+SINGLE_VERSION = "pollencast-ridge-gbm-v0"
+STACKED_VERSION = "pollencast-stacked-hw-ridge-xgb-v0"
+STACKED_CP_VERSION = "pollencast-stacked-hw-ridge-xgb-cp80-v0"
+SINGLE_CP_VERSION = "pollencast-ridge-gbm-cp80-v0"
 
 
 def _parse_date(value: str) -> datetime:
@@ -55,6 +60,16 @@ def main() -> int:
     parser.add_argument("--horizon", type=int, default=7)
     parser.add_argument("--from", dest="from_date", type=_parse_date)
     parser.add_argument("--to", dest="to_date", type=_parse_date)
+    parser.add_argument(
+        "--stacked",
+        action="store_true",
+        help="Train the Ridge+HW→XGBoost stacked service instead of the single-stage one.",
+    )
+    parser.add_argument(
+        "--calibrate",
+        action="store_true",
+        help="Wrap the service in a Split-Conformal calibrator targeting 0.80 coverage.",
+    )
     args = parser.parse_args()
 
     setup_logging(service_name="pollencast-train", environment="cli")
@@ -87,7 +102,22 @@ def main() -> int:
         )
         return 1
 
-    service = ForecastService()
+    if args.stacked:
+        base_service = StackedForecastService(horizon_days=args.horizon)
+        base_version = STACKED_VERSION
+    else:
+        base_service = ForecastService()
+        base_version = SINGLE_VERSION
+
+    if args.calibrate:
+        service = ConformalCalibratedForecaster(base=base_service, target_coverage=0.80)
+        model_version = (
+            STACKED_CP_VERSION if args.stacked else SINGLE_CP_VERSION
+        )
+    else:
+        service = base_service
+        model_version = base_version
+
     service.fit(X, y)
 
     metadata = build_metadata(
@@ -96,7 +126,7 @@ def main() -> int:
         horizon_days=args.horizon,
         feature_columns=list(X.columns),
         train_n_samples=len(index),
-        model_version=MODEL_VERSION,
+        model_version=model_version,
     )
     artefact = ModelArtifact(service=service, metadata=metadata)
     path = save_artifact(artefact)

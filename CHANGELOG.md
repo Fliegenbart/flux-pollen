@@ -5,6 +5,12 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Phase 4e — Stacked+CP-Modelle als API-Default.** Der Trainings-CLI und das Model-Registry sind jetzt für alle drei Forecaster-Varianten (single-stage, stacked, stacked+CP) einheitlich nutzbar; die API spielt ab jetzt die kalibrierten Stacked-Artefakte aus.
+  - `scripts/run_train.py` bekommt `--stacked` und `--calibrate` (kombinierbar, analog zu `run_backtest.py`). Das Model-Version-Tag wandert automatisch: `pollencast-ridge-gbm-v0` → `…-v0` ohne CP, `…-cp80-v0` mit CP; stacked analog.
+  - `ModelArtifact.service` und `build_metadata`/`load_artifact` haben den Type-Hint auf `object` gelockert, damit beliebige ForecasterProtocol-konforme Objekte (plain, stacked, conformal-wrapped) als Artefakt persistiert werden können. joblib erhält den konkreten Typ zur Laufzeit.
+  - Alle 6 Bayern-Modelle (Birke/Gräser/Erle × h7/h14) retrainiert mit `--stacked --calibrate` auf 1 900+ Samples, Trainingsfenster 2021-01-01 bis 2026-04-17.
+  - Smoke-Test gegen `localhost:8001` bestätigt, dass die API jetzt `pollencast-stacked-hw-ridge-xgb-cp80-v0` ausspielt und plausible, breiten-korrekte Bänder liefert — z. B. Birke h7 am 2026-04-09 für 2026-04-16: predicted 59 Pollen/m³, Band 2–1337, `confidence_label=low` (Peak-Phase, hohe Unsicherheit). Erle h7 zeigt 15 [6, 48] — spätes Saisonende, enges Band.
+
 - **Phase 4d — Split-Conformal-Kalibrierung.** Der Coverage-Overshoot der Stacked-Quantile (0,58–0,66 bei 0,80-Zielband) wird mit einem transparenten, theoretisch abgesicherten Post-Processing-Wrapper korrigiert.
   - `app/services/ml/conformal_calibrator.py` — generische `ConformalCalibratedForecaster`-Klasse, umschließt jeden `ForecasterProtocol`. Teilt die Trainingsreihe zeitgeordnet in Fit-Split (80 %) und Calibration-Split (20 %), berechnet die Nicht-Konformitätsscores `max(lower − y, y − upper, 0)` und deren `⌈(n+1)α⌉/n`-Quantil als Band-Erweiterung, fit'tet die Basis anschließend auf der vollen Historie. Funktioniert für den einstufigen `ForecastService` genauso wie für `StackedForecastService`.
   - `scripts/run_backtest.py --calibrate` aktiviert den Wrapper; kombinierbar mit `--stacked`. Modell-Version-Tag wandert zu `pollencast-stacked-hw-ridge-xgb-cp80-v0`.
