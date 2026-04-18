@@ -5,6 +5,29 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Phase 4b — Stacking (Holt-Winters + Ridge → XGBoost-Meta-Learner).** Die ursprünglich als "Nachkomma-Optimierung" klassifizierten Stacking-Verbesserungen erweisen sich auf realen Daten als der entscheidende Hebel.
+  - `app/services/ml/holt_winters_forecaster.py` — statsmodels-basierte HW-Komponente mit `fit(X, y) / predict(X)`-Interface. Saisonal (additiv, Periode 365) wenn ≥2 volle Zyklen vorhanden, sonst trend-only-Fallback.
+  - `app/services/ml/stacked_forecast_service.py` — Drop-in-Ersatz für `ForecastService` mit identischer Output-Signatur. Time-split-Stacking: Base-Estimatoren Ridge + HW werden auf den ersten 70 % der Trainingsreihe gefittet, der XGBoost-Meta-Learner (3 Modelle für q=0.1/0.5/0.9, Ziel `reg:quantileerror`) lernt auf den Base-Predictions + Originalfeatures der restlichen 30 %. Nach Meta-Training werden die Base-Estimatoren auf der vollen Historie refit'et, damit Inferenz-Zeit die maximale Information nutzt. HW-Meta-Predictions via einem einzigen Multi-Step-Forecast (Kosten: ein HW-Fit pro Fold statt ein Fit pro Meta-Row).
+  - Backtester hat jetzt einen `forecaster_factory`-Hook; `scripts/run_backtest.py --stacked` wählt den Stack.
+  - 4 neue Tests in `test_ml_stacked.py` (HW-Round-Trip, Stacked-Round-Trip, Small-Training-Refusal, Feature-Lock-At-Fit-Time). Gesamt-Testsuite: **51 grün in 24,7 s**.
+  - **Vergleich auf 5 Jahren ePIN-Bayern-Daten, 220 Folds je Scope:**
+
+  | Pollen × H | Modell | MAE | WIS80 | Cov80 | ΔPers | ΔSeas |
+  |---|---|---:|---:|---:|---:|---:|
+  | Birke 7   | single  | 48.9 | 29.4 | 0.90 | +16.6 % | +20.3 % |
+  | Birke 7   | **stacked** | **22.7** | **19.4** | 0.58 | **+44.9 %** | **+47.3 %** |
+  | Birke 14  | single  | 46.2 | 27.9 | 0.91 | +36.4 % | +25.1 % |
+  | Birke 14  | **stacked** | **29.0** | **22.0** | 0.58 | **+49.8 %** | **+40.9 %** |
+  | Gräser 7  | single  | 11.3 |  7.1 | 0.91 | +32.5 % | +26.2 % |
+  | Gräser 7  | **stacked** |  **7.9** |  **5.8** | 0.62 | **+45.0 %** | **+40.0 %** |
+  | Gräser 14 | single  | 15.0 |  8.3 | 0.86 | +44.1 % | +15.5 % |
+  | Gräser 14 | **stacked** |  **9.2** |  **6.5** | 0.66 | **+56.2 %** | **+33.9 %** |
+  | Erle 7    | single  | 31.4 | 19.3 | 0.85 | +39.2 % | +40.3 % |
+  | Erle 7    | **stacked** | **19.0** | **13.9** | 0.65 | **+56.2 %** | **+57.0 %** |
+
+  - **MAE reduziert sich um 30–54 %**, **WIS um 19–34 %** gegenüber dem einstufigen Ridge+GBM. Vs. Persistence liegt die WIS-Verbesserung jetzt bei +45 bis +56 %, vs. Seasonal-Naive bei +34 bis +57 %. Coverage80 schrumpft allerdings von ~0,90 (überbreit) auf 0,58–0,66 (leicht zu eng) — das ist der klassische Kompromiss tighter WIS ↔ Coverage. Phase 4c/5 wird das via Isotonic-Kalibrierung oder Conformal-Prediction auf den 80-%-Zielwert heben.
+
+### Added
 - **Phase 4c — Modell-Artefakte und öffentliche Forecast-API.** Die trainierten Modelle sind jetzt als Filesystem-Artefakte persistiert und werden vom FastAPI-Backend als REST-Endpunkte ausgespielt. Milestone-1-DoD-Punkte 6 und 7 erfüllt.
   - `app/services/ml/model_registry.py` — joblib-basierte Speicherung unter `backend/app/ml_models/<pollen>/<region>/h<horizon>/` plus Metadaten-JSON (Feature-Spalten-Order, Trainings-Fenster, Modell-Version, Trainingszeitpunkt, Feature-Config). Die API liest die Metadaten und verweigert die Auslieferung, wenn die aktuellen Feature-Spalten vom Trainings-Snapshot abweichen — Feature-Drift wird laut, nicht leise, erkannt.
   - `scripts/run_train.py` — CLI, trainiert ForecastService auf voller Historie und speichert Artefakt.

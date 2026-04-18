@@ -22,7 +22,7 @@ import logging
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any
+from typing import Any, Callable, Protocol
 
 import numpy as np
 import pandas as pd
@@ -32,7 +32,7 @@ from app.core.time import utc_now
 from app.models.database import BacktestPoint, BacktestRun
 from app.services.ml.baselines import PersistenceBaseline, SeasonalNaiveBaseline
 from app.services.ml.feature_engineering import assemble_training_frame
-from app.services.ml.forecast_service import ForecastService
+from app.services.ml.forecast_service import ForecastOutput, ForecastService
 from app.services.ml.metrics import (
     coverage,
     mae,
@@ -40,6 +40,11 @@ from app.services.ml.metrics import (
     rmse,
     weighted_interval_score,
 )
+
+
+class ForecasterProtocol(Protocol):
+    def fit(self, X: pd.DataFrame, y: pd.Series) -> "ForecasterProtocol": ...
+    def predict(self, X: pd.DataFrame) -> ForecastOutput: ...
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +60,15 @@ class BacktestConfig:
     upper_quantile: float = 0.90
     seasonal_length_days: int = 365
     model_version: str = "pollencast-ridge-gbm-v0"
+    forecaster_factory: Callable[["BacktestConfig"], ForecasterProtocol] | None = None
+
+    def build_forecaster(self) -> ForecasterProtocol:
+        if self.forecaster_factory is not None:
+            return self.forecaster_factory(self)
+        return ForecastService(
+            lower_quantile=self.lower_quantile,
+            upper_quantile=self.upper_quantile,
+        )
 
 
 @dataclass
@@ -113,10 +127,7 @@ class WalkForwardBacktester:
 
             # Model forecast
             try:
-                service = ForecastService(
-                    lower_quantile=self.config.lower_quantile,
-                    upper_quantile=self.config.upper_quantile,
-                )
+                service = self.config.build_forecaster()
                 service.fit(X_train, y_train)
                 pred = service.predict(X_test)
                 model_median = float(pred.predicted[0])

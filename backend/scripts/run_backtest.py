@@ -31,6 +31,7 @@ from app.services.ml.backtester import (
     persist_backtest_run,
 )
 from app.services.ml.feature_engineering import FeatureBuildConfig, build_daily_panel
+from app.services.ml.stacked_forecast_service import StackedForecastService
 
 
 def _parse_date(value: str) -> datetime:
@@ -47,6 +48,11 @@ def main() -> int:
     parser.add_argument("--min-train-days", type=int, default=60, help="Min fold train length")
     parser.add_argument("--step-days", type=int, default=1, help="Walk-forward step")
     parser.add_argument("--no-persist", action="store_true", help="Print only; skip DB writes")
+    parser.add_argument(
+        "--stacked",
+        action="store_true",
+        help="Use the Ridge+HW→XGBoost stacked forecaster instead of the single-stage service.",
+    )
     args = parser.parse_args()
 
     setup_logging(service_name="pollencast-backtest", environment="cli")
@@ -66,6 +72,15 @@ def main() -> int:
         min_train_days=args.min_train_days,
         step_days=args.step_days,
     )
+    if args.stacked:
+        def _stacked_factory(cfg: BacktestConfig) -> StackedForecastService:
+            return StackedForecastService(
+                horizon_days=cfg.horizon_days,
+                lower_quantile=cfg.lower_quantile,
+                upper_quantile=cfg.upper_quantile,
+            )
+        backtest_config.forecaster_factory = _stacked_factory
+        backtest_config.model_version = "pollencast-stacked-hw-ridge-xgb-v0"
 
     db = SessionLocal()
     try:
