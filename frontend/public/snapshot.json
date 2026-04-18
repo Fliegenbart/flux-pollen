@@ -1,0 +1,1716 @@
+{
+  "generated_at": "2026-04-18T18:18:52.964732Z",
+  "region_code": "BY",
+  "region_name": "Bayern",
+  "pollens": {
+    "birke": {
+      "history": [
+        {
+          "date": "2025-12-18",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-19",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-20",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-21",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-22",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-23",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-24",
+          "concentration": 0.05
+        },
+        {
+          "date": "2025-12-25",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-26",
+          "concentration": 0.05
+        },
+        {
+          "date": "2025-12-27",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-28",
+          "concentration": 0.06
+        },
+        {
+          "date": "2025-12-29",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-30",
+          "concentration": 0.06
+        },
+        {
+          "date": "2025-12-31",
+          "concentration": 0.4
+        },
+        {
+          "date": "2026-01-01",
+          "concentration": 0.05
+        },
+        {
+          "date": "2026-01-02",
+          "concentration": 1.8
+        },
+        {
+          "date": "2026-01-03",
+          "concentration": 0.94
+        },
+        {
+          "date": "2026-01-04",
+          "concentration": 0.12
+        },
+        {
+          "date": "2026-01-05",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-06",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-07",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-08",
+          "concentration": 0.01
+        },
+        {
+          "date": "2026-01-09",
+          "concentration": 1.04
+        },
+        {
+          "date": "2026-01-10",
+          "concentration": 0.01
+        },
+        {
+          "date": "2026-01-11",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-12",
+          "concentration": 0.01
+        },
+        {
+          "date": "2026-01-13",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-14",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-15",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-16",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-17",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-18",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-19",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-20",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-21",
+          "concentration": 0.03
+        },
+        {
+          "date": "2026-01-22",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-23",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-24",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-25",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-26",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-27",
+          "concentration": 0.05
+        },
+        {
+          "date": "2026-01-28",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-29",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-30",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-31",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-01",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-02",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-03",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-04",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-05",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-06",
+          "concentration": 0.21
+        },
+        {
+          "date": "2026-02-07",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-08",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-09",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-10",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-11",
+          "concentration": 0.05
+        },
+        {
+          "date": "2026-02-12",
+          "concentration": 0.61
+        },
+        {
+          "date": "2026-02-13",
+          "concentration": 0.55
+        },
+        {
+          "date": "2026-02-14",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-15",
+          "concentration": 0.1
+        },
+        {
+          "date": "2026-02-16",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-17",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-18",
+          "concentration": 0.06
+        },
+        {
+          "date": "2026-02-19",
+          "concentration": 0.2
+        },
+        {
+          "date": "2026-02-20",
+          "concentration": 0.06
+        },
+        {
+          "date": "2026-02-21",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-22",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-23",
+          "concentration": 5.33
+        },
+        {
+          "date": "2026-02-24",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-25",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-26",
+          "concentration": 2.51
+        },
+        {
+          "date": "2026-02-27",
+          "concentration": 16.82
+        },
+        {
+          "date": "2026-02-28",
+          "concentration": 17.84
+        },
+        {
+          "date": "2026-03-01",
+          "concentration": 0.7
+        },
+        {
+          "date": "2026-03-02",
+          "concentration": 10.99
+        },
+        {
+          "date": "2026-03-03",
+          "concentration": 10.73
+        },
+        {
+          "date": "2026-03-04",
+          "concentration": 5.21
+        },
+        {
+          "date": "2026-03-05",
+          "concentration": 19.34
+        },
+        {
+          "date": "2026-03-06",
+          "concentration": 14.13
+        },
+        {
+          "date": "2026-03-07",
+          "concentration": 6.48
+        },
+        {
+          "date": "2026-03-08",
+          "concentration": 10.19
+        },
+        {
+          "date": "2026-03-09",
+          "concentration": 2.9
+        },
+        {
+          "date": "2026-03-10",
+          "concentration": 1.37
+        },
+        {
+          "date": "2026-03-11",
+          "concentration": 1.99
+        },
+        {
+          "date": "2026-03-12",
+          "concentration": 0.01
+        },
+        {
+          "date": "2026-03-13",
+          "concentration": 1.08
+        },
+        {
+          "date": "2026-03-14",
+          "concentration": 0.58
+        },
+        {
+          "date": "2026-03-15",
+          "concentration": 0.17
+        },
+        {
+          "date": "2026-03-16",
+          "concentration": 0.66
+        },
+        {
+          "date": "2026-03-17",
+          "concentration": 0.89
+        },
+        {
+          "date": "2026-03-18",
+          "concentration": 1.3
+        },
+        {
+          "date": "2026-03-19",
+          "concentration": 1.03
+        },
+        {
+          "date": "2026-03-20",
+          "concentration": 0.28
+        },
+        {
+          "date": "2026-03-21",
+          "concentration": 0.15
+        },
+        {
+          "date": "2026-03-22",
+          "concentration": 1.22
+        },
+        {
+          "date": "2026-03-23",
+          "concentration": 3.17
+        },
+        {
+          "date": "2026-03-24",
+          "concentration": 30.26
+        },
+        {
+          "date": "2026-03-25",
+          "concentration": 27.71
+        },
+        {
+          "date": "2026-03-26",
+          "concentration": 7.5
+        },
+        {
+          "date": "2026-03-27",
+          "concentration": 7.85
+        },
+        {
+          "date": "2026-03-28",
+          "concentration": 5.03
+        },
+        {
+          "date": "2026-03-29",
+          "concentration": 3.55
+        },
+        {
+          "date": "2026-03-30",
+          "concentration": 9.11
+        },
+        {
+          "date": "2026-03-31",
+          "concentration": 9.26
+        },
+        {
+          "date": "2026-04-01",
+          "concentration": 10.12
+        },
+        {
+          "date": "2026-04-02",
+          "concentration": 48.88
+        },
+        {
+          "date": "2026-04-03",
+          "concentration": 163.17
+        },
+        {
+          "date": "2026-04-04",
+          "concentration": 92.65
+        },
+        {
+          "date": "2026-04-05",
+          "concentration": 981.78
+        },
+        {
+          "date": "2026-04-06",
+          "concentration": 546.49
+        },
+        {
+          "date": "2026-04-07",
+          "concentration": 483.61
+        },
+        {
+          "date": "2026-04-08",
+          "concentration": 765.79
+        },
+        {
+          "date": "2026-04-09",
+          "concentration": 490.29
+        },
+        {
+          "date": "2026-04-10",
+          "concentration": 632.74
+        },
+        {
+          "date": "2026-04-11",
+          "concentration": 599.16
+        },
+        {
+          "date": "2026-04-12",
+          "concentration": 312.38
+        },
+        {
+          "date": "2026-04-13",
+          "concentration": 550.36
+        },
+        {
+          "date": "2026-04-14",
+          "concentration": 453.53
+        },
+        {
+          "date": "2026-04-15",
+          "concentration": 643.52
+        },
+        {
+          "date": "2026-04-16",
+          "concentration": 1462.15
+        }
+      ],
+      "forecasts": [
+        {
+          "horizon_days": 7,
+          "forecast_date": "2026-04-09T00:00:00",
+          "target_date": "2026-04-16T00:00:00",
+          "predicted": 59.29,
+          "lower": 1.95,
+          "upper": 1336.65,
+          "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0"
+        },
+        {
+          "horizon_days": 14,
+          "forecast_date": "2026-04-02T00:00:00",
+          "target_date": "2026-04-16T00:00:00",
+          "predicted": 162.37,
+          "lower": 0.27,
+          "upper": 1192.27,
+          "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0"
+        }
+      ]
+    },
+    "graeser": {
+      "history": [
+        {
+          "date": "2025-12-18",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-19",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-20",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-21",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-22",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-23",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-24",
+          "concentration": 0.06
+        },
+        {
+          "date": "2025-12-25",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-26",
+          "concentration": 0.05
+        },
+        {
+          "date": "2025-12-27",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-28",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-29",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-30",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-31",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-01",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-02",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-01-03",
+          "concentration": 0.06
+        },
+        {
+          "date": "2026-01-04",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-05",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-06",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-07",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-08",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-01-09",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-10",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-11",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-12",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-13",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-14",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-15",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-16",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-17",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-18",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-19",
+          "concentration": 0.09
+        },
+        {
+          "date": "2026-01-20",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-01-21",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-22",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-23",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-24",
+          "concentration": 0.05
+        },
+        {
+          "date": "2026-01-25",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-26",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-27",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-28",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-29",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-01-30",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-01-31",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-01",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-02",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-03",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-04",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-05",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-06",
+          "concentration": 0.01
+        },
+        {
+          "date": "2026-02-07",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-08",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-09",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-10",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-11",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-12",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-13",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-14",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-15",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-16",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-17",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-18",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-19",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-02-20",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-21",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-22",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-23",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-24",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-25",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-26",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-27",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-02-28",
+          "concentration": 1.27
+        },
+        {
+          "date": "2026-03-01",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-02",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-03-03",
+          "concentration": 0.65
+        },
+        {
+          "date": "2026-03-04",
+          "concentration": 0.05
+        },
+        {
+          "date": "2026-03-05",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-06",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-07",
+          "concentration": 0.01
+        },
+        {
+          "date": "2026-03-08",
+          "concentration": 0.38
+        },
+        {
+          "date": "2026-03-09",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-03-10",
+          "concentration": 0.05
+        },
+        {
+          "date": "2026-03-11",
+          "concentration": 0.06
+        },
+        {
+          "date": "2026-03-12",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-13",
+          "concentration": 0.49
+        },
+        {
+          "date": "2026-03-14",
+          "concentration": 0.06
+        },
+        {
+          "date": "2026-03-15",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-03-16",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-17",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-18",
+          "concentration": 0.02
+        },
+        {
+          "date": "2026-03-19",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-20",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-21",
+          "concentration": 0.27
+        },
+        {
+          "date": "2026-03-22",
+          "concentration": 0.03
+        },
+        {
+          "date": "2026-03-23",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-24",
+          "concentration": 0.06
+        },
+        {
+          "date": "2026-03-25",
+          "concentration": 0.58
+        },
+        {
+          "date": "2026-03-26",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-27",
+          "concentration": 0.03
+        },
+        {
+          "date": "2026-03-28",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-29",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-30",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-03-31",
+          "concentration": 0.05
+        },
+        {
+          "date": "2026-04-01",
+          "concentration": 0.01
+        },
+        {
+          "date": "2026-04-02",
+          "concentration": 0.19
+        },
+        {
+          "date": "2026-04-03",
+          "concentration": 0.24
+        },
+        {
+          "date": "2026-04-04",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-04-05",
+          "concentration": 0.46
+        },
+        {
+          "date": "2026-04-06",
+          "concentration": 1.7
+        },
+        {
+          "date": "2026-04-07",
+          "concentration": 4.25
+        },
+        {
+          "date": "2026-04-08",
+          "concentration": 9.41
+        },
+        {
+          "date": "2026-04-09",
+          "concentration": 5.22
+        },
+        {
+          "date": "2026-04-10",
+          "concentration": 2.37
+        },
+        {
+          "date": "2026-04-11",
+          "concentration": 1.76
+        },
+        {
+          "date": "2026-04-12",
+          "concentration": 0.09
+        },
+        {
+          "date": "2026-04-13",
+          "concentration": 0.1
+        },
+        {
+          "date": "2026-04-14",
+          "concentration": 0.0
+        },
+        {
+          "date": "2026-04-15",
+          "concentration": 0.3
+        },
+        {
+          "date": "2026-04-16",
+          "concentration": 0.2
+        }
+      ],
+      "forecasts": [
+        {
+          "horizon_days": 7,
+          "forecast_date": "2026-04-09T00:00:00",
+          "target_date": "2026-04-16T00:00:00",
+          "predicted": 1.77,
+          "lower": 0.0,
+          "upper": 7.48,
+          "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0"
+        },
+        {
+          "horizon_days": 14,
+          "forecast_date": "2026-04-02T00:00:00",
+          "target_date": "2026-04-16T00:00:00",
+          "predicted": 3.53,
+          "lower": 0.06,
+          "upper": 7.38,
+          "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0"
+        }
+      ]
+    },
+    "erle": {
+      "history": [
+        {
+          "date": "2025-12-18",
+          "concentration": 0.08
+        },
+        {
+          "date": "2025-12-19",
+          "concentration": 0.11
+        },
+        {
+          "date": "2025-12-20",
+          "concentration": 0.01
+        },
+        {
+          "date": "2025-12-21",
+          "concentration": 0.11
+        },
+        {
+          "date": "2025-12-22",
+          "concentration": 0.22
+        },
+        {
+          "date": "2025-12-23",
+          "concentration": 0.02
+        },
+        {
+          "date": "2025-12-24",
+          "concentration": 1.92
+        },
+        {
+          "date": "2025-12-25",
+          "concentration": 0.11
+        },
+        {
+          "date": "2025-12-26",
+          "concentration": 0.12
+        },
+        {
+          "date": "2025-12-27",
+          "concentration": 0.21
+        },
+        {
+          "date": "2025-12-28",
+          "concentration": 0.0
+        },
+        {
+          "date": "2025-12-29",
+          "concentration": 1.13
+        },
+        {
+          "date": "2025-12-30",
+          "concentration": 0.77
+        },
+        {
+          "date": "2025-12-31",
+          "concentration": 2.54
+        },
+        {
+          "date": "2026-01-01",
+          "concentration": 1.24
+        },
+        {
+          "date": "2026-01-02",
+          "concentration": 8.42
+        },
+        {
+          "date": "2026-01-03",
+          "concentration": 2.96
+        },
+        {
+          "date": "2026-01-04",
+          "concentration": 0.01
+        },
+        {
+          "date": "2026-01-05",
+          "concentration": 0.06
+        },
+        {
+          "date": "2026-01-06",
+          "concentration": 0.06
+        },
+        {
+          "date": "2026-01-07",
+          "concentration": 0.33
+        },
+        {
+          "date": "2026-01-08",
+          "concentration": 0.2
+        },
+        {
+          "date": "2026-01-09",
+          "concentration": 2.84
+        },
+        {
+          "date": "2026-01-10",
+          "concentration": 1.07
+        },
+        {
+          "date": "2026-01-11",
+          "concentration": 0.29
+        },
+        {
+          "date": "2026-01-12",
+          "concentration": 1.38
+        },
+        {
+          "date": "2026-01-13",
+          "concentration": 0.14
+        },
+        {
+          "date": "2026-01-14",
+          "concentration": 1.77
+        },
+        {
+          "date": "2026-01-15",
+          "concentration": 0.38
+        },
+        {
+          "date": "2026-01-16",
+          "concentration": 0.13
+        },
+        {
+          "date": "2026-01-17",
+          "concentration": 0.27
+        },
+        {
+          "date": "2026-01-18",
+          "concentration": 0.67
+        },
+        {
+          "date": "2026-01-19",
+          "concentration": 1.58
+        },
+        {
+          "date": "2026-01-20",
+          "concentration": 0.94
+        },
+        {
+          "date": "2026-01-21",
+          "concentration": 0.14
+        },
+        {
+          "date": "2026-01-22",
+          "concentration": 0.26
+        },
+        {
+          "date": "2026-01-23",
+          "concentration": 0.47
+        },
+        {
+          "date": "2026-01-24",
+          "concentration": 2.84
+        },
+        {
+          "date": "2026-01-25",
+          "concentration": 0.03
+        },
+        {
+          "date": "2026-01-26",
+          "concentration": 1.39
+        },
+        {
+          "date": "2026-01-27",
+          "concentration": 1.63
+        },
+        {
+          "date": "2026-01-28",
+          "concentration": 0.43
+        },
+        {
+          "date": "2026-01-29",
+          "concentration": 0.05
+        },
+        {
+          "date": "2026-01-30",
+          "concentration": 0.17
+        },
+        {
+          "date": "2026-01-31",
+          "concentration": 0.85
+        },
+        {
+          "date": "2026-02-01",
+          "concentration": 0.48
+        },
+        {
+          "date": "2026-02-02",
+          "concentration": 2.6
+        },
+        {
+          "date": "2026-02-03",
+          "concentration": 8.1
+        },
+        {
+          "date": "2026-02-04",
+          "concentration": 0.93
+        },
+        {
+          "date": "2026-02-05",
+          "concentration": 4.28
+        },
+        {
+          "date": "2026-02-06",
+          "concentration": 4.9
+        },
+        {
+          "date": "2026-02-07",
+          "concentration": 7.55
+        },
+        {
+          "date": "2026-02-08",
+          "concentration": 6.12
+        },
+        {
+          "date": "2026-02-09",
+          "concentration": 10.66
+        },
+        {
+          "date": "2026-02-10",
+          "concentration": 33.05
+        },
+        {
+          "date": "2026-02-11",
+          "concentration": 14.45
+        },
+        {
+          "date": "2026-02-12",
+          "concentration": 44.09
+        },
+        {
+          "date": "2026-02-13",
+          "concentration": 64.47
+        },
+        {
+          "date": "2026-02-14",
+          "concentration": 38.27
+        },
+        {
+          "date": "2026-02-15",
+          "concentration": 14.89
+        },
+        {
+          "date": "2026-02-16",
+          "concentration": 18.42
+        },
+        {
+          "date": "2026-02-17",
+          "concentration": 15.47
+        },
+        {
+          "date": "2026-02-18",
+          "concentration": 26.94
+        },
+        {
+          "date": "2026-02-19",
+          "concentration": 12.94
+        },
+        {
+          "date": "2026-02-20",
+          "concentration": 8.4
+        },
+        {
+          "date": "2026-02-21",
+          "concentration": 12.66
+        },
+        {
+          "date": "2026-02-22",
+          "concentration": 107.68
+        },
+        {
+          "date": "2026-02-23",
+          "concentration": 457.48
+        },
+        {
+          "date": "2026-02-24",
+          "concentration": 31.17
+        },
+        {
+          "date": "2026-02-25",
+          "concentration": 40.36
+        },
+        {
+          "date": "2026-02-26",
+          "concentration": 327.85
+        },
+        {
+          "date": "2026-02-27",
+          "concentration": 585.72
+        },
+        {
+          "date": "2026-02-28",
+          "concentration": 1183.72
+        },
+        {
+          "date": "2026-03-01",
+          "concentration": 216.92
+        },
+        {
+          "date": "2026-03-02",
+          "concentration": 684.58
+        },
+        {
+          "date": "2026-03-03",
+          "concentration": 509.6
+        },
+        {
+          "date": "2026-03-04",
+          "concentration": 492.69
+        },
+        {
+          "date": "2026-03-05",
+          "concentration": 857.15
+        },
+        {
+          "date": "2026-03-06",
+          "concentration": 592.68
+        },
+        {
+          "date": "2026-03-07",
+          "concentration": 409.88
+        },
+        {
+          "date": "2026-03-08",
+          "concentration": 541.24
+        },
+        {
+          "date": "2026-03-09",
+          "concentration": 174.27
+        },
+        {
+          "date": "2026-03-10",
+          "concentration": 145.45
+        },
+        {
+          "date": "2026-03-11",
+          "concentration": 258.6
+        },
+        {
+          "date": "2026-03-12",
+          "concentration": 39.54
+        },
+        {
+          "date": "2026-03-13",
+          "concentration": 94.14
+        },
+        {
+          "date": "2026-03-14",
+          "concentration": 81.59
+        },
+        {
+          "date": "2026-03-15",
+          "concentration": 5.79
+        },
+        {
+          "date": "2026-03-16",
+          "concentration": 89.21
+        },
+        {
+          "date": "2026-03-17",
+          "concentration": 32.79
+        },
+        {
+          "date": "2026-03-18",
+          "concentration": 99.33
+        },
+        {
+          "date": "2026-03-19",
+          "concentration": 55.53
+        },
+        {
+          "date": "2026-03-20",
+          "concentration": 21.39
+        },
+        {
+          "date": "2026-03-21",
+          "concentration": 34.46
+        },
+        {
+          "date": "2026-03-22",
+          "concentration": 44.53
+        },
+        {
+          "date": "2026-03-23",
+          "concentration": 18.03
+        },
+        {
+          "date": "2026-03-24",
+          "concentration": 21.92
+        },
+        {
+          "date": "2026-03-25",
+          "concentration": 63.65
+        },
+        {
+          "date": "2026-03-26",
+          "concentration": 94.22
+        },
+        {
+          "date": "2026-03-27",
+          "concentration": 18.53
+        },
+        {
+          "date": "2026-03-28",
+          "concentration": 15.49
+        },
+        {
+          "date": "2026-03-29",
+          "concentration": 25.95
+        },
+        {
+          "date": "2026-03-30",
+          "concentration": 109.04
+        },
+        {
+          "date": "2026-03-31",
+          "concentration": 31.35
+        },
+        {
+          "date": "2026-04-01",
+          "concentration": 10.3
+        },
+        {
+          "date": "2026-04-02",
+          "concentration": 11.74
+        },
+        {
+          "date": "2026-04-03",
+          "concentration": 12.07
+        },
+        {
+          "date": "2026-04-04",
+          "concentration": 10.75
+        },
+        {
+          "date": "2026-04-05",
+          "concentration": 60.11
+        },
+        {
+          "date": "2026-04-06",
+          "concentration": 26.32
+        },
+        {
+          "date": "2026-04-07",
+          "concentration": 25.05
+        },
+        {
+          "date": "2026-04-08",
+          "concentration": 37.66
+        },
+        {
+          "date": "2026-04-09",
+          "concentration": 22.93
+        },
+        {
+          "date": "2026-04-10",
+          "concentration": 39.94
+        },
+        {
+          "date": "2026-04-11",
+          "concentration": 32.28
+        },
+        {
+          "date": "2026-04-12",
+          "concentration": 9.45
+        },
+        {
+          "date": "2026-04-13",
+          "concentration": 25.07
+        },
+        {
+          "date": "2026-04-14",
+          "concentration": 23.7
+        },
+        {
+          "date": "2026-04-15",
+          "concentration": 24.91
+        },
+        {
+          "date": "2026-04-16",
+          "concentration": 64.82
+        }
+      ],
+      "forecasts": [
+        {
+          "horizon_days": 7,
+          "forecast_date": "2026-04-09T00:00:00",
+          "target_date": "2026-04-16T00:00:00",
+          "predicted": 14.61,
+          "lower": 5.69,
+          "upper": 47.5,
+          "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0"
+        },
+        {
+          "horizon_days": 14,
+          "forecast_date": "2026-04-02T00:00:00",
+          "target_date": "2026-04-16T00:00:00",
+          "predicted": 19.42,
+          "lower": 5.5,
+          "upper": 55.35,
+          "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0"
+        }
+      ]
+    }
+  },
+  "backtests": [
+    {
+      "run_id": "bt-f6a2afb18e",
+      "pollen_type": "erle",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0",
+      "mae": 19.03,
+      "wis80": 14.18,
+      "coverage80": 0.86,
+      "improvement_vs_persistence": 0.5541,
+      "improvement_vs_seasonal_naive": 0.5623
+    },
+    {
+      "run_id": "bt-5f11aacd80",
+      "pollen_type": "graeser",
+      "region_code": "BY",
+      "horizon_days": 14,
+      "folds": 220,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0",
+      "mae": 9.21,
+      "wis80": 6.94,
+      "coverage80": 0.823,
+      "improvement_vs_persistence": 0.5329,
+      "improvement_vs_seasonal_naive": 0.2947
+    },
+    {
+      "run_id": "bt-573d1c7769",
+      "pollen_type": "graeser",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0",
+      "mae": 7.91,
+      "wis80": 6.28,
+      "coverage80": 0.801,
+      "improvement_vs_persistence": 0.4025,
+      "improvement_vs_seasonal_naive": 0.3476
+    },
+    {
+      "run_id": "bt-a167774462",
+      "pollen_type": "birke",
+      "region_code": "BY",
+      "horizon_days": 14,
+      "folds": 220,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0",
+      "mae": 28.99,
+      "wis80": 23.11,
+      "coverage80": 0.818,
+      "improvement_vs_persistence": 0.4735,
+      "improvement_vs_seasonal_naive": 0.38
+    },
+    {
+      "run_id": "bt-109fec8eb9",
+      "pollen_type": "birke",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-cp80-v0",
+      "mae": 22.65,
+      "wis80": 20.38,
+      "coverage80": 0.833,
+      "improvement_vs_persistence": 0.4216,
+      "improvement_vs_seasonal_naive": 0.4469
+    },
+    {
+      "run_id": "bt-0eb03e777f",
+      "pollen_type": "graeser",
+      "region_code": "BY",
+      "horizon_days": 14,
+      "folds": 220,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-v0",
+      "mae": 9.21,
+      "wis80": 6.51,
+      "coverage80": 0.659,
+      "improvement_vs_persistence": 0.5622,
+      "improvement_vs_seasonal_naive": 0.3391
+    },
+    {
+      "run_id": "bt-55319210ca",
+      "pollen_type": "erle",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-v0",
+      "mae": 19.03,
+      "wis80": 13.92,
+      "coverage80": 0.647,
+      "improvement_vs_persistence": 0.5622,
+      "improvement_vs_seasonal_naive": 0.5703
+    },
+    {
+      "run_id": "bt-71a4d3ae66",
+      "pollen_type": "birke",
+      "region_code": "BY",
+      "horizon_days": 14,
+      "folds": 220,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-v0",
+      "mae": 28.99,
+      "wis80": 22.02,
+      "coverage80": 0.577,
+      "improvement_vs_persistence": 0.4984,
+      "improvement_vs_seasonal_naive": 0.4092
+    },
+    {
+      "run_id": "bt-8562d6b64f",
+      "pollen_type": "graeser",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-v0",
+      "mae": 7.91,
+      "wis80": 5.78,
+      "coverage80": 0.624,
+      "improvement_vs_persistence": 0.4503,
+      "improvement_vs_seasonal_naive": 0.3997
+    },
+    {
+      "run_id": "bt-730f690bb8",
+      "pollen_type": "birke",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-stacked-hw-ridge-xgb-v0",
+      "mae": 22.65,
+      "wis80": 19.42,
+      "coverage80": 0.579,
+      "improvement_vs_persistence": 0.4488,
+      "improvement_vs_seasonal_naive": 0.4729
+    },
+    {
+      "run_id": "bt-f9249f0448",
+      "pollen_type": "erle",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-ridge-gbm-v0",
+      "mae": 31.44,
+      "wis80": 19.34,
+      "coverage80": 0.846,
+      "improvement_vs_persistence": 0.3918,
+      "improvement_vs_seasonal_naive": 0.403
+    },
+    {
+      "run_id": "bt-2edb435dc6",
+      "pollen_type": "graeser",
+      "region_code": "BY",
+      "horizon_days": 14,
+      "folds": 220,
+      "model_version": "pollencast-ridge-gbm-v0",
+      "mae": 14.96,
+      "wis80": 8.32,
+      "coverage80": 0.859,
+      "improvement_vs_persistence": 0.4405,
+      "improvement_vs_seasonal_naive": 0.1553
+    },
+    {
+      "run_id": "bt-dc1297055a",
+      "pollen_type": "graeser",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-ridge-gbm-v0",
+      "mae": 11.34,
+      "wis80": 7.1,
+      "coverage80": 0.914,
+      "improvement_vs_persistence": 0.3246,
+      "improvement_vs_seasonal_naive": 0.2625
+    },
+    {
+      "run_id": "bt-600263b424",
+      "pollen_type": "birke",
+      "region_code": "BY",
+      "horizon_days": 14,
+      "folds": 220,
+      "model_version": "pollencast-ridge-gbm-v0",
+      "mae": 46.2,
+      "wis80": 27.93,
+      "coverage80": 0.914,
+      "improvement_vs_persistence": 0.3637,
+      "improvement_vs_seasonal_naive": 0.2506
+    },
+    {
+      "run_id": "bt-edf2d7c734",
+      "pollen_type": "birke",
+      "region_code": "BY",
+      "horizon_days": 7,
+      "folds": 221,
+      "model_version": "pollencast-ridge-gbm-v0",
+      "mae": 48.88,
+      "wis80": 29.38,
+      "coverage80": 0.905,
+      "improvement_vs_persistence": 0.1662,
+      "improvement_vs_seasonal_naive": 0.2027
+    }
+  ]
+}

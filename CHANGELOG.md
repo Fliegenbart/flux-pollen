@@ -5,6 +5,12 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Static-Demo-Frontend auf Vercel.** Leichtgewichtiges Dashboard unter `frontend/public/` — Tailwind + Chart.js per CDN, keine Build-Chain. Zeigt:
+  - Zeitreihe der letzten 120 Tage + Forecast-Median + 80 %-Unsicherheitsband für Birke/Gräser/Erle × Horizonte 7/14 in Bayern.
+  - Backtest-Evidenz-Tabelle (15 persistierte Runs: MAE, WIS80, Coverage80, ΔWIS vs. Persistence/Seasonal-Naive, Modell-Version). Coverage-Zellen grün wenn im Zielkorridor 0.77–0.85.
+  - Methodik- und Datenquellen-Karten für die 10-Sekunden-Produktbeschreibung.
+  - Snapshot: `frontend/public/snapshot.json` — generiert aus der lokalen SQLite-DB (1 900 Samples pro Scope). Frontend enthält ausdrücklich den Hinweis, dass die API separat gehostet wird.
+  - Deployed unter https://flux-pollen.vercel.app.
 - **Phase 4e — Stacked+CP-Modelle als API-Default.** Der Trainings-CLI und das Model-Registry sind jetzt für alle drei Forecaster-Varianten (single-stage, stacked, stacked+CP) einheitlich nutzbar; die API spielt ab jetzt die kalibrierten Stacked-Artefakte aus.
   - `scripts/run_train.py` bekommt `--stacked` und `--calibrate` (kombinierbar, analog zu `run_backtest.py`). Das Model-Version-Tag wandert automatisch: `pollencast-ridge-gbm-v0` → `…-v0` ohne CP, `…-cp80-v0` mit CP; stacked analog.
   - `ModelArtifact.service` und `build_metadata`/`load_artifact` haben den Type-Hint auf `object` gelockert, damit beliebige ForecasterProtocol-konforme Objekte (plain, stacked, conformal-wrapped) als Artefakt persistiert werden können. joblib erhält den konkreten Typ zur Laufzeit.

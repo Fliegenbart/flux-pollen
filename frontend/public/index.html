@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PollenCast — regionale Pollenflug-Prognose</title>
+  <meta name="description" content="Regionale Pollenflug-Prognose für Bayern auf Basis von ePIN-Stationsdaten und DWD-Wetter. Probabilistische 80%-Bänder, Walk-Forward-Backtest auf 5 Jahren." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="border-b border-slate-200 bg-white">
+    <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-semibold tracking-tight">PollenCast</h1>
+        <p class="text-sm text-slate-600">Regionale Pollenflug-Prognose für den deutschen OTC-Allergiemarkt</p>
+      </div>
+      <div class="text-right text-xs text-slate-500">
+        <div id="snapshot-time"></div>
+        <div class="mono" id="region-label"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-8 space-y-10">
+    <section>
+      <div class="flex flex-wrap items-end gap-4">
+        <label class="block">
+          <span class="text-xs font-medium text-slate-600 uppercase tracking-wide">Pollenart</span>
+          <select id="pollen-select" class="mt-1 block w-48 border border-slate-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/20"></select>
+        </label>
+        <label class="block">
+          <span class="text-xs font-medium text-slate-600 uppercase tracking-wide">Horizont</span>
+          <select id="horizon-select" class="mt-1 block w-48 border border-slate-300 rounded px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-slate-900/20">
+            <option value="7">7 Tage</option>
+            <option value="14">14 Tage</option>
+          </select>
+        </label>
+        <div class="ml-auto text-right">
+          <div class="text-xs text-slate-500 uppercase tracking-wide">Aktueller Forecast</div>
+          <div class="text-xs text-slate-500 mono" id="forecast-meta"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+        <div class="flex justify-between items-start mb-2">
+          <div>
+            <h2 class="text-lg font-semibold">Zeitreihe &amp; Prognose</h2>
+            <p class="text-xs text-slate-500">Tagesmittel der Pollenkonzentration aus ePIN-Bayern (12 Stationen) + Prognose mit 80%-Unsicherheitsband.</p>
+          </div>
+          <div class="text-right">
+            <div class="text-xs text-slate-500">Prognose für</div>
+            <div class="text-sm font-semibold mono" id="target-date">–</div>
+            <div class="text-xs text-slate-500" id="predicted-value">–</div>
+          </div>
+        </div>
+        <div class="relative" style="height: 360px;">
+          <canvas id="forecast-chart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-lg font-semibold mb-3">Backtest-Evidenz</h2>
+      <p class="text-sm text-slate-600 mb-4 max-w-3xl">
+        Walk-Forward-Backtest auf 5 Jahren realer ePIN-Bayern-Daten (2021–2026), ~220 Folds pro Scope. WIS nach Bracher et al. 2021; Vergleich gegen Persistence-Baseline (Wert von heute) und Seasonal-Naive-Baseline (Wert vom selben Tag letztes Jahr).
+      </p>
+      <div class="overflow-x-auto bg-white border border-slate-200 rounded-lg shadow-sm">
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-100 text-slate-600 text-xs uppercase">
+            <tr>
+              <th class="px-4 py-2 text-left">Pollen</th>
+              <th class="px-2 py-2 text-right">Horizont</th>
+              <th class="px-2 py-2 text-right">Folds</th>
+              <th class="px-2 py-2 text-right">MAE</th>
+              <th class="px-2 py-2 text-right">WIS<sub>80</sub></th>
+              <th class="px-2 py-2 text-right">Coverage<sub>80</sub></th>
+              <th class="px-2 py-2 text-right">ΔWIS vs Pers.</th>
+              <th class="px-2 py-2 text-right">ΔWIS vs Seas.</th>
+              <th class="px-2 py-2 text-left">Modell</th>
+            </tr>
+          </thead>
+          <tbody id="backtest-table" class="divide-y divide-slate-200 text-slate-700 mono"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+        <div class="text-xs uppercase tracking-wide text-slate-500">Methodik</div>
+        <ul class="mt-2 text-sm space-y-1 text-slate-700">
+          <li>Stacking: Holt-Winters + Ridge</li>
+          <li>Meta: XGBoost Quantil-Regression</li>
+          <li>Kalibrierung: Split Conformal Prediction</li>
+        </ul>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+        <div class="text-xs uppercase tracking-wide text-slate-500">Datenquellen</div>
+        <ul class="mt-2 text-sm space-y-1 text-slate-700">
+          <li>ePIN Bayern (12 Stationen, 3h-Bucket)</li>
+          <li>BrightSky / DWD Wetter (16 Hauptstädte)</li>
+          <li>schulferien-api.de v2</li>
+        </ul>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-lg p-4 shadow-sm">
+        <div class="text-xs uppercase tracking-wide text-slate-500">Scope</div>
+        <ul class="mt-2 text-sm space-y-1 text-slate-700">
+          <li>Bundesland Bayern</li>
+          <li>Pollen: Birke, Gräser, Erle (live); weitere trainierbar</li>
+          <li>Horizonte: 7 und 14 Tage</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="text-xs text-slate-500 max-w-3xl">
+      <p>
+        Diese Demo zeigt einen statischen Snapshot des lokalen Backends. Die Live-API
+        (<span class="mono">/api/v1/pollen/forecast</span>, <span class="mono">/api/v1/pollen/current</span>,
+        <span class="mono">/api/v1/pollen/forecast/regional</span>) läuft auf einem separaten Host;
+        die Werte hier sind das Produkt realer, persistierter Backtest-Runs aus der
+        PollenCast-SQLite-Datenbank.
+      </p>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 mt-16">
+    <div class="max-w-6xl mx-auto px-6 py-4 text-xs text-slate-500">
+      Methodik: XGBoost-Stacking + Split-Conformal-Kalibrierung · Evidenz: Walk-Forward auf ePIN Bayern 2021–2026
+    </div>
+  </footer>
+
+  <script>
+    const POLLEN_LABELS = {
+      birke: "Birke",
+      graeser: "Gräser",
+      erle: "Erle",
+      hasel: "Hasel",
+      esche: "Esche",
+      roggen: "Roggen",
+      beifuss: "Beifuß",
+      ambrosia: "Ambrosia",
+    };
+
+    async function loadSnapshot() {
+      const response = await fetch("./snapshot.json", { cache: "no-store" });
+      if (!response.ok) throw new Error(`snapshot fetch ${response.status}`);
+      return response.json();
+    }
+
+    function fmtDate(iso) {
+      const d = new Date(iso);
+      if (Number.isNaN(d.getTime())) return iso;
+      return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+    }
+
+    function fmt(value, unit = "") {
+      if (value === null || value === undefined) return "–";
+      const num = Number(value);
+      if (Math.abs(num) >= 1000) return num.toLocaleString("de-DE", { maximumFractionDigits: 0 }) + unit;
+      return num.toFixed(1) + unit;
+    }
+
+    function pct(ratio) {
+      if (ratio === null || ratio === undefined) return "–";
+      const v = Number(ratio) * 100;
+      const sign = v > 0 ? "+" : "";
+      return `${sign}${v.toFixed(1)} %`;
+    }
+
+    function populatePollenSelect(snapshot) {
+      const select = document.getElementById("pollen-select");
+      select.innerHTML = "";
+      Object.keys(snapshot.pollens).forEach((key) => {
+        const opt = document.createElement("option");
+        opt.value = key;
+        opt.textContent = POLLEN_LABELS[key] ?? key;
+        select.appendChild(opt);
+      });
+    }
+
+    function renderBacktestTable(rows) {
+      const tbody = document.getElementById("backtest-table");
+      tbody.innerHTML = "";
+      rows
+        .slice()
+        .sort((a, b) => a.pollen_type.localeCompare(b.pollen_type) || a.horizon_days - b.horizon_days || (a.model_version || "").localeCompare(b.model_version || ""))
+        .forEach((run) => {
+          const tr = document.createElement("tr");
+          const cov = run.coverage80 ?? 0;
+          const covColor = cov >= 0.77 && cov <= 0.85 ? "text-emerald-700" : "text-amber-700";
+          tr.innerHTML = `
+            <td class="px-4 py-2 text-slate-900 sans font-medium">${POLLEN_LABELS[run.pollen_type] ?? run.pollen_type}</td>
+            <td class="px-2 py-2 text-right">${run.horizon_days}</td>
+            <td class="px-2 py-2 text-right">${run.folds}</td>
+            <td class="px-2 py-2 text-right">${fmt(run.mae)}</td>
+            <td class="px-2 py-2 text-right">${fmt(run.wis80)}</td>
+            <td class="px-2 py-2 text-right ${covColor}">${cov.toFixed(2)}</td>
+            <td class="px-2 py-2 text-right text-emerald-700">${pct(run.improvement_vs_persistence)}</td>
+            <td class="px-2 py-2 text-right text-emerald-700">${pct(run.improvement_vs_seasonal_naive)}</td>
+            <td class="px-2 py-2 text-xs text-slate-500 truncate max-w-[240px]">${run.model_version || ""}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+    }
+
+    let chart;
+    function renderChart(pollenEntry, horizonDays) {
+      const ctx = document.getElementById("forecast-chart").getContext("2d");
+      const history = pollenEntry.history || [];
+      const forecast = (pollenEntry.forecasts || []).find((f) => f.horizon_days === horizonDays);
+
+      const historyLabels = history.map((h) => h.date);
+      const historyValues = history.map((h) => h.concentration);
+
+      const labels = [...historyLabels];
+      const observed = [...historyValues];
+      const predicted = new Array(historyLabels.length).fill(null);
+      const lowerBand = new Array(historyLabels.length).fill(null);
+      const upperBand = new Array(historyLabels.length).fill(null);
+
+      if (forecast) {
+        const lastObserved = historyValues.length ? historyValues[historyValues.length - 1] : forecast.predicted;
+        const targetDateIso = forecast.target_date.slice(0, 10);
+        labels.push(targetDateIso);
+        observed.push(null);
+        // Start the forecast line at the last observed point for visual continuity.
+        predicted[predicted.length - 1] = lastObserved;
+        lowerBand[lowerBand.length - 1] = lastObserved;
+        upperBand[upperBand.length - 1] = lastObserved;
+        predicted.push(forecast.predicted);
+        lowerBand.push(forecast.lower);
+        upperBand.push(forecast.upper);
+      }
+
+      if (chart) {
+        chart.destroy();
+      }
+      chart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "Beobachtung (Tagesmittel)",
+              data: observed,
+              borderColor: "#0f172a",
+              backgroundColor: "rgba(15,23,42,0.05)",
+              borderWidth: 2,
+              tension: 0.2,
+              pointRadius: 0,
+              spanGaps: false,
+            },
+            {
+              label: "Obere Grenze (q90)",
+              data: upperBand,
+              borderColor: "rgba(217,119,6,0.0)",
+              backgroundColor: "rgba(217,119,6,0.2)",
+              fill: "+1",
+              pointRadius: 0,
+              tension: 0.2,
+            },
+            {
+              label: "Untere Grenze (q10)",
+              data: lowerBand,
+              borderColor: "rgba(217,119,6,0.0)",
+              backgroundColor: "rgba(217,119,6,0.2)",
+              fill: false,
+              pointRadius: 0,
+              tension: 0.2,
+            },
+            {
+              label: "Prognose (Median)",
+              data: predicted,
+              borderColor: "#d97706",
+              backgroundColor: "#d97706",
+              borderWidth: 2,
+              borderDash: [6, 3],
+              pointRadius: 3,
+              tension: 0.2,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: "index", intersect: false },
+          scales: {
+            y: { title: { display: true, text: "Pollen / m³" }, beginAtZero: true },
+            x: { ticks: { maxTicksLimit: 10 } },
+          },
+          plugins: {
+            legend: { position: "bottom" },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  const v = ctx.parsed.y;
+                  if (v === null || v === undefined) return "";
+                  return `${ctx.dataset.label}: ${v.toFixed(1)} Pollen/m³`;
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const targetEl = document.getElementById("target-date");
+      const predictedEl = document.getElementById("predicted-value");
+      const metaEl = document.getElementById("forecast-meta");
+      if (forecast) {
+        targetEl.textContent = fmtDate(forecast.target_date);
+        predictedEl.textContent = `${fmt(forecast.predicted)} Pollen/m³  (80% Band: ${fmt(forecast.lower)} – ${fmt(forecast.upper)})`;
+        metaEl.textContent = `${forecast.model_version} · erstellt am ${fmtDate(forecast.forecast_date)}`;
+      } else {
+        targetEl.textContent = "–";
+        predictedEl.textContent = "Kein Modell für diesen Horizont trainiert.";
+        metaEl.textContent = "";
+      }
+    }
+
+    function refresh(snapshot) {
+      const pollen = document.getElementById("pollen-select").value;
+      const horizon = Number(document.getElementById("horizon-select").value);
+      const entry = snapshot.pollens[pollen];
+      if (!entry) return;
+      renderChart(entry, horizon);
+    }
+
+    (async () => {
+      try {
+        const snapshot = await loadSnapshot();
+        document.getElementById("snapshot-time").textContent = `Snapshot: ${fmtDate(snapshot.generated_at)}`;
+        document.getElementById("region-label").textContent = `${snapshot.region_name} (${snapshot.region_code})`;
+        populatePollenSelect(snapshot);
+        renderBacktestTable(snapshot.backtests || []);
+        refresh(snapshot);
+        document.getElementById("pollen-select").addEventListener("change", () => refresh(snapshot));
+        document.getElementById("horizon-select").addEventListener("change", () => refresh(snapshot));
+      } catch (err) {
+        console.error(err);
+        document.body.innerHTML = `<div class="max-w-2xl mx-auto mt-16 p-4 bg-red-50 border border-red-200 rounded text-red-800 mono text-sm">Snapshot konnte nicht geladen werden: ${err.message}</div>`;
+      }
+    })();
+  </script>
+</body>
+</html>

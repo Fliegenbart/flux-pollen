@@ -32,6 +32,9 @@ backend/.env.local
 # Docker
 docker-compose.override.yml
 
+# Vercel CLI project link
+frontend/.vercel/
+
 # Logs
 *.log
 .venv/
