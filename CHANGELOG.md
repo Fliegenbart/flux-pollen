@@ -5,6 +5,18 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Phase 5b — MOAT-Frontend: Hero, Sell-Out-Kopplung, Lead-Time, Pilot-Aufsatz.** Das Vercel-Dashboard zeigt jetzt den Translation-Layer, nicht nur den Rohforecast.
+  - **`app/services/ml/lead_time_analysis.py`** — Rekonstruiert aus `backtest_points` für jeden historischen Peak: an welchem Tag hat das Modell vs. Persistence vs. Seasonal-Naive zum ersten Mal ≥ 50 % des Peak-Wertes signalisiert? Poolt die Folds aus allen Horizont-Runs (h=7 + h=14) des gleichen Scopes, damit Lead-Times tatsächlich > 7 Tage werden können. Deduping per `unique(target_date)` verhindert, dass dieselbe Peak zwei Quantile-Schwellen setzt.
+  - **`scripts/export_snapshot.py`** — neue reproduzierbare Export-CLI; schreibt `frontend/public/snapshot.json` mit Hero-Zahlen, vollständiger Korrelations-Payload (Lag-Kurve, Outcome-Reihe, Pollen-Reihe), Lead-Time-Peak-Tabelle, Forecast pro Pollenart × Horizont, Backtest-Liste. Ein Kommando, keine inline-Python-Heredocs mehr.
+  - **Frontend** komplett überarbeitet (`frontend/public/index.html`):
+    - **Hero mit vier Pitch-Kennzahlen**: +78,6 % Sell-Out-Lift, +1,2 d Lead-Time-Vorsprung, −47,7 %/−40,6 % WIS vs. Baselines, 0,83 Coverage.
+    - **Section 1 Korrelation**: Dual-Axis-Zeitreihe Pollen vs. Sell-Out (60 Wochen) + Lag-Bar-Chart mit hervorgehobenem besten Lag + Pearson/Lag/Wochen-Datenblock.
+    - **Section 2 Lead-Time-Tabelle**: 10 historische Birke-Peaks, grün/amber-Codierung der Lead-Days. Zeigt explizit: Modell fängt 7/10 Peaks (Persistence/Seasonal je 5/10), der 2024er Ausnahme-Peak bei > 2 000/m³ wird von allen drei Forecastern verfehlt — ehrlich ausgewiesen, nicht verschwiegen.
+    - **Section 3 Forecast-Chart**: wie vorher, dropdown-gesteuert, bezieht die kalibrierten Stacked+CP-Artefakte.
+    - **Section 4 Backtest-Evidenz**: 15 persistierte Runs inkl. der Stacked+CP-Coverage in 0,80–0,86.
+    - **Section 5 Pilot-Aufsatz**: CSV-Format als Code-Block, API-Endpunkt-Liste, Call-to-Action-E-Mail + GitHub-Link. Bewusst kein Public-Upload in der Demo.
+  - Live unter https://flux-pollen.vercel.app. Snapshot `snapshot.json` wuchs von 37 KB → 56 KB.
+
 - **Phase 5a — Hexal-Pilot-Pipeline: Kunden-Outcome-Upload + Pollen-×-Outcome-Korrelation.** Erste Produkt-Schicht über dem Forecast-Kern: die "Pollen → Umsatz"-Übersetzung, die den tatsächlichen MOAT trägt. Aufgebaut mit dem Hexal-Lorano-Pilot im Visier (kein Pilot-Vertrag — baut trotzdem die Pipeline jetzt, damit der erste Pitch nicht an fehlender Infrastruktur scheitert).
   - **Neue Tabelle `outcome_observations`** (bewusst in Phase 2 weggelassen, in Phase 5a zurückgeholt): brand × product × region_code × week × metric_name × source_label → Wert, Einheit, optional Kanal/Kampagne. Alembic-Migration `0003_outcome_observations` mit passendem Unique-Constraint.
   - **`app/services/outcome/schemas.py`** — zentralisierte Metric-Definition (`sell_out_units`, `sell_out_revenue_eur`, `tv_grp`, `search_brand_clicks`, `search_brand_impressions`) mit Labels, Einheiten und Gruppen. CSV-Vertrag: Long-Format, 6 Pflicht- + 3 optionale Spalten. Keine Wide-Format-Auto-Erkennung, kein Raten — Schema-Klarheit ist die Basis für Kundenvertrauen.

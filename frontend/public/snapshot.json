@@ -1,7 +1,17 @@
 {
-  "generated_at": "2026-04-18T18:18:52.964732Z",
+  "generated_at": "2026-04-18T19:29:29.356006Z",
   "region_code": "BY",
   "region_name": "Bayern",
+  "hero": {
+    "wis_improvement_vs_persistence_pct": 47.7,
+    "wis_improvement_vs_seasonal_pct": 40.6,
+    "coverage80_avg": 0.83,
+    "correlation_lift_high_vs_low_pct": 78.6,
+    "correlation_best_pearson": 0.546,
+    "correlation_best_lag_days": 1,
+    "lead_time_model_days_mean": 11.7,
+    "lead_time_persistence_days_median": 10.5
+  },
   "pollens": {
     "birke": {
       "history": [
@@ -1712,5 +1722,824 @@
       "improvement_vs_persistence": 0.1662,
       "improvement_vs_seasonal_naive": 0.2027
     }
-  ]
+  ],
+  "lead_time": {
+    "scope": {
+      "pollen_type": "birke",
+      "region_code": "BY",
+      "horizon_days": "all"
+    },
+    "summary": {
+      "n_peaks": 10,
+      "model_lead_days_median": 14.0,
+      "model_lead_days_mean": 11.7,
+      "persistence_lead_days_median": 10.5,
+      "seasonal_lead_days_median": 14.0,
+      "model_advantage_vs_persistence_days": 1.2
+    },
+    "peaks": [
+      {
+        "target_date": "2024-04-05T00:00:00",
+        "observed_value": 2216.98,
+        "event_threshold": 1108.49,
+        "model_first_signal": null,
+        "model_lead_days": null,
+        "persistence_first_signal": null,
+        "persistence_lead_days": null,
+        "seasonal_first_signal": null,
+        "seasonal_lead_days": null,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2024-03-29T00:00:00",
+        "observed_value": 901.2,
+        "event_threshold": 450.6,
+        "model_first_signal": null,
+        "model_lead_days": null,
+        "persistence_first_signal": null,
+        "persistence_lead_days": null,
+        "seasonal_first_signal": null,
+        "seasonal_lead_days": null,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2026-04-10T00:00:00",
+        "observed_value": 599.16,
+        "event_threshold": 299.58,
+        "model_first_signal": null,
+        "model_lead_days": null,
+        "persistence_first_signal": null,
+        "persistence_lead_days": null,
+        "seasonal_first_signal": null,
+        "seasonal_lead_days": null,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2022-04-29T00:00:00",
+        "observed_value": 504.69,
+        "event_threshold": 252.35,
+        "model_first_signal": "2022-04-15T00:00:00",
+        "model_lead_days": 14,
+        "persistence_first_signal": "2022-04-15T00:00:00",
+        "persistence_lead_days": 14,
+        "seasonal_first_signal": null,
+        "seasonal_lead_days": null,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2022-04-15T00:00:00",
+        "observed_value": 502.26,
+        "event_threshold": 251.13,
+        "model_first_signal": "2022-04-08T00:00:00",
+        "model_lead_days": 7,
+        "persistence_first_signal": null,
+        "persistence_lead_days": null,
+        "seasonal_first_signal": null,
+        "seasonal_lead_days": null,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2023-04-21T00:00:00",
+        "observed_value": 404.47,
+        "event_threshold": 202.23,
+        "model_first_signal": null,
+        "model_lead_days": null,
+        "persistence_first_signal": null,
+        "persistence_lead_days": null,
+        "seasonal_first_signal": "2023-04-07T00:00:00",
+        "seasonal_lead_days": 14,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2022-04-22T00:00:00",
+        "observed_value": 385.69,
+        "event_threshold": 192.84,
+        "model_first_signal": "2022-04-08T00:00:00",
+        "model_lead_days": 14,
+        "persistence_first_signal": "2022-04-15T00:00:00",
+        "persistence_lead_days": 7,
+        "seasonal_first_signal": "2022-04-08T00:00:00",
+        "seasonal_lead_days": 14,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2023-04-28T00:00:00",
+        "observed_value": 241.66,
+        "event_threshold": 120.83,
+        "model_first_signal": "2023-04-21T00:00:00",
+        "model_lead_days": 7,
+        "persistence_first_signal": "2023-04-21T00:00:00",
+        "persistence_lead_days": 7,
+        "seasonal_first_signal": "2023-04-14T00:00:00",
+        "seasonal_lead_days": 14,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2024-04-12T00:00:00",
+        "observed_value": 211.31,
+        "event_threshold": 105.66,
+        "model_first_signal": "2024-03-29T00:00:00",
+        "model_lead_days": 14,
+        "persistence_first_signal": "2024-03-29T00:00:00",
+        "persistence_lead_days": 14,
+        "seasonal_first_signal": null,
+        "seasonal_lead_days": null,
+        "folds_considered": 2
+      },
+      {
+        "target_date": "2025-04-11T00:00:00",
+        "observed_value": 150.27,
+        "event_threshold": 75.14,
+        "model_first_signal": "2025-03-28T00:00:00",
+        "model_lead_days": 14,
+        "persistence_first_signal": null,
+        "persistence_lead_days": null,
+        "seasonal_first_signal": "2025-03-28T00:00:00",
+        "seasonal_lead_days": 14,
+        "folds_considered": 2
+      }
+    ]
+  },
+  "correlation": {
+    "brand": "hexal",
+    "product": "lorano_5mg_20stk",
+    "region_code": "BY",
+    "pollen_type": "birke",
+    "metric": "sell_out_units",
+    "n_weeks": 225,
+    "best_lag_days": 1,
+    "best_pearson": 0.546,
+    "lift_high_vs_low_pct": 78.6,
+    "high_weeks": 57,
+    "low_weeks": 57,
+    "lag_curve": [
+      {
+        "lag_days": -21,
+        "pearson": 0.1172
+      },
+      {
+        "lag_days": -20,
+        "pearson": 0.1395
+      },
+      {
+        "lag_days": -19,
+        "pearson": 0.1556
+      },
+      {
+        "lag_days": -18,
+        "pearson": 0.1716
+      },
+      {
+        "lag_days": -17,
+        "pearson": 0.2208
+      },
+      {
+        "lag_days": -16,
+        "pearson": 0.2262
+      },
+      {
+        "lag_days": -15,
+        "pearson": 0.2501
+      },
+      {
+        "lag_days": -14,
+        "pearson": 0.2768
+      },
+      {
+        "lag_days": -13,
+        "pearson": 0.3229
+      },
+      {
+        "lag_days": -12,
+        "pearson": 0.3461
+      },
+      {
+        "lag_days": -11,
+        "pearson": 0.3572
+      },
+      {
+        "lag_days": -10,
+        "pearson": 0.3846
+      },
+      {
+        "lag_days": -9,
+        "pearson": 0.3949
+      },
+      {
+        "lag_days": -8,
+        "pearson": 0.4238
+      },
+      {
+        "lag_days": -7,
+        "pearson": 0.4494
+      },
+      {
+        "lag_days": -6,
+        "pearson": 0.4872
+      },
+      {
+        "lag_days": -5,
+        "pearson": 0.4956
+      },
+      {
+        "lag_days": -4,
+        "pearson": 0.4936
+      },
+      {
+        "lag_days": -3,
+        "pearson": 0.4848
+      },
+      {
+        "lag_days": -2,
+        "pearson": 0.5018
+      },
+      {
+        "lag_days": -1,
+        "pearson": 0.5291
+      },
+      {
+        "lag_days": 0,
+        "pearson": 0.5404
+      },
+      {
+        "lag_days": 1,
+        "pearson": 0.5462
+      },
+      {
+        "lag_days": 2,
+        "pearson": 0.5243
+      },
+      {
+        "lag_days": 3,
+        "pearson": 0.5001
+      },
+      {
+        "lag_days": 4,
+        "pearson": 0.4839
+      },
+      {
+        "lag_days": 5,
+        "pearson": 0.4739
+      },
+      {
+        "lag_days": 6,
+        "pearson": 0.484
+      },
+      {
+        "lag_days": 7,
+        "pearson": 0.4766
+      },
+      {
+        "lag_days": 8,
+        "pearson": 0.458
+      },
+      {
+        "lag_days": 9,
+        "pearson": 0.4188
+      },
+      {
+        "lag_days": 10,
+        "pearson": 0.387
+      },
+      {
+        "lag_days": 11,
+        "pearson": 0.3681
+      },
+      {
+        "lag_days": 12,
+        "pearson": 0.3581
+      },
+      {
+        "lag_days": 13,
+        "pearson": 0.3756
+      },
+      {
+        "lag_days": 14,
+        "pearson": 0.3762
+      },
+      {
+        "lag_days": 15,
+        "pearson": 0.3784
+      },
+      {
+        "lag_days": 16,
+        "pearson": 0.3581
+      },
+      {
+        "lag_days": 17,
+        "pearson": 0.3431
+      },
+      {
+        "lag_days": 18,
+        "pearson": 0.3343
+      },
+      {
+        "lag_days": 19,
+        "pearson": 0.3301
+      },
+      {
+        "lag_days": 20,
+        "pearson": 0.3476
+      },
+      {
+        "lag_days": 21,
+        "pearson": 0.3586
+      }
+    ],
+    "outcome_series": [
+      {
+        "week_start": "2025-02-24T00:00:00",
+        "value": 6550.9
+      },
+      {
+        "week_start": "2025-03-03T00:00:00",
+        "value": 8018.2
+      },
+      {
+        "week_start": "2025-03-10T00:00:00",
+        "value": 6556.8
+      },
+      {
+        "week_start": "2025-03-17T00:00:00",
+        "value": 5927.8
+      },
+      {
+        "week_start": "2025-03-24T00:00:00",
+        "value": 6172.5
+      },
+      {
+        "week_start": "2025-03-31T00:00:00",
+        "value": 7407.1
+      },
+      {
+        "week_start": "2025-04-07T00:00:00",
+        "value": 8353.2
+      },
+      {
+        "week_start": "2025-04-14T00:00:00",
+        "value": 8713.5
+      },
+      {
+        "week_start": "2025-04-21T00:00:00",
+        "value": 6838.0
+      },
+      {
+        "week_start": "2025-04-28T00:00:00",
+        "value": 7835.7
+      },
+      {
+        "week_start": "2025-05-05T00:00:00",
+        "value": 7068.0
+      },
+      {
+        "week_start": "2025-05-12T00:00:00",
+        "value": 8173.2
+      },
+      {
+        "week_start": "2025-05-19T00:00:00",
+        "value": 7732.9
+      },
+      {
+        "week_start": "2025-05-26T00:00:00",
+        "value": 8238.9
+      },
+      {
+        "week_start": "2025-06-02T00:00:00",
+        "value": 8052.0
+      },
+      {
+        "week_start": "2025-06-09T00:00:00",
+        "value": 7714.6
+      },
+      {
+        "week_start": "2025-06-16T00:00:00",
+        "value": 6742.0
+      },
+      {
+        "week_start": "2025-06-23T00:00:00",
+        "value": 6960.9
+      },
+      {
+        "week_start": "2025-06-30T00:00:00",
+        "value": 6853.3
+      },
+      {
+        "week_start": "2025-07-07T00:00:00",
+        "value": 5920.7
+      },
+      {
+        "week_start": "2025-07-14T00:00:00",
+        "value": 6439.1
+      },
+      {
+        "week_start": "2025-07-21T00:00:00",
+        "value": 5587.7
+      },
+      {
+        "week_start": "2025-07-28T00:00:00",
+        "value": 5004.5
+      },
+      {
+        "week_start": "2025-08-04T00:00:00",
+        "value": 5395.8
+      },
+      {
+        "week_start": "2025-08-11T00:00:00",
+        "value": 5763.0
+      },
+      {
+        "week_start": "2025-08-18T00:00:00",
+        "value": 5621.5
+      },
+      {
+        "week_start": "2025-08-25T00:00:00",
+        "value": 5003.6
+      },
+      {
+        "week_start": "2025-09-01T00:00:00",
+        "value": 4999.5
+      },
+      {
+        "week_start": "2025-09-08T00:00:00",
+        "value": 5268.1
+      },
+      {
+        "week_start": "2025-09-15T00:00:00",
+        "value": 4484.0
+      },
+      {
+        "week_start": "2025-09-22T00:00:00",
+        "value": 4335.8
+      },
+      {
+        "week_start": "2025-09-29T00:00:00",
+        "value": 4717.2
+      },
+      {
+        "week_start": "2025-10-06T00:00:00",
+        "value": 4415.2
+      },
+      {
+        "week_start": "2025-10-13T00:00:00",
+        "value": 4529.2
+      },
+      {
+        "week_start": "2025-10-20T00:00:00",
+        "value": 4478.6
+      },
+      {
+        "week_start": "2025-10-27T00:00:00",
+        "value": 4605.3
+      },
+      {
+        "week_start": "2025-11-03T00:00:00",
+        "value": 4889.9
+      },
+      {
+        "week_start": "2025-11-10T00:00:00",
+        "value": 4533.4
+      },
+      {
+        "week_start": "2025-11-17T00:00:00",
+        "value": 4825.6
+      },
+      {
+        "week_start": "2025-11-24T00:00:00",
+        "value": 4069.5
+      },
+      {
+        "week_start": "2025-12-01T00:00:00",
+        "value": 4511.4
+      },
+      {
+        "week_start": "2025-12-08T00:00:00",
+        "value": 4301.2
+      },
+      {
+        "week_start": "2025-12-15T00:00:00",
+        "value": 4187.2
+      },
+      {
+        "week_start": "2025-12-22T00:00:00",
+        "value": 4382.4
+      },
+      {
+        "week_start": "2025-12-29T00:00:00",
+        "value": 5052.1
+      },
+      {
+        "week_start": "2026-01-05T00:00:00",
+        "value": 5002.1
+      },
+      {
+        "week_start": "2026-01-12T00:00:00",
+        "value": 4297.7
+      },
+      {
+        "week_start": "2026-01-19T00:00:00",
+        "value": 4714.6
+      },
+      {
+        "week_start": "2026-01-26T00:00:00",
+        "value": 4537.4
+      },
+      {
+        "week_start": "2026-02-02T00:00:00",
+        "value": 4966.0
+      },
+      {
+        "week_start": "2026-02-09T00:00:00",
+        "value": 5930.0
+      },
+      {
+        "week_start": "2026-02-16T00:00:00",
+        "value": 5695.9
+      },
+      {
+        "week_start": "2026-02-23T00:00:00",
+        "value": 8081.2
+      },
+      {
+        "week_start": "2026-03-02T00:00:00",
+        "value": 8124.5
+      },
+      {
+        "week_start": "2026-03-09T00:00:00",
+        "value": 6305.2
+      },
+      {
+        "week_start": "2026-03-16T00:00:00",
+        "value": 6057.6
+      },
+      {
+        "week_start": "2026-03-23T00:00:00",
+        "value": 7442.5
+      },
+      {
+        "week_start": "2026-03-30T00:00:00",
+        "value": 9227.9
+      },
+      {
+        "week_start": "2026-04-06T00:00:00",
+        "value": 10265.4
+      },
+      {
+        "week_start": "2026-04-13T00:00:00",
+        "value": 10163.6
+      }
+    ],
+    "pollen_series": [
+      {
+        "week_start": "2025-02-24T00:00:00",
+        "concentration": 3.2258098576050815
+      },
+      {
+        "week_start": "2025-03-03T00:00:00",
+        "concentration": 8.893729146803745
+      },
+      {
+        "week_start": "2025-03-10T00:00:00",
+        "concentration": 1.5692269172262208
+      },
+      {
+        "week_start": "2025-03-17T00:00:00",
+        "concentration": 0.6665856672046095
+      },
+      {
+        "week_start": "2025-03-24T00:00:00",
+        "concentration": 2.3940320188626836
+      },
+      {
+        "week_start": "2025-03-31T00:00:00",
+        "concentration": 34.270515679085165
+      },
+      {
+        "week_start": "2025-04-07T00:00:00",
+        "concentration": 91.15129781869214
+      },
+      {
+        "week_start": "2025-04-14T00:00:00",
+        "concentration": 154.3185076231689
+      },
+      {
+        "week_start": "2025-04-21T00:00:00",
+        "concentration": 14.135141851278837
+      },
+      {
+        "week_start": "2025-04-28T00:00:00",
+        "concentration": 9.34495899061302
+      },
+      {
+        "week_start": "2025-05-05T00:00:00",
+        "concentration": 2.559276239538847
+      },
+      {
+        "week_start": "2025-05-12T00:00:00",
+        "concentration": 4.504740566140372
+      },
+      {
+        "week_start": "2025-05-19T00:00:00",
+        "concentration": 3.1118817949464868
+      },
+      {
+        "week_start": "2025-05-26T00:00:00",
+        "concentration": 2.0137737813783905
+      },
+      {
+        "week_start": "2025-06-02T00:00:00",
+        "concentration": 1.5652529957502737
+      },
+      {
+        "week_start": "2025-06-09T00:00:00",
+        "concentration": 0.504690370299089
+      },
+      {
+        "week_start": "2025-06-16T00:00:00",
+        "concentration": 0.2524123038966057
+      },
+      {
+        "week_start": "2025-06-23T00:00:00",
+        "concentration": 0.641709877110391
+      },
+      {
+        "week_start": "2025-06-30T00:00:00",
+        "concentration": 0.20840402718158899
+      },
+      {
+        "week_start": "2025-07-07T00:00:00",
+        "concentration": 0.07759825915942897
+      },
+      {
+        "week_start": "2025-07-14T00:00:00",
+        "concentration": 0.0994940007730365
+      },
+      {
+        "week_start": "2025-07-21T00:00:00",
+        "concentration": 0.021575220090643825
+      },
+      {
+        "week_start": "2025-07-28T00:00:00",
+        "concentration": 0.04618364810330911
+      },
+      {
+        "week_start": "2025-08-04T00:00:00",
+        "concentration": 0.0542380862796132
+      },
+      {
+        "week_start": "2025-08-11T00:00:00",
+        "concentration": 0.050107057335331946
+      },
+      {
+        "week_start": "2025-08-18T00:00:00",
+        "concentration": 0.03684665364474234
+      },
+      {
+        "week_start": "2025-08-25T00:00:00",
+        "concentration": 0.044766968017057575
+      },
+      {
+        "week_start": "2025-09-01T00:00:00",
+        "concentration": 0.1153557268944363
+      },
+      {
+        "week_start": "2025-09-08T00:00:00",
+        "concentration": 0.01703043303342842
+      },
+      {
+        "week_start": "2025-09-15T00:00:00",
+        "concentration": 0.009128428904428904
+      },
+      {
+        "week_start": "2025-09-22T00:00:00",
+        "concentration": 0.0024630541871921183
+      },
+      {
+        "week_start": "2025-09-29T00:00:00",
+        "concentration": 0.0
+      },
+      {
+        "week_start": "2025-10-06T00:00:00",
+        "concentration": 0.006706368303571428
+      },
+      {
+        "week_start": "2025-10-13T00:00:00",
+        "concentration": 0.0
+      },
+      {
+        "week_start": "2025-10-20T00:00:00",
+        "concentration": 0.001214523076923077
+      },
+      {
+        "week_start": "2025-10-27T00:00:00",
+        "concentration": 0.0
+      },
+      {
+        "week_start": "2025-11-03T00:00:00",
+        "concentration": 0.0
+      },
+      {
+        "week_start": "2025-11-10T00:00:00",
+        "concentration": 0.0
+      },
+      {
+        "week_start": "2025-11-17T00:00:00",
+        "concentration": 0.008876830357142857
+      },
+      {
+        "week_start": "2025-11-24T00:00:00",
+        "concentration": 0.01004736842105263
+      },
+      {
+        "week_start": "2025-12-01T00:00:00",
+        "concentration": 0.008448768472906404
+      },
+      {
+        "week_start": "2025-12-08T00:00:00",
+        "concentration": 0.008802637362637363
+      },
+      {
+        "week_start": "2025-12-15T00:00:00",
+        "concentration": 0.0
+      },
+      {
+        "week_start": "2025-12-22T00:00:00",
+        "concentration": 0.024119766483516485
+      },
+      {
+        "week_start": "2025-12-29T00:00:00",
+        "concentration": 0.4826255830455259
+      },
+      {
+        "week_start": "2026-01-05T00:00:00",
+        "concentration": 0.15170694217032965
+      },
+      {
+        "week_start": "2026-01-12T00:00:00",
+        "concentration": 0.0012150615384615387
+      },
+      {
+        "week_start": "2026-01-19T00:00:00",
+        "concentration": 0.004300238095238096
+      },
+      {
+        "week_start": "2026-01-26T00:00:00",
+        "concentration": 0.007772108843537415
+      },
+      {
+        "week_start": "2026-02-02T00:00:00",
+        "concentration": 0.03014235588972431
+      },
+      {
+        "week_start": "2026-02-09T00:00:00",
+        "concentration": 0.18694927166331826
+      },
+      {
+        "week_start": "2026-02-16T00:00:00",
+        "concentration": 0.04513162790334665
+      },
+      {
+        "week_start": "2026-02-23T00:00:00",
+        "concentration": 6.171966528089141
+      },
+      {
+        "week_start": "2026-03-02T00:00:00",
+        "concentration": 11.011652422841445
+      },
+      {
+        "week_start": "2026-03-09T00:00:00",
+        "concentration": 1.1583999953601953
+      },
+      {
+        "week_start": "2026-03-16T00:00:00",
+        "concentration": 0.7910622981485442
+      },
+      {
+        "week_start": "2026-03-23T00:00:00",
+        "concentration": 12.152222810989011
+      },
+      {
+        "week_start": "2026-03-30T00:00:00",
+        "concentration": 187.85426635655747
+      },
+      {
+        "week_start": "2026-04-06T00:00:00",
+        "concentration": 547.2098627291049
+      },
+      {
+        "week_start": "2026-04-13T00:00:00",
+        "concentration": 777.391994022815
+      }
+    ]
+  },
+  "pollen_labels": {
+    "birke": "Birke",
+    "graeser": "Gr\u00e4ser",
+    "erle": "Erle",
+    "hasel": "Hasel",
+    "esche": "Esche",
+    "roggen": "Roggen",
+    "beifuss": "Beifu\u00df",
+    "ambrosia": "Ambrosia"
+  },
+  "disclaimer": "Korrelations-Daten stammen aus einem synthetischen Hexal-Demo-Datensatz, der an die echten ePIN-Bayern-Pollen-Daten gekoppelt ist. Der MOAT (reale Kunden-Elastizit\u00e4t) entsteht erst mit echten Sell-Out-Daten aus einem Pilot."
 }
