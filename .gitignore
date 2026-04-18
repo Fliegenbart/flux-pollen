@@ -24,6 +24,9 @@ backend/app/ml_models/**/*.pkl
 # Data (local only)
 backend/data/raw/
 backend/data/cache/
+backend/data/*.db
+backend/data/*.db-*
+backend/.env.local
 
 # Docker
 docker-compose.override.yml

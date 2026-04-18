@@ -5,6 +5,19 @@ Alle relevanten Änderungen am PollenCast-Projekt werden hier dokumentiert. Form
 ## [Unreleased]
 
 ### Added
+- **Phase 4-real — erster Echtdaten-Backtest auf 5 Jahren ePIN Bayern.** Lokale SQLite-DB (Override via `DATABASE_URL`) mit 867 170 Pollen-Observations, 30 928 Wetter-Zeilen (BrightSky, 16 Hauptstädte), 496 Ferien-Einträgen 2022–2026. Fenster 2021-01-01 bis 2026-04-17, Horizonte 7 und 14, Walk-Forward mit `min_train_days=365` und `step_days=7`, ~220 Folds pro Run.
+
+  | Pollen | Horizon | Folds | MAE | WIS80 | Cov80 | ΔWIS vs Persistence | ΔWIS vs Seasonal-Naive |
+  |---|---:|---:|---:|---:|---:|---:|---:|
+  | Birke | 7  | 221 | 48.9 | 29.4 | 0.90 | **−16.6 %** | −20.3 % |
+  | Birke | 14 | 220 | 46.2 | 27.9 | 0.91 | **−36.4 %** | −25.1 % |
+  | Gräser | 7  | 221 | 11.3 |  7.1 | 0.91 | **−32.5 %** | −26.2 % |
+  | Gräser | 14 | 220 | 15.0 |  8.3 | 0.86 | **−44.1 %** | −15.5 % |
+  | Erle | 7  | 221 | 31.4 | 19.3 | 0.85 | **−39.2 %** | −40.3 % |
+
+  **Ehrliche Befunde:** Das Ridge-Median-Modell ist auf **MAE** oft nur knapp oder gar nicht besser als die Baselines — Pollen haben starke t-7-Autokorrelation, die ein einfacher Lag bereits gut erfasst. Auf **WIS80** gewinnt das Modell trotzdem durchgängig klar (−16 bis −44 %), weil die pinball-regressierten Quantil-Bänder schmaler kalibriert sind als die aus der empirischen Residual-Verteilung der Baseline. **Coverage80** liegt systematisch über dem 80%-Ziel (0.85–0.91) — die Bänder sind leicht zu breit. Das ist das richtige Vorzeichen für Phase 4b (Holt-Winters + Prophet + XGBoost-Stacking): Der Median-Fit braucht mehr Tiefe, die Unsicherheitskalibrierung muss nachgeschärft werden.
+  - `DATABASE_URL`-Override in `config.py` und `db/session.py` (StaticPool für SQLite, QueuePool für Postgres).
+  - Neue CLI `scripts/summarize_backtests.py` als Report-Formatter.
 - **Phase 4a — ML-Fundament (Feature-Engineering, Baselines, Ridge-+-GBM-Forecast, Walk-Forward-Backtester).** Erste Version der ML-Pipeline ist lauffähig, inkl. probabilistischer Prognose und harter Baselines:
   - `app/services/ml/metrics.py` — MAE, RMSE, Pinball-Loss, Interval-Score, **Weighted Interval Score (WIS)** nach Bracher et al. 2021 (die Metrik, die RKI/CDC/Hubverse für Respiratory-Forecasts verwenden), Coverage.
   - `app/services/ml/baselines.py` — PersistenceBaseline und SeasonalNaiveBaseline mit empirisch kalibrierten Quantil-Intervallen (q10/q90).
